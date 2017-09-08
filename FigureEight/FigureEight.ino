@@ -4,7 +4,7 @@ int lineMidLeft, lineMidRight, lineRight, lineLeft; //Line Sensor Values Variabl
 int lineMidLeftPin, lineMidRightPin, lineRightPin, lineLeftPin; //Analog pins with line sensors
 int toleranceForward = 100;
 int blackDetect = 850; //Under this value means robot is on top of whiteish, above this value means is blackish
-char turn; //0 for left, 1 for right
+char turn; //0, 1, 2, 3 for left - 4, 5, 6, 7 for right
 char turnFlag; //Must reach 2
 
 void setup() {
