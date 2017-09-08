@@ -25,29 +25,32 @@ void loop() {
   //Read line sensor values
   lineMidLeft = analogRead(lineMidLeftPin); lineMidRight = analogRead(lineMidRightPin);
   lineLeft = analogRead(lineLeftPin); lineRight = analogRead(lineRightPin);
+  if (turn == 8) turn == 0; //Reset turn to 0 if it finishes 8 turns (4 left and 4 right)
   turnFlag = 0;
 
   //Detect a crossroads
   if (lineLeft > blackDetect && lineRight > blackDetect) { //left and right sensors
-    if (turn == 0) { //Now we want to turn left
+    if (turn < 4) { //We want to turn left for the first 4 turns
       while (turnFlag < 2) {
-        walkLeft();
+        turnLeft(); //Use turnLeft instead of walkLeft for fast turn
         if (lineLeft < 800) {
           turnFlag = 1;
         }
         if (turnFlag == 1 && lineLeft  > 850) {
           turnFlag = 2;
         }
+        turn++;
       }
-    } else if (turn == 1) { //Now we want to turn right
+    } else { //Now we want to turn right for the next 4 turns
       while (turnFlag < 2) {
-        walkRight();
+        turnRight();
         if (lineLeft < 800) {
           turnFlag = 1;
         }
         if (turnFlag == 1 && lineLeft > 850) {
           turnFlag = 2;
         }
+        turn++;
       }
     }
   }
