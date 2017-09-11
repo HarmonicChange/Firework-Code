@@ -39,30 +39,16 @@ void loop() {
   if (lineLeft > blackDetect && lineRight > blackDetect) { //left and right sensors
     Serial.println("Detected a crossroad");
     if (turn < 4) { //We want to turn left for the first 4 turns
-      while (turnFlag < 2) {
-        Serial.println("Turning left. In while loop.");
-        turnLeft(); //Use turnLeft instead of walkLeft for fast turn
-        lineLeft = analogRead(lineLeftPin); //Update lineLeft sensor value
-        if (lineLeft < 800) {
-          turnFlag = 1;
-        }
-        else if (turnFlag == 1 && lineLeft  > 850) {
-          turnFlag = 2;
-        }      
+      walkLeft();
+      while(lineMidLeft<blackDetect && lineMidRight<blackDectect){ //Walk left until both middle sensors turn black
+      lineMidLeft = analogRead(lineMidLeftPin); lineMidRight = analogRead(lineMidRightPin);
       }
       turn++;
       
     } else { //Now we want to turn right for the next 4 turns
-      while (turnFlag < 2) {
-        Serial.println("Turning right. In while loop.");
-        turnRight();
-        lineLeft = analogRead(lineLeftPin); //Update lineLeft sensor value
-        if (lineLeft < 800) {
-          turnFlag = 1;
-        }
-        if (turnFlag == 1 && lineLeft > 850) {
-          turnFlag = 2;
-        }
+      walkLeft();
+      while(lineMidLeft<blackDetect && lineMidRight<blackDectect){ //Walk left until both middle sensors turn black
+      lineMidLeft = analogRead(lineMidLeftPin); lineMidRight = analogRead(lineMidRightPin);
       }
       turn++;
     }
