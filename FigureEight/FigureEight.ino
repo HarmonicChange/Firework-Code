@@ -46,8 +46,8 @@ void loop() {
       turn++;
       
     } else { //Now we want to turn right for the next 4 turns
-      walkLeft();
-      while(lineMidLeft<blackDetect && lineMidRight<blackDetect){ //Walk left until both middle sensors turn black
+      walkRight();
+      while(lineMidLeft<blackDetect && lineMidRight<blackDetect){ //Walk right until both middle sensors turn black
         lineMidLeft = analogRead(lineMidLeftPin); lineMidRight = analogRead(lineMidRightPin);
       }
       turn++;
