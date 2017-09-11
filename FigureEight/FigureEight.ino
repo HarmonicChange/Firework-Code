@@ -15,10 +15,10 @@ void setup() {
   leftWheel.attach(3);
   rightWheel.attach(5);
 
-  lineMidLeftPin = A1;
-  lineMidRightPin = A2;
-  lineRightPin = A3;
-  lineLeftPin = A0;
+  lineMidLeftPin = 1;
+  lineMidRightPin = 2;
+  lineRightPin = 3;
+  lineLeftPin = 0;
 }
 
 void loop() {
@@ -30,8 +30,10 @@ void loop() {
 
   //Detect a crossroads
   if (lineLeft > blackDetect && lineRight > blackDetect) { //left and right sensors
+    Serial.println("Detected a crossroad");
     if (turn < 4) { //We want to turn left for the first 4 turns
       while (turnFlag < 2) {
+        Serial.println("Turning left. In while loop.");
         turnLeft(); //Use turnLeft instead of walkLeft for fast turn
         lineLeft = analogRead(lineLeftPin); //Update lineLeft sensor value
         if (lineLeft < 800) {
@@ -39,11 +41,13 @@ void loop() {
         }
         if (turnFlag == 1 && lineLeft  > 850) {
           turnFlag = 2;
-        }
-        turn++;
+        }      
       }
+      turn++;
+      
     } else { //Now we want to turn right for the next 4 turns
       while (turnFlag < 2) {
+        Serial.println("Turning right. In while loop.");
         turnRight();
         lineLeft = analogRead(lineLeftPin); //Update lineLeft sensor value
         if (lineLeft < 800) {
@@ -52,21 +56,24 @@ void loop() {
         if (turnFlag == 1 && lineLeft > 850) {
           turnFlag = 2;
         }
-        turn++;
       }
+      turn++;
     }
   }
 
   //Now robot is on top of black line, if two sensors different less than a tolerance, walk forward
   else if ((abs(lineMidLeft - lineMidRight) < toleranceForward)) {
     walkForward();
+    Serial.println("walking forward");
   }
   //Otherwises, if sensor to the left has higher value than sensor to the right
   //it means robot is hitting white space on the right, so we turn left
   else if (lineMidLeft >= lineMidRight) {
     walkLeft();
+    Serial.println("Straying to the right, walking left now");
   }
   else if (lineMidLeft < lineMidRight) {
     walkRight();
+    Serial.println("Straying to the left, walking right now");
   }
 }
