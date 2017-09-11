@@ -40,15 +40,15 @@ void loop() {
     Serial.println("Detected a crossroad");
     if (turn < 4) { //We want to turn left for the first 4 turns
       walkLeft();
-      while(lineMidLeft<blackDetect && lineMidRight<blackDectect){ //Walk left until both middle sensors turn black
-      lineMidLeft = analogRead(lineMidLeftPin); lineMidRight = analogRead(lineMidRightPin);
+      while(lineMidLeft<blackDetect && lineMidRight<blackDetect){ //Walk left until both middle sensors turn black
+        lineMidLeft = analogRead(lineMidLeftPin); lineMidRight = analogRead(lineMidRightPin);
       }
       turn++;
       
     } else { //Now we want to turn right for the next 4 turns
       walkLeft();
-      while(lineMidLeft<blackDetect && lineMidRight<blackDectect){ //Walk left until both middle sensors turn black
-      lineMidLeft = analogRead(lineMidLeftPin); lineMidRight = analogRead(lineMidRightPin);
+      while(lineMidLeft<blackDetect && lineMidRight<blackDetect){ //Walk left until both middle sensors turn black
+        lineMidLeft = analogRead(lineMidLeftPin); lineMidRight = analogRead(lineMidRightPin);
       }
       turn++;
     }
