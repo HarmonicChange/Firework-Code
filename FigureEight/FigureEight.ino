@@ -27,7 +27,14 @@ void loop() {
   lineLeft = analogRead(lineLeftPin); lineRight = analogRead(lineRightPin);
   if (turn == 8) turn = 0; //Reset turn to 0 if it finishes 8 turns (4 left and 4 right)
   turnFlag = 0;
-
+  Serial.print(lineLeft);
+  Serial.print("\t");
+  Serial.print(lineMidLeft);
+  Serial.print("\t");
+  Serial.print(lineMidRight);
+  Serial.print("\t");
+  Serial.print(lineRight);
+  Serial.println("\t");
   //Detect a crossroads
   if (lineLeft > blackDetect && lineRight > blackDetect) { //left and right sensors
     Serial.println("Detected a crossroad");
@@ -39,7 +46,7 @@ void loop() {
         if (lineLeft < 800) {
           turnFlag = 1;
         }
-        if (turnFlag == 1 && lineLeft  > 850) {
+        else if (turnFlag == 1 && lineLeft  > 850) {
           turnFlag = 2;
         }      
       }
@@ -76,4 +83,6 @@ void loop() {
     walkRight();
     Serial.println("Straying to the left, walking right now");
   }
+
+  delay(500);
 }
