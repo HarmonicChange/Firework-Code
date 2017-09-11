@@ -36,6 +36,7 @@ void loop() {
   Serial.print(lineRight);
   Serial.println("\t");
   //Detect a crossroads
+  /*
   if (lineLeft > blackDetect && lineRight > blackDetect) { //left and right sensors
     Serial.println("Detected a crossroad");
     if (turn < 4) { //We want to turn left for the first 4 turns
@@ -55,7 +56,7 @@ void loop() {
   }
 
   //Now robot is on top of black line, if two sensors different less than a tolerance, walk forward
-  else if ((abs(lineMidLeft - lineMidRight) < toleranceForward)) {
+  else*/ if ((abs(lineMidLeft - lineMidRight) < toleranceForward)&& lineMidLeft > blackDetect) {
     walkForward();
     Serial.println("walking forward");
   }
