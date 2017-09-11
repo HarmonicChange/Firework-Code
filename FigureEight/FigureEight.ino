@@ -33,6 +33,7 @@ void loop() {
     if (turn < 4) { //We want to turn left for the first 4 turns
       while (turnFlag < 2) {
         turnLeft(); //Use turnLeft instead of walkLeft for fast turn
+        lineLeft = analogRead(lineLeftPin); //Update lineLeft sensor value
         if (lineLeft < 800) {
           turnFlag = 1;
         }
@@ -44,6 +45,7 @@ void loop() {
     } else { //Now we want to turn right for the next 4 turns
       while (turnFlag < 2) {
         turnRight();
+        lineLeft = analogRead(lineLeftPin); //Update lineLeft sensor value
         if (lineLeft < 800) {
           turnFlag = 1;
         }
