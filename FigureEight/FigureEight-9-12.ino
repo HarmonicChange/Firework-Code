@@ -15,17 +15,16 @@ void setup() {
   leftWheel.attach(5);
   rightWheel.attach(3);
 
-  lineMidLeftPin = 1;
-  lineMidRightPin = 2;
-  lineRightPin = 3;
-  lineLeftPin = 0;
+  lineMidLeftPin = A1;
+  lineMidRightPin = A2;
+  lineRightPin = A3;
+  lineLeftPin = A0;
 }
 
 void loop() {
   //Read line sensor values
   lineMidLeft = analogRead(lineMidLeftPin); lineMidRight = analogRead(lineMidRightPin);
   lineLeft = analogRead(lineLeftPin); lineRight = analogRead(lineRightPin);
-<<<<<<< HEAD
 
   //Debug
   Serial.print(lineLeft);
@@ -38,24 +37,12 @@ void loop() {
   Serial.print("  ");
   Serial.println();
   
-=======
->>>>>>> a14a2fbccb50f5f1398ad84e8ab78df6e4f7834e
   if (turn == 8) turn = 0; //Reset turn to 0 if it finishes 8 turns (4 left and 4 right)
   turnFlag = 0;
-  Serial.print(lineLeft);
-  Serial.print("\t");
-  Serial.print(lineMidLeft);
-  Serial.print("\t");
-  Serial.print(lineMidRight);
-  Serial.print("\t");
-  Serial.print(lineRight);
-  Serial.println("\t");
+
   //Detect a crossroads
-  /*
   if (lineLeft > blackDetect && lineRight > blackDetect) { //left and right sensors
-    Serial.println("Detected a crossroad");
     if (turn < 4) { //We want to turn left for the first 4 turns
-<<<<<<< HEAD
       while (turnFlag < 3) {
         walkLeft(); //Begin turning left
         
@@ -75,16 +62,8 @@ void loop() {
           turnFlag = 3;
           turn++;
         }
-=======
-      walkLeft();
-      while(lineMidLeft<blackDetect && lineMidRight<blackDetect){ //Walk left until both middle sensors turn black
-        lineMidLeft = analogRead(lineMidLeftPin); lineMidRight = analogRead(lineMidRightPin);
->>>>>>> a14a2fbccb50f5f1398ad84e8ab78df6e4f7834e
       }
-      turn++;
-      
     } else { //Now we want to turn right for the next 4 turns
-<<<<<<< HEAD
       while (turnFlag < 3) {
         walkRight(); ///Begin turning right
 
@@ -104,45 +83,25 @@ void loop() {
           turnFlag = 3;
           turn++;
         }
-=======
-      walkRight();
-      while(lineMidLeft<blackDetect && lineMidRight<blackDetect){ //Walk right until both middle sensors turn black
-        lineMidLeft = analogRead(lineMidLeftPin); lineMidRight = analogRead(lineMidRightPin);
->>>>>>> a14a2fbccb50f5f1398ad84e8ab78df6e4f7834e
       }
-      turn++;
     }
   }
   
   //Now robot is on top of black line, if two sensors different less than a tolerance, walk forward
-  else*/ if ((abs(lineMidLeft - lineMidRight) < toleranceForward)&& lineMidLeft > blackDetect) {
+  else if ((abs(lineMidLeft - lineMidRight) < toleranceForward)) {
     walkForward();
-<<<<<<< HEAD
     Serial.println("straight");
-=======
-    Serial.println("walking forward");
->>>>>>> a14a2fbccb50f5f1398ad84e8ab78df6e4f7834e
   }
   //Otherwises, if sensor to the left has higher value than sensor to the right
   //it means robot is hitting white space on the right, so we turn left
   else if (lineMidLeft >= lineMidRight) {
     walkLeft();
-<<<<<<< HEAD
     Serial.println("left");
   }
   else if (lineMidLeft < lineMidRight) {
     walkRight();
     Serial.println("right");
-=======
-    Serial.println("Straying to the right, walking left now");
   }
-  else if (lineMidLeft < lineMidRight) {
-    walkRight();
-    Serial.println("Straying to the left, walking right now");
->>>>>>> a14a2fbccb50f5f1398ad84e8ab78df6e4f7834e
-  }
-
-  delay(500);
 }
 
 void walkForward(){ //Moving forward full speed
