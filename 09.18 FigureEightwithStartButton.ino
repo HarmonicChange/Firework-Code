@@ -49,7 +49,7 @@ void loop() {
 
   if (startFlag){
       //digitalWrite(13, HIGH);
-      if (turn == 8 turn = 0; //Reset turn to 0 if it finishes 8 turns (4 left and 4 right)
+      if (turn == 8) turn = 0; //Reset turn to 0 if it finishes 8 turns (4 left and 4 right)
       turnFlag = 0;
       
       //Detect a crossroads
