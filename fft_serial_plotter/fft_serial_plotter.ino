@@ -27,7 +27,7 @@ byte return_freq() {
   fft_mag_log(); // take the output of the fft
   sei();
 
-  Serial.println("start");
+  //Serial.println("start");
   for (byte i = 0 ; i < FFT_N / 2 ; i++) {
     Serial.println(fft_log_out[i]); // send out the data
   }

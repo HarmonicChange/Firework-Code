@@ -40,10 +40,8 @@ void loop() {
 
       // Detect a crossroads
       if (lineLeft > blackDetect && lineRight > blackDetect) { //left and right sensors
-        if (turn == 0 || turn == 4) keepStraight();
-        else if (turn > 0 && turn < 4) rightTurn();
-        else leftTurn();
-        turn += 1;   
+        Serial.println("TURN!");
+        leftTurn();  
       }
       
       // Detects that it's on the black line
