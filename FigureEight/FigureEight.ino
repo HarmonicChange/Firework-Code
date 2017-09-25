@@ -4,7 +4,7 @@ int startPin = 2;
 int lineMidLeft, lineMidRight, lineRight, lineLeft;             //Line Sensor Values Variables
 int lineMidLeftPin, lineMidRightPin, lineRightPin, lineLeftPin; // Analog pins with line sensors
 int toleranceForward = 200; //
-int blackDetect = 700;      // Threshold above which sensors are reading a black line
+int blackDetect = 600;      // Threshold above which sensors are reading a black line
 int turn = 0;               // Determines stage of 8-figure turn, values 0-7
 boolean startFlag = false;  // Set by pressing button, starts operation of robot.
 
