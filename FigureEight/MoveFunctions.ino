@@ -1,32 +1,36 @@
 // Complete 90 degree left turn at intersection
 void leftTurn(){
   bool turnDone = false;
-  walkForward();
-  delay(200);
+  //walkForward();
+  //delay(200);
+  bool flag = false;
   while (! turnDone) {
-    leftTurnFast(); //Begin turning left
+    leftTurnSlow(); //Begin turning left
     delay(100);     
     //Update needed sensor values
     lineMidLeft = analogRead(lineMidLeftPin);
     
     //Test necessary conditions for completion of left turn
-    if (lineMidLeft  > blackDetect) turnDone = true;
+    if (!flag && lineMidLeft < blackDetect) flag = true;
+    if (flag && lineMidLeft  > blackDetect) turnDone = true;
   }
 }
 
 // Complete 90 degree right turn at intersection
 void rightTurn(){
   bool turnDone = false;
-  walkForward();
-  delay(200);
+  //walkForward();
+  //delay(200);
+  bool flag = false;
   while (! turnDone) {
-    rightTurnFast(); ///Begin turning right
+    rightTurnSlow(); ///Begin turning right
     delay(100);
     //Update needed sensor values
     lineMidRight = analogRead(lineMidRightPin);
-    
+    printSensors();
     //Test necessary conditions for completion of right turn
-    if (lineMidRight  > blackDetect) turnDone = true;
+    if (!flag && lineMidRight < blackDetect) flag = true;
+    if (flag && lineMidRight  > blackDetect) turnDone = true;
   }
 }
 
@@ -73,7 +77,3 @@ void rightDrift(){
   leftWheel.write(180); //
   rightWheel.write(90); // 
 }
-
-
-
-
