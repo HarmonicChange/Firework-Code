@@ -274,6 +274,7 @@ module rom(clock,addr,sine);
 	endcase
  end
 endmodule
+
 module DE0_NANO(
 
 	//////////// CLOCK //////////
@@ -300,7 +301,7 @@ module DE0_NANO(
 	 //  PARAMETER declarations
 	 //=======================================================
 
-	 localparam ONE_SEC = 25000000; // one second in 25MHz clock cycles
+	 localparam ONE_SEC = 50000000; // one second in 25MHz clock cycles
 	 
 	 //=======================================================
 	 //  PORT declarations
@@ -351,7 +352,7 @@ module DE0_NANO(
 	 reg [7:0] addr;
 	 //==========
 	 rom Table (
-		.clock(clock),
+		.clock(CLOCK_50),
 		.addr(addr),
 		.sine(DAC)
 	 );
@@ -361,8 +362,12 @@ module DE0_NANO(
     //=======================================================
 	
 	 // Local parameter
-	localparam SINE_FREQ = 440;
-	localparam CLKDIVIDER = ONE_SEC/(256*SINE_FREQ);
+	localparam SINE_FREQA = 440;
+	localparam SINE_FREQCsh = 554;
+	localparam SINE_FREQE = 660;
+	localparam CLKDIVIDERA = ONE_SEC/(256*SINE_FREQA);
+	localparam CLKDIVIDERCsh = ONE_SEC/(256*SINE_FREQCsh);
+	localparam CLKDIVIDERE = ONE_SEC/(256*SINE_FREQE);
 	
 	//1kHz triangle wave localparam CLKDIVIDER = 25000000/440000;
 
@@ -372,13 +377,36 @@ module DE0_NANO(
 	assign GPIO_0_D[7:0] = DAC;
 
 	reg [15:0] counter;
+	reg [15:0] note_length;
+	reg [1:0] note; //note being played. 01 is A, 10 is C sharp, 11 is E
 	reg descent;
 	
 	// Sound state machine
 	always @ (posedge CLOCK_50) begin
+		if(note_length == 0) begin
+			note_length <= ONE_SEC;
+			note <= note + 1;
+		end
+		
+		else begin
+			note_length <= note_length - 1;
+		end
+		
 	  if (counter == 0) begin
-		 counter    <= CLKDIVIDER - 1; // reset clock
-		 addr       <= addr+1;
+		case(note)
+			2'b00: counter <= 0;
+			2'b01: counter    <= CLKDIVIDERA - 1;	// reset clock
+			//TODO add more frequencies
+			
+		endcase
+		end
+		
+		 if (addr < 256) begin
+			addr       <= addr+1;
+		 end
+		 else begin
+			addr <= 0;
+		 end
 		 
 		 //square_440 <= ~square_440;        // toggle the square pulse
 		
