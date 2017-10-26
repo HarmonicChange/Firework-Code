@@ -146,7 +146,7 @@ void initializeRFStuff(){
 }
 
 byte joinRobot(){
-  return (robot_dir << 4) + (robot_loc);
+  return (robot_dir << 5) + (robot_loc);
 }
 
 void transmitRobot() {

@@ -39,13 +39,13 @@ void loop() {
   // Update line sensor values
   updateLineSensors();
   printSensors();
-  transmitRobot();
 
   //Reset turn to 0 if it finishes 8 turns of figure eight
   if (turn == 8) turn = 0; 
   
   // Detect a crossroads
   if (lineLeft > blackDetect && lineRight > blackDetect) { 
+    transmitRobot();
     if (turn == 0 || turn == 4) keepStraight();
     else if (turn > 0 && turn < 4) rightTurn();
     else leftTurn();
