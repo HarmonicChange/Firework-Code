@@ -1,3 +1,6 @@
+//#ifndef NODE_H_INCLUDED
+//#define NODE_H_INCLUDED
+
 #include "Node.h"
 
 Node::Node (int pos) {
@@ -7,8 +10,22 @@ Node::Node (int pos) {
 }
 
 void Node::addNeighbor(Node* n) {
-  neighbors[nextNeighbor] = n;
-  nextNeighbor++;
+  if(n->isExplored()) {
+    neighbors[nextNeighbor] = n;
+    nextNeighbor++;
+  }
+}
+
+Node** Node::getNeighbors() {
+  return neighbors;
+}
+
+Node* Node::getParent() {
+  return parent;
+}
+
+char Node::getCoord() {
+  return coord;
 }
 
 void Node::addWall (Direction d, bool hasWall) {
@@ -50,15 +67,21 @@ void Node::markAsExplored() {
 void Node::addTreasure (int freq) {
   //TODO check how we're passing in freq
   if(freq == 0) {
-    wallTreasure |= (1 << 4);
+    wallTreasures |= (1 << 4);
   } else if (freq == 1) {
-    wallTreasure |= (1 << 3);
+    wallTreasures |= (1 << 3);
   } else {
-    wallTreasure |= (1 << 2);
+    wallTreasures |= (1 << 2);
   }
 }
 
 void Node::addParent(Node* par) {
   parent = par;
 }
+
+char Node::getWallTreasures() {
+  return wallTreasures;
+}
+
+//#endif
 

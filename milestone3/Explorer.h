@@ -1,4 +1,7 @@
+#ifndef EXPLORER_H
+#define EXPLORER_H
 #include "Node.h"
+//#include "Node.cpp"
 
 class Explorer {
 
@@ -6,9 +9,15 @@ class Explorer {
   Node* current;
 
   public:
-    Explorer();
+    Explorer(Node* startNode) {
+    root = startNode;
+    current = startNode;
+    };
+    
     Node* nextNode(); //essentially does the DFS
-    Node* travelTo(); //call this when robot has moved
+    Node* travelTo(Node*); //call this when robot has moved
   
 };
+
+#endif
 

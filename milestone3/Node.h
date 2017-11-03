@@ -1,10 +1,14 @@
-enum Direction {north, south, west, east};
+#ifndef NODE_H
+#define NODE_H
+
+enum Direction {west=0, north, east, south};
 
 class Node {
 
+  int dir; 
   char coord; //0-19
 
-  //NSEWTTTF: NSEW = walls, TTT = treasure, F = flag for done exploring
+  //NSEWTTTF: NSEW = walls, TT = treasure, F = flag for done exploring
   char wallTreasures;
   
   Node* neighbors[3]; //pointer to neighboring nodes
@@ -20,4 +24,9 @@ class Node {
     void addTreasure(int freq);
     void addParent(Node*);
     void markAsExplored();
+    Node** getNeighbors();
+    Node* getParent();
+    char getCoord();
+    char getWallTreasures();
 };
+#endif
