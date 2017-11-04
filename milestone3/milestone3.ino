@@ -1,26 +1,17 @@
 #include "Node.h"
 //#include "Node.cpp"
-//#include "Explorer.h"
+#include "Explorer.h"
 //#include "Explorer.cpp"
-
-
-class Explorer {
-
-  Node* root;
-  Node* current;
-
-  public:
-    Explorer(Node*);
-    Node* nextNode(); //essentially does the DFS
-    Node* travelTo(Node*); //call this when robot has moved
-  
-};
 
 int currPos;
 Direction currDir;
 //Node* grid[20]; //4x5 maze representation
+
+//Array of pointers to nodes
 Node* grid[4];
-Explorer explorer;
+
+//Look at http://forum.arduino.cc/index.php?topic=37010.0
+Explorer* explorerPtr = NULL;
 
 void setup() {
 
@@ -63,11 +54,11 @@ void setup() {
   
   //Initialize all nodes
   for(int i = 0; i < 4; i++) {
-   grid[i] = new *Node(i);
+   grid[i] = new Node(i);
   }
 
   //Initialize explorer class
-  explorer = new Explorer(grid[currPos]);
+  explorerPtr = new Explorer(grid[currPos]);
 
   //Add perimeter walls
   grid[0]->addWall(north, true);
