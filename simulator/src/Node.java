@@ -1,3 +1,5 @@
+/*Node is the robot's representation for an intersection.
+The robot will create and update nodes as it explores the maze*/
 
 public class Node {
 	public Node n;

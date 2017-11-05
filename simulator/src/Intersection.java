@@ -1,3 +1,5 @@
+/*Intersections used in generating the maze. 
+Each maze has 20 intersections. Intersections are defined by the following fields*/
 
 public class Intersection {
 	public boolean wall_n;

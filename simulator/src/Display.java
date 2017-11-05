@@ -1,3 +1,8 @@
+/*Display instantiates the JFrame window and the canvas to draw to.
+As the maze is updated, the display will update as well.
+Much of this code is taken from: 
+https://www.ntu.edu.sg/home/ehchua/programming/java/J4b_CustomGraphics.html*/
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -31,7 +36,6 @@ public class Display extends JFrame{
 	      // Set the Drawing JPanel as the JFrame's content-pane
 	      Container cp = getContentPane();
 	      cp.add(canvas);
-	      // or "setContentPane(canvas);"
 	 
 	      setDefaultCloseOperation(EXIT_ON_CLOSE);   // Handle the CLOSE button
 	      pack();              // Either pack() the components; or setSize()
@@ -44,8 +48,8 @@ public class Display extends JFrame{
 	         public void run() {
 	            while (true) {
 	               update(maze);   // update the (x, y) position
-	               canvas.paintComponent(canvas.getGraphics());
-	               //repaint();  // Refresh the JFrame. Called back paintComponent()
+	               canvas.paintComponent(canvas.getGraphics());// Refresh the JFrame. Called back paintComponent()
+	               
 	               try {
 	                  // Delay and give other thread a chance to run
 	                  Thread.sleep(UPDATE_INTERVAL);  // milliseconds
@@ -77,6 +81,8 @@ public class Display extends JFrame{
 	      @Override
 	      public void paintComponent(Graphics g) {
 	         super.paintComponent(g);     // paint parent's background
+
+	         //paint walls
 	         for(int i = 0; i < 4; i++) {
 	        	 for(int j = 0; j < 5; j++) {
 	        		 g.setColor(Color.BLUE);
@@ -90,36 +96,20 @@ public class Display extends JFrame{
 	    	        	 g.fillRect((i)*100 + (i+1)*10, (j)*100+(j+1)*10, 100, 100);
 	        	 }
 	         }
-	         setBackground(Color.BLACK);  // set background color for this JPanel
-	 
-	         // Your custom painting codes. For example,
-	         // Drawing primitive shapes
-	         //g.setColor(Color.YELLOW);    // set the drawing color
-	         //g.drawLine(30, 40, 100, 200);
-	         //g.drawOval(150, 180, 10, 10);
-	         //g.drawRect(200, 210, 20, 30);
+	         setBackground(Color.BLACK); 
+
 	         g.setColor(Color.RED);       // change the drawing color
-	         //g.fillOval(300, 310, 30, 50);
 	         
-	         //g.fillRect(robot_x, robot_y, 100, 100);
 	         g.fillRect(robot_x, robot_y, 100, 100);
 	         
-	         // Printing texts*/
+	         //Paint direction indicator
 	         g.setColor(Color.GREEN);
-	         //g.setFont(new Font("Monospaced", Font.PLAIN, 12));
 	         switch(robot.dir) {
 	         case NORTH: g.drawString("O", robot_x+50, robot_y+10); break;
 	         case WEST: g.drawString("O", robot_x+10, robot_y+50); break;
 	         case SOUTH: g.drawString("O", robot_x+50, robot_y+100); break;
 	         case EAST: g.drawString("O", robot_x+90, robot_y+50); break;
 	         }
-	         
-	         /*g.fillRect(0, 0, CANVAS_WIDTH, 10);
-	         g.fillRect(0, CANVAS_HEIGHT-10, CANVAS_WIDTH, 10);
-	         g.fillRect(0, 0, 10, CANVAS_HEIGHT);
-	         g.fillRect(CANVAS_WIDTH-10, 0, 10, CANVAS_HEIGHT);*/
-	         
-	         
 	      }
 	   }
 }

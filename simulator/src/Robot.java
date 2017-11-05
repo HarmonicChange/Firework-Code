@@ -1,3 +1,7 @@
+/*Robot represents our robot in the maze. Programming the robot to
+navigate the maze will only require editing this file. The sensor and location readings
+are updated as the robot explores*/
+
 import java.util.ArrayList;
 
 public class Robot {
@@ -32,6 +36,8 @@ public class Robot {
 		seen = new boolean[5][4];
 	}
 	
+	/*navigate() is called on loop. The objective of navigate is for the robot to make
+	one action. an action can either be a right turn, left turn, or move forward*/
 	public void navigate() {
 		//if(unexplored == 0)done = true;
 		update();

@@ -1,3 +1,7 @@
+/*MazeSolver creates a random maze as a collection of intersections.
+The maze can be updated using the updateMaze method to reflect the current location
+of the robot. This method also updates the robot's sensors.*/
+
 import javax.swing.SwingUtilities;
 import java.util.concurrent.TimeUnit;
 
