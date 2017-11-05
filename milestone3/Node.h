@@ -34,6 +34,11 @@ Node::Node (int pos) {
   coord = pos;
   wallTreasures = 0;
   nextNeighbor = 0;
+  for (int i = 0; i<3; i++){
+    neighbors[i] = NULL;
+    }
+  
+  
 }
 
 void Node::addNeighbor(Node* n) {

@@ -24,21 +24,25 @@ class Explorer {
 
 Node* Explorer::nextNode() {
   Node** neighbors = current->getNeighbors();
+  
   for (int i = 0; i<3; i++){
-    if (!(*(neighbors+i))->isExplored()){
+    if (neighbors[i] != NULL && !(*(neighbors+i))->isExplored()){
       return *(neighbors+i);
     }
-  }
-
-  if(current == root) { //DPS ending condition: back to root and no unexplored neighbors from root
-    return current;
-  }
+   }
+  
   return current->getParent(); //Reverse traversal to find unexplored neighbors
 }
 
 Node* Explorer::travelTo(Node* walkingTo) {
-  walkingTo->addParent(current);
-  current = walkingTo;
+  walkingTo->markAsExplored();
+  if (walkingTo == current->getParent()){
+    current = walkingTo;
+  }
+  else{
+    walkingTo->addParent(current);
+    current = walkingTo;
+  }
 }
 
 Node* Explorer::getCurrNode(){
