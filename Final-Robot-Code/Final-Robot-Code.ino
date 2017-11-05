@@ -11,6 +11,7 @@ int frontDistance;
 int frontIR;
 
 int mux_S0 = 4, mux_S1 = 5;
+uint8_t status = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -29,8 +30,6 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  frontDistance = analogRead(frontIR);
-  Serial.println(frontDistance);
   printSensors();
   if (!startFlag){
     if (digitalRead(startPin) == HIGH) startFlag = true; 
@@ -38,14 +37,18 @@ void loop() {
     rightWheel.write(90); //Stop right wheel forward
   }
   if (startFlag){
-    if (frontDistance < 300){ //Keep walking when distance is greater than 8cm
+     // Detect an intersections
+      if (lineLeft > blackDetect && lineRight > blackDetect) {     
+        status = wall(); //returns an eight bit situation of the wall to status
+        //now what
+        //choose action
+      }
+      
+    //Line following
       if ((abs(lineMidLeft - lineMidRight) < toleranceForward))walkForward();
       // If not on the black line, readjust
       else if (lineMidLeft >= lineMidRight) leftDrift();      
       else if (lineMidLeft < lineMidRight)  rightDrift();
-    }
-    else{               //Turn right when it is 300 cm away from the wall
-      rightTurn();
     }
   }
 }
