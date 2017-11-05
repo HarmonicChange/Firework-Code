@@ -15,7 +15,7 @@ Explorer* explorerPtr = NULL;
 
 void setup() {
 
-  Serial.begin(9600);
+  Serial.begin(4800);
 //  //Set up all pins
 //  
 //  //Initial position and direction facing
@@ -51,6 +51,7 @@ void setup() {
   //Initial position and direction facing
   currPos = 3;
   currDir = north;
+  int index;
   
   //Initialize all nodes
   for(int i = 0; i < 4; i++) {
@@ -73,22 +74,54 @@ void setup() {
   //Intersection detected
   //Sensor input: left has no wall
   grid[currPos]->addWall(Direction((currDir-1)%4), false);
+  if((currDir-1)%4 == north) {
+    index = currPos-2;
+  } else if((currDir-1)%4 == west) {
+    index = currPos-1;
+  } else if((currDir-1)%4 == east) {
+    index = currPos+1;
+  } else {
+    index = currPos+2;
+  }
+  grid[currPos]->addNeighbor(grid[index]); //Add neighbor to the left
+  
   //Sensor input: up has no wall
   grid[currPos]->addWall(currDir, false);
+  if((currDir)%4 == north) {
+    index = currPos-2;
+  } else if((currDir)%4 == west) {
+    index = currPos-1;
+  } else if((currDir)%4 == east) {
+    index = currPos+1;
+  } else {
+    index = currPos+2;
+  }
+  grid[currPos]->addNeighbor(grid[index]); //Add neighbor to the up
+  
   //Sensor input: right has wall
   grid[currPos]->addWall(Direction((currDir+1)%4), true);
-  //Print node info
+  
+  //Print node info. Tests getCoord.
   Serial.print("Coordinates:");
   Serial.print(int(grid[currPos]->getCoord()));
   Serial.print(" ");
   Serial.println(grid[currPos]->getWallTreasures(),BIN);
-  //Get the next node
-  //Serial.println(int(e->nextNode()->getCoord()));
   
+  //Get the next node. Tests nextNode method
+  Serial.print("Next node:");
+  Serial.println(int(explorerPtr->nextNode()->getCoord()));
+
+  //Implement code to navigate to next node. Tests travelTo
+  explorerPtr->travelTo(grid[explorerPtr->nextNode()->getCoord()]);
+  Serial.print("Traveled to:");
+  Serial.println(int(explorerPtr->getCurrNode()->getCoord()));
 }
 
 void loop() {
-
+  while (!(explorerPtr->isDone())){
+    
+  }
+  
   //Continue to follow the line until intersection
 
 /*

@@ -12,10 +12,13 @@ class Explorer {
     Explorer(Node* startNode) {
     root = startNode;
     current = startNode;
+    startNode->addParent(startNode); //The only node with itself as its own parent is the root node.
     };
     
     Node* nextNode(); //essentially does the DFS
     Node* travelTo(Node*); //call this when robot has moved
+    Node* getCurrNode(); //returns current node
+    bool  isDone();
   
 };
 
@@ -27,15 +30,28 @@ Node* Explorer::nextNode() {
     }
   }
 
-  if(current->getParent() == root) {
+  if(current == root) { //DPS ending condition: back to root and no unexplored neighbors from root
     return current;
   }
-  return current->getParent();
+  return current->getParent(); //Reverse traversal to find unexplored neighbors
 }
 
 Node* Explorer::travelTo(Node* walkingTo) {
   walkingTo->addParent(current);
   current = walkingTo;
+}
+
+Node* Explorer::getCurrNode(){
+  return current;
+}
+
+bool Explorer::isDone(){
+  if (current==root && (this->nextNode())==current){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 //#endif

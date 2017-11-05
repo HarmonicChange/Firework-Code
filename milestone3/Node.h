@@ -37,8 +37,11 @@ Node::Node (int pos) {
 }
 
 void Node::addNeighbor(Node* n) {
-  if(n->isExplored()) {
+  Serial.print("Neighbor:");
+  if(n->isExplored()==0) {
     neighbors[nextNeighbor] = n;
+   
+    Serial.println(int(n->getCoord()));
     nextNeighbor++;
   }
 }
