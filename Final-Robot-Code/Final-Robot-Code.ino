@@ -106,13 +106,13 @@ int isThereAWall (int sensor){
 //0000 north south east west - front back right left
 //Return the least significant 4 bits of wall status
 uint8_t wall (void){
-  uint8_t wallbits;
+  uint8_t wallbits = 0;
   //left at bit 4, front at bit 7, right at bit 5
   wall |= isThereAwall(0) << 4; //left
   delay(10); //possible delay
   wall |= isThereAWall(1) << 7; //front
   delay(10); //possible delay
-  wall |= isThereAWall(2) << 7; //right
+  wall |= isThereAWall(2) << 5; //right
   delay(10); //possible delay
   return wallbits;
 }
