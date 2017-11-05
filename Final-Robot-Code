@@ -85,19 +85,34 @@ void printSensors(){
   Serial.println();
 }
 
-int IRDistance (int sensor){
-  if (sensor == 0){  //Y0
+//Return if there is a wall 
+int isThereAWall (int sensor){
+  if (sensor == 0){  //Y0 - left wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, LOW);
   }
-  else if (sensor == 1){
+  else if (sensor == 1){ //Y1 - front wall
       digitalWrite(mux_S0, HIGH);
       digitalWrite(mux_S1, LOW);
   }
-  else if (sensor == 2){
+  else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, HIGH);
   }
-  ruturn analogRead(// 
+  
+  ruturn (analogRead(//) < wallThreshold)
 }
 
+//0000 north south east west - front back right left
+//Return the least significant 4 bits of wall status
+uint8_t wall (void){
+  uint8_t wallbits;
+  //left at bit 4, front at bit 7, right at bit 5
+  wall |= isThereAwall(0) << 4; //left
+  delay(10); //possible delay
+  wall |= isThereAWall(1) << 7; //front
+  delay(10); //possible delay
+  wall |= isThereAWall(2) << 7; //right
+  delay(10); //possible delay
+  return wallbits;
+}
