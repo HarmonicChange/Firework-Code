@@ -1,4 +1,5 @@
 Team Firework Robot Maze Navigation Simulator
+Version 1.0
 
 This Java application simulates a robot with three wall sensors navigating a random 5x4 maze.
 A graphic interface is used to display the robot's location as it moves through the maze as well as walls and explored space.
