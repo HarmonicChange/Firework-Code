@@ -37,9 +37,7 @@ Node::Node (int pos) {
   nextNeighbor = 0;
   for (int i = 0; i<3; i++){
     neighbors[i] = NULL;
-    }
-  
-  
+  } 
 }
 
 void Node::addNeighbor(Node* n) {

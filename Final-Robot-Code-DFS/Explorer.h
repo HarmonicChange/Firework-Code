@@ -9,18 +9,19 @@ class Explorer {
   Node* current;
 
   public:
-    Explorer(Node* startNode) {
-    root = startNode;
-    current = startNode;
-    startNode->addParent(startNode); //The only node with itself as its own parent is the root node.
-    };
-    
+    Explorer(Node* startNode);    
     Node* nextNode(); //essentially does the DFS
     Node* travelTo(Node*); //call this when robot has moved
     Node* getCurrNode(); //returns current node
-    bool  isDone();
+    bool isDone();
   
 };
+
+Explorer::Explorer(Node* startNode) {
+  root = startNode;
+  current = startNode;
+  startNode->addParent(startNode); //The only node with itself as its own parent is the root node.
+}
 
 Node* Explorer::nextNode() {
   Node** neighbors = current->getNeighbors();
