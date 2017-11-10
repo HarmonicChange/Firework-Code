@@ -48,7 +48,7 @@ void setup() {
   // Initialize system variables
   //Setup servos, pin 5 left wheel, pin 3 right wheel
   leftWheel.attach(5);
-  rightWheel.attach(3);
+  rightWheel.attach(6);
   lineMidLeftPin = A1;
   lineMidRightPin = A2;
   lineRightPin = A3;
@@ -68,24 +68,38 @@ void setup() {
   }
 
   /*Wait until starting signal - tone or button*/
-  while(digitalRead(startPin) == LOW){} //Wait while startPin is still low
+  while(digitalRead(startPin) == LOW){
+    leftWheel.write(92);
+    rightWheel.write(90);
+    Serial.println("Waiting");
+    } //Wait while startPin is still low
 }
 
 void loop() {
-  //printSensors(); //used for debugging?
+  printSensors(); //used for debugging
 
   //Line following (not at an intersection)
-  if ((abs(lineMidLeft - lineMidRight) < toleranceForward))walkForward();
+  if ((abs(lineMidLeft - lineMidRight) < toleranceForward)){
+    //Serial.println("Wlking forward");
+    walkForward();
+  }
   // If not on the black line, readjust
-  else if (lineMidLeft >= lineMidRight) leftDrift();      
-  else if (lineMidLeft < lineMidRight)  rightDrift();
+  else if (lineMidLeft >= lineMidRight) {
+    //Serial.println("Left drifting");
+    leftDrift();      
+  }
+  else if (lineMidLeft < lineMidRight) { 
+    //Serial.println("Right drifting");
+    rightDrift();}
 
   // At an intersection
   if (lineLeft > blackDetect && lineRight > blackDetect) {
+    Serial.println("Intersection detected");
     /*********************Detect walls and treasures*/
     //Checks left sensor, add neighbor if no wall and unexplored
     if (isThereAWall(0)==1){ //Left wall present
       grid[currPos]->addWall(Direction((currDir-1)%4), true);
+      Serial.println("Leftwall detected");
     } else {
       grid[currPos]->addWall(Direction((currDir-1)%4), false);
       grid[currPos]->addNeighbor(grid[grid[currPos]->neighborCoord(currDir, 0, currPos)]); //Calls neighborCoord first to determine coord of adjacent node,
@@ -95,6 +109,7 @@ void loop() {
     //Checks right sensor, add neighbor if no wall and unexplored
     if (isThereAWall(2)==1){ //Right wall present
       grid[currPos]->addWall(Direction((currDir+1)%4), true);
+      Serial.println("Right wall detected");
     } else{ //No wall
       grid[currPos]->addWall(Direction((currDir+1)%4), false);
       grid[currPos]->addNeighbor(grid[grid[currPos]->neighborCoord(currDir, 1, currPos)]);
@@ -103,6 +118,7 @@ void loop() {
      //Checks front sensor, add neighbor if no wall and unexplored
     if (isThereAWall(1)==1){ //Front wall present
       grid[currPos]->addWall(Direction(currDir), true);
+      Serial.println("Front wall detected");
     } else{ //No wall
       grid[currPos]->addWall(Direction(currDir), false);
       grid[currPos]->addNeighbor(grid[grid[currPos]->neighborCoord(currDir, 2, currPos)]);
@@ -114,7 +130,7 @@ void loop() {
     //nextDir = if currDir is north and u turn left then = west, right = east, backward = south
     if(getTurn() == 1) {
       //turn in specified direction
-      leftTurn();
+      leftTurn(); 
     } else if (getTurn() == 2) {
       leftTurn();
       leftTurn();
@@ -243,8 +259,8 @@ void keepStraight(){
 }
 
 void walkForward(){ //Moving forward full speed
-  leftWheel.write(137);  //137-92 = 45
-  rightWheel.write(45);
+  leftWheel.write(97);  //137-92 = 45
+  rightWheel.write(85);
 }
 
 void leftTurnSlow(){ //Slow turn: turn left with just one wheel
@@ -287,4 +303,3 @@ int getTurn() {
 
   return (currDir - nextDir)%4;
 }
-
