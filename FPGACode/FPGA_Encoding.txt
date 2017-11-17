@@ -1,0 +1,56 @@
+robot
+bit 7   = 0
+bit 6:5 = orientation ()
+bit 4:0 = location 
+
+Maze
+bit 7 	= 1
+bit 6   = Done
+bit 5:4 = treasure
+bit 3:0 = wall
+
+
+
+
+location logic:
+	0	1 	2	3
+	4	5	6	7
+	8	9	10	11
+	12	13	14	15	
+	16	17	18	19
+
+
+treasure
+	0 = no treasure
+	1 = 7kHz
+	2 = 12kHz
+	3 = 17kHz
+
+
+wall
+	bit 0 = top
+	bit 1 = left
+	bit 2 = bottom
+	bit 3 = right 
+
+currDir:
+	0 :  north
+	1 :  west
+	2 :  south
+	3 :  east
+
+OLD:
+	0 :  west
+	1 :  north
+	2 :  east
+	3 :  south
+
+
+
+Global Variables:
+	int maze[20];
+	int currPos;
+	int currDir;
+
+
+

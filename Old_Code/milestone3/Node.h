@@ -1,7 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-enum Direction {north=0, west, south, east};
+enum Direction {west=0, north, east, south};
 
 class Node {
 
@@ -28,7 +28,6 @@ class Node {
     Node* getParent();
     char getCoord();
     char getWallTreasures();
-    int neighborCoord(Direction facing, int sensor, int currPos);
 };
 
 Node::Node (int pos) {
@@ -37,7 +36,9 @@ Node::Node (int pos) {
   nextNeighbor = 0;
   for (int i = 0; i<3; i++){
     neighbors[i] = NULL;
-  } 
+    }
+  
+  
 }
 
 void Node::addNeighbor(Node* n) {
@@ -115,55 +116,6 @@ void Node::addParent(Node* par) {
 
 char Node::getWallTreasures() {
   return wallTreasures;
-}
-
-/**Returns coord of the neighbor you want to add to the array of neighbors in the current node
-*Precondition: there is no wall in between your current node and the adjacent node whose coord is requested.
-*Can be made into a private method in Node class that integrates with the addNeighbor function.
-*WARNING: hardcoded to only work with 4x5 maze.
-*int sensor = 0 means left sensor called this method (no wall on left), = 1 right sensor, = 2 front sensor**/
-int Node::neighborCoord(Direction facing, int sensor, int currPos){
-  int index;
-  
-  //Front side has no wall
-  if (sensor == 2){ 
-    if(facing == north) {
-      index = currPos-4;
-    } else if(facing == west) {
-      index = currPos-1;
-    } else if(facing == east) {
-      index = currPos+1;
-    } else {
-      index = currPos+4;
-    }
-  }
-  
-  //Right side has no wall
-  else if (sensor == 1){ 
-    if(facing == north) {
-      index = currPos+1;
-    } else if(facing == west) {
-      index = currPos-4;
-    } else if(facing == east) {
-      index = currPos+4;
-    } else {
-      index = currPos=-1;
-    }
-  }
-
-  //Left side has no wall
-  else if (sensor == 0){ 
-    if(facing == north) {
-      index = currPos-1;
-    } else if(facing == west) {
-      index = currPos+4;
-    } else if(facing == east) {
-      index = currPos-4;
-    } else {
-      index = currPos+1;
-    }
-  }
-  return index;
 }
 
 #endif

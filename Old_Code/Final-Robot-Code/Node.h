@@ -1,7 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-enum Direction {north=0, west, south, east};
+enum Direction {west=0, north, east, south};
 
 class Node {
 
@@ -37,7 +37,9 @@ Node::Node (int pos) {
   nextNeighbor = 0;
   for (int i = 0; i<3; i++){
     neighbors[i] = NULL;
-  } 
+    }
+  
+  
 }
 
 void Node::addNeighbor(Node* n) {
