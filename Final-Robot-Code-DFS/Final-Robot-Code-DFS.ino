@@ -152,16 +152,19 @@ void loop() {
       //turn in specified direction
       Serial.println("Left turn");
       leftTurn(); 
+      Serial.println("");
     } else if (getTurn() == 2) {
       Serial.println("U-turn");
       leftWheel.write(92);
       rightWheel.write(90);
       Serial.println("is done!");
+      Serial.println("");
       //leftTurnFast();
       //leftTurnFast();
       
     } else if (getTurn() == 3) {
       Serial.println("right turn");
+      Serial.println("");
       rightTurn();
     }
   
@@ -170,6 +173,7 @@ void loop() {
     //currDir = nextDir;
     //Robot should be following the line toward this next node now
   }    
+  
 }
 
 
@@ -200,11 +204,11 @@ void printSensors(){
   //Serial.print(lineMidLeft);
   //Serial.print("  ");
   //Serial.print(lineMidRight);
- // Serial.print("  ");
+  //Serial.print("  ");
   //Serial.print(lineRight);
   //Serial.print("  ");
-//  Serial.print(turn);
-//  Serial.print("  ");
+  //Serial.print(turn);
+  //Serial.print("  ");
   //Serial.println();
 }
 
@@ -213,19 +217,28 @@ int isThereAWall (int sensor){
   if (sensor == 0){  //Y0 - left wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, LOW);
+      Serial.print("Left wall value:");
+      Serial.println(analogRead(distanceInput));
+      return (analogRead(distanceInput) > 180);
   }
   else if (sensor == 1){ //Y1 - front wall
       digitalWrite(mux_S0, HIGH);
       digitalWrite(mux_S1, LOW);
-      return (analogRead(distanceInput) > 130);
+      Serial.print("Front wall value:");
+      Serial.println(analogRead(distanceInput));
+      return (analogRead(distanceInput) > 200);
   }
   else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, HIGH);
+      Serial.print("Right wall value:");
+      Serial.println(analogRead(distanceInput));
+      return (analogRead(distanceInput) > 180);
   }
+  
   //Serial.println("distance");
   //Serial.println(analogRead(distanceInput));
-  return (analogRead(distanceInput) > 180);
+  return 0;
 }
 
 //0000 north south east west - front back right left
