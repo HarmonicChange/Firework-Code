@@ -5,19 +5,19 @@
 // These are the functions you should call on in the main program:
 
 // Call in the initial setup:
-void initializeStuff();        // Initializes variables, motors, etc
-void initializeRFStuff();      // Initializes RF stuff
-void waitForStart();           // Freezes until button is pressed
+   // void initializeStuff();        // Initializes variables, motors, etc
+   // void initializeRFStuff();      // Initializes RF stuff
+   // void waitForStart();           // Freezes until button is pressed
 
 // Call when you reach an intersection
 // It sends all data over RF, updates variables, then continues
 // 0 = keep straight, 1 = turn left, 2 = turn right
-void intersect(); 
-void turn(int dir);
+   // void intersect(); 
+   // void turn(int dir);
 
 // Call as needed
-void updateLineSensors();      // Updates sensor values (mostly used as helper)
-void printSensors();           // Print sensor values, for debugging
+   // void updateLineSensors();      // Updates sensor values (mostly used as helper)
+   // void printSensors();           // Print sensor values, for debugging
 
 
 //------------------------------------------------------------------------------
@@ -34,23 +34,15 @@ void updateRobotLocation(){
 
 // Call when you reach an intersection
 // Sends all data, updates variables, then acts as appropriate
-void intersect(int turn){
+void intersect(){
   updateRobotLocation();
   lookAround();
-  bool sendFailed = True;
+  bool sendFailed = true;
   while (sendFailed) {
     bool s1 = transmitRobot(); // These are set to true IFF send failed
     bool s2 = transmitMaze();
     sendFailed = s1 | s2; 
   }
-}
-
-void turn(int dir){
-  if (dir == 0) keepStraight();
-  else if (dir == 1) turnLeft();
-  else if (dir == 3) turnRight();
-  else if (dir == 2) turnAround();
-  else printf("You can't turn that way!");
 }
 
 
@@ -122,6 +114,15 @@ void keepStraight(){
   }
 }
 
+
+void turn(int dir){
+  if (dir == 0) keepStraight();
+  else if (dir == 1) leftTurn();
+  else if (dir == 3) rightTurn();
+  // else if (dir == 2) turnAround();
+  else printf("You can't turn that way!");
+}
+
 int getTurn() {
   int diff = currPos-nextPos;
 
@@ -145,7 +146,7 @@ void lookAround (){
     grid[currPos]->addWall(Direction((currDir+1)%4), true);
     Serial.println("Left wall detected");
     if (currDir == 3) maze[currPos] += 1;
-    else maze[currPos] += pow(2, currDir + 1)
+    else maze[currPos] += pow(2, currDir + 1);
   } 
   else {
     grid[currPos]->addWall(Direction((currDir+1)%4), false);
@@ -157,7 +158,7 @@ void lookAround (){
     grid[currPos]->addWall(Direction((currDir-1)%4), true);
     Serial.println("Right wall detected");
     if (currDir == 0) maze[currPos] += 8;
-    else maze[currPos] += pow(2, currDir - 1)
+    else maze[currPos] += pow(2, currDir - 1);
   } else{ //No wall
     grid[currPos]->addWall(Direction((currDir-1)%4), false);
     grid[currPos]->addNeighbor(grid[grid[currPos]->neighborCoord(currDir, 1, currPos)]);
@@ -167,7 +168,7 @@ void lookAround (){
   if (isThereAWall(1)){
     grid[currPos]->addWall(Direction(currDir), true);
     Serial.println("Front wall detected");
-    maze[currPos] += pow(2, currDir)
+    maze[currPos] += pow(2, currDir);
   } else{ //No wall
     grid[currPos]->addWall(Direction(currDir), false);
     grid[currPos]->addNeighbor(grid[grid[currPos]->neighborCoord(currDir, 2, currPos)]);
@@ -295,7 +296,7 @@ bool transmitRobot() {
 
 // Helper Function
 bool transmitMaze() {
-  return sendRF(0b10000000 | maze[currPos])
+  return sendRF(0b10000000 | maze[currPos]);
 }
 
 // Helper Function
@@ -369,18 +370,7 @@ void initializeStuff(){
   for(int i = 0; i < 20; i++) {
     grid[i] = new Node(i);
   }
-
-  //Initialize simple maze for transmission
-  maze[20] = 
-  {
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,  
-  };
-
-    //Initialize explorer
+  //Initialize explorer
   explorerPtr = new Explorer(grid[19]);
 
 
@@ -417,8 +407,6 @@ void printSensors(){
   Serial.print(lineMidRight);
   Serial.print("  ");
   Serial.print(lineRight);
-  Serial.print("  ");
-  Serial.print(turn);
   Serial.print("  ");
   Serial.println();
 }

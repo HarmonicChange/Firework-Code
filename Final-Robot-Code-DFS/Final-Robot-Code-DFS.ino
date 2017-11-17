@@ -25,7 +25,14 @@ const uint64_t pipes[2] = { 0x000000002ALL, 0x000000002BLL };  // Radio pipe add
 
 //-----DFS related control variables----Rearrange if desired//
 
-int maze[20];
+int maze[] = 
+  {
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,  
+  };
 int currPos; //The coordinate number of the current intersection the robot is on
 Direction currDir; //The orientation of the robot
 Direction nextDir; //The orientation of the robot should assume next
