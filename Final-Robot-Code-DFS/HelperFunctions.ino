@@ -130,7 +130,7 @@ int getTurn() {
   else if (diff == 4) nextDir = north;
   else if (diff == 1) nextDir = west;
   else nextDir = east;
-
+  if(currDir - nextDir < 0) return currDir - nextDir + 4;
   return (currDir - nextDir)%4;
 }
 
@@ -154,13 +154,15 @@ void lookAround (){
   }
 
   // Check wall to the right
-  if (isThereAWall(2)){ 
-    grid[currPos]->addWall(Direction((currDir-1)%4), true);
+  if (isThereAWall(2)){
+    if(currDir - 1 < 0) grid[currPos]->addWall(Direction((currDir+3), true);
+    else grid[currPos]->addWall(Direction((currDir-1)%4), true);
     Serial.println("Right wall detected");
     if (currDir == 0) maze[currPos] += 8;
     else maze[currPos] += pow(2, currDir - 1);
   } else{ //No wall
-    grid[currPos]->addWall(Direction((currDir-1)%4), false);
+    if(currDir - 1 < 0) grid[currPos]->addWall(Direction((currDir+3), false);
+    else grid[currPos]->addWall(Direction((currDir-1)%4), false);
     grid[currPos]->addNeighbor(grid[grid[currPos]->neighborCoord(currDir, 1, currPos)]);
   }
     
@@ -347,7 +349,9 @@ bool sendRF(byte sendData){
 // Other Functions
 //------------------------------------------------------------------------------
 
-// Call this at the start of setup()
+/**
+ * Initializes serial monitor (9600), pin connections, pinmodes, and Node/Explorer structures
+ */
 void initializeStuff(){
   // Setup Serial and pin directions
   Serial.begin(9600);
@@ -364,7 +368,7 @@ void initializeStuff(){
   lineLeftPin = A0;
 
   distanceInput = A4;
-  // IRInput = ?
+  // IRInput = A5?
 
   //Initialize all nodes
   for(int i = 0; i < 20; i++) {
@@ -377,6 +381,7 @@ void initializeStuff(){
 }
 
 // Call this at the end of setup(), it locks the program until the button is pressed
+//TODO should implement tone start here
 void waitForStart(){
   bool startFlag = false;
   Serial.println("Waiting for button press");

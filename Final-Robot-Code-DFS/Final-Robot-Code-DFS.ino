@@ -17,14 +17,9 @@ int IRInput; //treasure detector input pin, controlled by mux
 int mux_S0 = 7, mux_S1 = 8; //00 = left, 10 = front, 01 = right
 int intRdy = 1;
 
-// Hardware configuration for RF Transmitter
+// RF Transmitter variables
 RF24 radio(9,10);  // Set up nRF24L01 radio on SPI bus plus pins 9 & 10
 const uint64_t pipes[2] = { 0x000000002ALL, 0x000000002BLL };  // Radio pipe addresses for the 2 nodes to communicate.
-
-
-
-//-----DFS related control variables----Rearrange if desired//
-
 int maze[] = 
   {
     0, 0, 0, 0,
@@ -33,6 +28,8 @@ int maze[] =
     0, 0, 0, 0,
     0, 0, 0, 0,  
   };
+
+// DFS related control variables
 int currPos; //The coordinate number of the current intersection the robot is on
 Direction currDir; //The orientation of the robot
 Direction nextDir; //The orientation of the robot should assume next
@@ -40,10 +37,6 @@ Node* grid[20]; //4x5 maze representation
 Explorer* explorerPtr = NULL; //Initialize an Explorer object
 int nextPos; //The coord of the intersection we want to travel to next. Should facilitate determining which direction to turn
 Node* nextNode; //next node to travel to
-
-//-----End of DFS control vars-----//
-
-
 
 void setup() {
   initializeStuff();
