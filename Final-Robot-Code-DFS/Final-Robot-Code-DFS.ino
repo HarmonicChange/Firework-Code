@@ -7,7 +7,7 @@
 #include "printf.h"
 
 Servo leftWheel, rightWheel;
-int startPin = 2;
+int startPin = 4;
 int lineMidLeft, lineMidRight, lineRight, lineLeft;             //Line Sensor Values Variables
 int lineMidLeftPin, lineMidRightPin, lineRightPin, lineLeftPin; // Analog pins with line sensors
 int toleranceForward = 200; //

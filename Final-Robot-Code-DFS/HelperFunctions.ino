@@ -50,13 +50,15 @@ void intersect(){
 // Complete 90 degree left turn at intersection
 void leftTurn(){
   bool turnDone = false;
+  if (currDir-1 <0) currDir=currDir -1+4;
+  else currDir = (currDir-1)%4;
   bool flag = false;
-  walkForward();
-  delay(200);
+  //walkForward();
+  //delay(200);
   
   while (! turnDone) {
     // Begin turning left
-    leftTurnFast(); 
+    leftTurnSlow(); 
     delay(100);     
 
     // Update needed sensor values
@@ -81,12 +83,13 @@ void leftTurn(){
 void rightTurn(){
   bool turnDone = false;
   bool flag = false;
+  currDir = (currDir+1)%4;
   walkForward();
   delay(200);
   
   while (! turnDone) {
     // Begin turning right
-    rightTurnFast(); 
+    rightTurnSlow(); 
     delay(100);
 
     // Update needed sensor values
@@ -114,12 +117,32 @@ void keepStraight(){
   }
 }
 
+void UTurn(){
+  bool turnDone = false;
+  if (currDir-2 <0) currDir=currDir -2+4;
+  else currDir = (currDir-2)%4;
+  //walkForward();
+  //delay(200);
+  bool flag = false;
+  while (! turnDone) {
+    leftTurnFast(); //Begin turning left
+    delay(400);     
+    //Update needed sensor values
+    lineMidLeft = analogRead(lineMidLeftPin);
+    
+    //Test necessary conditions for completion of left turn
+    if (!flag && lineMidLeft < blackDetect) flag = true;
+    if (flag && lineMidLeft  > blackDetect) turnDone = true;
+    
+  }
+  
+}
 
 void turn(int dir){
   if (dir == 0) keepStraight();
   else if (dir == 1) leftTurn();
   else if (dir == 3) rightTurn();
-  // else if (dir == 2) turnAround();
+   else if (dir == 2) UTurn();
   else printf("You can't turn that way!");
 }
 
@@ -184,27 +207,28 @@ int isThereAWall (int sensor){
   if (sensor == 0){  //Y0 - left wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, LOW);
-      Serial.print("Left wall value:");
-      Serial.println(analogRead(distanceInput));
-      return (analogRead(distanceInput) > 180);
+      Serial.print("Left wall avg value:");
+      int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
+      Serial.println(temp);
+      return (temp > 150);
   }
   else if (sensor == 1){ //Y1 - front wall
       digitalWrite(mux_S0, HIGH);
       digitalWrite(mux_S1, LOW);
-      Serial.print("Front wall value:");
-      Serial.println(analogRead(distanceInput));
-      return (analogRead(distanceInput) > 200);
+      Serial.print("Front wall avg value:");
+      int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
+      Serial.println(temp);
+      return (temp > 130);
   }
   else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, HIGH);
-      Serial.print("Right wall value:");
-      Serial.println(analogRead(distanceInput));
-      return (analogRead(distanceInput) > 180);
+      Serial.print("Right wall avg value:");
+      int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
+      Serial.println(temp);
+      return (temp > 100);
   }
   
-  //Serial.println("distance");
-  //Serial.println(analogRead(distanceInput));
   return 0;
 }
 
