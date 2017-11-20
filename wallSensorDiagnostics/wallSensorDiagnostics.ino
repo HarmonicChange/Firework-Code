@@ -22,25 +22,27 @@ int isThereAWall (int sensor){
   if (sensor == 0){  //Y0 - left wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, LOW);
-      Serial.print("Left wall value:");
-      int temp = analogRead(distanceInput);
+      Serial.print("Left wall avg value:");
+      int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
       Serial.println(temp);
-      return (temp > 300);
+      return (temp > 150);
   }
   else if (sensor == 1){ //Y1 - front wall
       digitalWrite(mux_S0, HIGH);
       digitalWrite(mux_S1, LOW);
-      Serial.print("Front wall value:");
-      int temp = analogRead(distanceInput);
+      Serial.print("Front wall avg value:");
+      int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
       Serial.println(temp);
-      return (temp > 250);
+      return (temp > 130);
   }
   else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, HIGH);
-      Serial.print("Right wall value:");
-      int temp = analogRead(distanceInput);
+      Serial.print("Right wall avg value:");
+      int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
       Serial.println(temp);
-      return (temp > 180);
+      return (temp > 100);
   }
+  
+  return 0;
 }
