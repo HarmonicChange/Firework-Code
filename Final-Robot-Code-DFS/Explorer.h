@@ -27,7 +27,7 @@ Node* Explorer::nextNode() {
   Node** neighbors = current->getNeighbors();
   
   for (int i = 0; i<3; i++){
-    if (neighbors[i] != NULL && !(*(neighbors+i))->isExplored()){
+    if (neighbors[i] != NULL && !((*(neighbors+i))->isExplored())){
       return *(neighbors+i);
     }
    }
