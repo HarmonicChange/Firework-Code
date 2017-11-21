@@ -71,8 +71,7 @@ module DE0_NANO(
     reg         led_state;     // 1 is on, 0 is off
 
     // Variables for DONE song
-    wire done;
-    reg [19:0] visited; // each bit signifies a node has been visited, used for done signal
+    reg done;
     wire [7:0]  DAC; //8-bit output to DAC
     reg [7:0] addr;
     reg [6:0] song_pos;
@@ -107,7 +106,6 @@ module DE0_NANO(
      
     assign reset = ~KEY[0]; // reset when KEY0 is pressed
     assign GPIO_1_D[7:0] = DAC;
-    assign done = (visited == 20'b1111_1111_1111_1111_1111);
          
     //=======================================================
     //  Structural coding
@@ -168,7 +166,6 @@ module DE0_NANO(
         grid_color[17] = 8'b000_0_0000;
         grid_color[18] = 8'b000_0_0000;
         grid_color[19] = 8'b000_0_0000;
-        visited = 20'd0;
     end
      
     //SPI receiving
@@ -191,13 +188,13 @@ module DE0_NANO(
                 grid_color[currentLocation][3:0] <= positionData[3:0];  // Wall info
                 grid_color[currentLocation][4]   <= 1'b1;               // Node is visited
                 grid_color[currentLocation][6:5] <= positionData[5:4];  // Treasure info
+                done <= positionData[6];
             end
 
             // If MSB == 0, then this is robot info
             else if (positionData[7] == 1'b0) begin 
                 currentLocation <= positionData[4:0];
                 currentOrientation <= positionData[6:5];
-                visited[currentLocation] <= 1'b1;
             end
         end
             
@@ -544,7 +541,7 @@ module DE0_NANO(
             if (grid_color[19][4] == 1'b0) PX_color = red;
             else if ((currentLocation == 5'd19) && (PX_X > 3*block_width + 35) && (PX_X < 4*block_width - 35) && (PX_Y > 4*block_width + 35) && (PX_Y < 5*block_width - 35)) PX_color = green;
             else if ((grid_color[19][0] == 1'b1) && (PX_Y < (4*block_width + 10))) PX_color = wall;
-            else if ((grid_color[19][2] == 1'b1) && (PX_Y > (5*block_width - 10))) PX_color = wall;
+            else if ((PX_Y > (5*block_width - 10))) PX_color = wall;
             else if ((grid_color[19][1] == 1'b1) && (PX_X < (3*block_width + 10))) PX_color = wall;
             else if ((grid_color[19][3] == 1'b1) && (PX_X > (4*block_width - 10))) PX_color = wall;
             else if (grid_color[19][6:5] == 2'b01) PX_color = Tr07;
