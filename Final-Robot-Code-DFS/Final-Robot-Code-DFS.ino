@@ -89,8 +89,9 @@ void loop() {
     Serial.print("nextPos:");
     Serial.println(int(nextPos));
 
+    keepStraight(); //Restart the walking forward, since intersect disabled it
     turn(getTurn());
-    keepStraight(); //Restart the walking forward, since intersect disabled it and turning only performs the actual turn
+    
     updateRobotLocation(); 
     //nextDir = if currDir is north and u turn left then = west, right = east, backward = south
   

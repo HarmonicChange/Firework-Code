@@ -147,7 +147,7 @@ int Node::neighborCoord(Direction facing, int sensor, int currPos){
     } else if(facing == east) {
       index = currPos+4;
     } else {
-      index = currPos=-1;
+      index = currPos-1;
     }
   }
 

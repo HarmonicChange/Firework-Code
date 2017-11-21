@@ -234,7 +234,7 @@ int isThereAWall (int sensor){
       }
       temp = temp/5;      
       Serial.println(temp);
-      return (temp > 200);
+      return (temp > 200); //Dark condition 200, facing the window, sunny day, >130. Recalibrate using wall sensor diagnostic before start
   }
   else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);
