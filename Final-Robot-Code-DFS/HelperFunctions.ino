@@ -36,7 +36,7 @@ void updateRobotLocation(){
 // Sends all data, updates variables, then acts as appropriate
 void intersect(){
   lookAround();
-  updateRobotLocation(); 
+  //updateRobotLocation(); 
   bool sendFailed = true;
   while (sendFailed) {
     bool s1 = transmitRobot(); // These are set to true IFF send failed
@@ -144,10 +144,10 @@ void UTurn(){
 }
 
 void turn(int dir){
-  if (dir == 0) keepStraight();
-  if (dir == 1) leftTurn();
-  else if (dir == 3) rightTurn();
-   else if (dir == 2) UTurn();
+  if (dir == 0) {keepStraight(); Serial.println("straight");}
+  if (dir == 1) {leftTurn(); Serial.println("left");}
+  else if (dir == 3) {rightTurn(); Serial.println("right");}
+  else if (dir == 2) {UTurn(); Serial.println("uturn");}
   else printf("You can't turn that way!");
 }
 

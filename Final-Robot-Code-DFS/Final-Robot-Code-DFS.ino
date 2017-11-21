@@ -88,6 +88,7 @@ void loop() {
     Serial.println(int(nextPos));
 
     turn(getTurn());
+    updateRobotLocation(); 
     //nextDir = if currDir is north and u turn left then = west, right = east, backward = south
   
     explorerPtr->travelTo(grid[nextPos]);
