@@ -217,7 +217,7 @@ int isThereAWall (int sensor){
       int temp = 0;
       for (int i=0; i<5; i++) {
         temp = temp+analogRead(distanceInput);
-        delay(20);
+        delay(25);
       }
       temp = temp/5;
       Serial.println(temp);
@@ -230,7 +230,7 @@ int isThereAWall (int sensor){
       int temp = 0;
       for (int i=0; i<5; i++) {
         temp = temp+analogRead(distanceInput);
-        delay(20);
+        delay(25);
       }
       temp = temp/5;      
       Serial.println(temp);
@@ -243,7 +243,7 @@ int isThereAWall (int sensor){
       int temp = 0;
       for (int i=0; i<5; i++) {
         temp = temp+analogRead(distanceInput);
-        delay(20);
+        delay(25);
       }
       temp = temp/5;      
       Serial.println(temp);
