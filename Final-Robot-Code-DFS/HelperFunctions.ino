@@ -34,7 +34,10 @@ void updateRobotLocation(){
 
 // Call when you reach an intersection
 // Sends all data, updates variables, then acts as appropriate
+// Make sure to uncomment the while loop once radio is implemented
 void intersect(){
+  leftWheel.write(92); 
+  rightWheel.write(90); 
   lookAround();
   //updateRobotLocation(); 
   bool sendFailed = true;
@@ -43,6 +46,7 @@ void intersect(){
 //    bool s2 = transmitMaze();
 //    sendFailed = s1 | s2; 
 //  }
+   
 }
 
 
@@ -210,7 +214,12 @@ int isThereAWall (int sensor){
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, LOW);
       Serial.print("Left wall avg value:");
-      int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
+      int temp = 0;
+      for (int i=0; i<5; i++) {
+        temp = temp+analogRead(distanceInput);
+        delay(20);
+      }
+      temp = temp/5;
       Serial.println(temp);
       return (temp > 150);
   }
@@ -218,7 +227,12 @@ int isThereAWall (int sensor){
       digitalWrite(mux_S0, HIGH);
       digitalWrite(mux_S1, LOW);
       Serial.print("Front wall avg value:");
-      int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
+      int temp = 0;
+      for (int i=0; i<5; i++) {
+        temp = temp+analogRead(distanceInput);
+        delay(20);
+      }
+      temp = temp/5;      
       Serial.println(temp);
       return (temp > 200);
   }
@@ -226,7 +240,12 @@ int isThereAWall (int sensor){
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, HIGH);
       Serial.print("Right wall avg value:");
-      int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
+      int temp = 0;
+      for (int i=0; i<5; i++) {
+        temp = temp+analogRead(distanceInput);
+        delay(20);
+      }
+      temp = temp/5;      
       Serial.println(temp);
       return (temp > 100);
   }

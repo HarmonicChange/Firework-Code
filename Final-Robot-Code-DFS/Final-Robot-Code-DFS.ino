@@ -80,7 +80,7 @@ void loop() {
     Serial.println(int(currPos));
     Serial.print("Direction:  ");
     Serial.println(int(currDir));
-    intersect();
+    intersect(); //Stops the robot to take wall reading samples
     
     nextNode = explorerPtr->nextNode();
     nextPos  = nextNode->getCoord();
@@ -90,6 +90,7 @@ void loop() {
     Serial.println(int(nextPos));
 
     turn(getTurn());
+    keepStraight(); //Restart the walking forward, since intersect disabled it and turning only performs the actual turn
     updateRobotLocation(); 
     //nextDir = if currDir is north and u turn left then = west, right = east, backward = south
   
