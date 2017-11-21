@@ -35,7 +35,7 @@ void updateRobotLocation(){
 // Call when you reach an intersection
 // Sends all data, updates variables, then acts as appropriate
 void intersect(){
-  updateRobotLocation();
+  //updateRobotLocation(); We update it for u in currPos = nextPos already
   lookAround();
   bool sendFailed = true;
   while (sendFailed) {
@@ -139,8 +139,8 @@ void UTurn(){
 }
 
 void turn(int dir){
-  if (dir == 0) keepStraight();
-  else if (dir == 1) leftTurn();
+  //if (dir == 0) keepStraight();
+  if (dir == 1) leftTurn();
   else if (dir == 3) rightTurn();
    else if (dir == 2) UTurn();
   else printf("You can't turn that way!");
@@ -178,13 +178,13 @@ void lookAround (){
 
   // Check wall to the right
   if (isThereAWall(2)){
-    if(currDir - 1 < 0) grid[currPos]->addWall(Direction((currDir+3), true);
+    if(currDir - 1 < 0) grid[currPos]->addWall(Direction(currDir+3), true);
     else grid[currPos]->addWall(Direction((currDir-1)%4), true);
     Serial.println("Right wall detected");
     if (currDir == 0) maze[currPos] += 8;
     else maze[currPos] += pow(2, currDir - 1);
   } else{ //No wall
-    if(currDir - 1 < 0) grid[currPos]->addWall(Direction((currDir+3), false);
+    if(currDir - 1 < 0) grid[currPos]->addWall(Direction(currDir+3), false);
     else grid[currPos]->addWall(Direction((currDir-1)%4), false);
     grid[currPos]->addNeighbor(grid[grid[currPos]->neighborCoord(currDir, 1, currPos)]);
   }
@@ -239,8 +239,8 @@ int isThereAWall (int sensor){
 
 //Moving forward full speed
 void walkForward(){ 
-  leftWheel.write(137);  //137-92 = 45
-  rightWheel.write(45);
+  leftWheel.write(104);  //137-92 = 45
+  rightWheel.write(78);
 }
 
 //Slow turn: turn left with just one wheel

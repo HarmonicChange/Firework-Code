@@ -1,9 +1,11 @@
+#include <nRF24L01.h>
+#include <RF24.h>
+#include <RF24_config.h>
+
 #include <Servo.h>
 #include "Node.h"
 #include "Explorer.h"
 #include <SPI.h>
-#include <nRF24L01.h>
-#include "RF24.h"
 #include "printf.h"
 
 Servo leftWheel, rightWheel;
@@ -50,17 +52,22 @@ void setup() {
 }
 
 void loop() {
+  updateLineSensors(); 
   printSensors(); //used for debugging
+  
 
   // Line following (not at an intersection)
   if ((abs(lineMidLeft - lineMidRight) < toleranceForward)){
+    Serial.println("Walking forward");
     walkForward();
   }
   // If not on the black line, readjust
   else if (lineMidLeft >= lineMidRight) {
+    Serial.println("Left drifting");
     leftDrift();      
   }
   else if (lineMidLeft < lineMidRight) { 
+    Serial.println("Right drifting");
     rightDrift();}
 
   //Not at intersection
@@ -74,13 +81,12 @@ void loop() {
     Serial.print("Direction:  ");
     Serial.println(int(currDir));
     intersect();
-
-    /*********************Turns toward next node, update DFS structure*/
+    
     nextNode = explorerPtr->nextNode();
     nextPos  = nextNode->getCoord();
     Serial.print("nextPos:");
     Serial.println(int(nextPos));
-    
+
     turn(getTurn());
     //nextDir = if currDir is north and u turn left then = west, right = east, backward = south
   

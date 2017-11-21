@@ -167,14 +167,6 @@ void loop() {
     currPos = nextPos;
     //currDir = nextDir;
     //Robot should be following the line toward this next node now
-
-    if(explorerPtr->isDone() == true) {
-      Serial.println("We're done!");
-      while(1) {
-        leftWheel.write(92);
-        rightWheel.write(90);
-      }
-    }
   }    
   
 }
@@ -223,7 +215,7 @@ int isThereAWall (int sensor){
       Serial.print("Left wall avg value:");
       int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
       Serial.println(temp);
-      return (temp > 150);
+      return (temp > 200);
   }
   else if (sensor == 1){ //Y1 - front wall
       digitalWrite(mux_S0, HIGH);
@@ -231,7 +223,7 @@ int isThereAWall (int sensor){
       Serial.print("Front wall avg value:");
       int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
       Serial.println(temp);
-      return (temp > 130);
+      return (temp > 150);
   }
   else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);
@@ -239,7 +231,7 @@ int isThereAWall (int sensor){
       Serial.print("Right wall avg value:");
       int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
       Serial.println(temp);
-      return (temp > 100);
+      return (temp > 200);
   }
   
   return 0;
@@ -268,7 +260,7 @@ void leftTurn(){
   //delay(200);i
   bool flag = false;
   while (! turnDone) {
-    leftTurnSlow(); //Begin turning left
+    leftTurnFast(); //Begin turning left
     delay(100);     
     //Update needed sensor values
     lineMidLeft = analogRead(lineMidLeftPin);
@@ -288,7 +280,7 @@ void rightTurn(){
   bool flag = false;
   currDir = (currDir+1)%4;
   while (! turnDone) {
-    rightTurnSlow(); ///Begin turning right
+    rightTurnFast(); ///Begin turning right
     delay(100);
     //Update needed sensor values
     lineMidRight = analogRead(lineMidRightPin);
@@ -302,6 +294,9 @@ void rightTurn(){
 
 void UTurn(){
   bool turnDone = false;
+  bool flag1 = false;
+  bool flag2 = false;
+  bool flag3 = false;
   if (currDir-2 <0) currDir=currDir -2+4;
   else currDir = (currDir-2)%4;
   //walkForward();
@@ -309,13 +304,15 @@ void UTurn(){
   bool flag = false;
   while (! turnDone) {
     leftTurnFast(); //Begin turning left
-    delay(400);     
+    delay(100);     
     //Update needed sensor values
     lineMidLeft = analogRead(lineMidLeftPin);
     
     //Test necessary conditions for completion of left turn
-    if (!flag && lineMidLeft < blackDetect) flag = true;
-    if (flag && lineMidLeft  > blackDetect) turnDone = true;
+    if (!flag1 && lineMidLeft < blackDetect) flag1 = true;
+    else if (!flag2 && flag1 && lineMidLeft > blackDetect) flag2 = true;
+    else if (!flag3 && flag2 && flag1 && lineMidLeft < blackDetect) flag3 = true;
+    else if (flag3 && flag2 && flag1 && lineMidLeft > blackDetect) turnDone = true;
     
   }
   
