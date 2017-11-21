@@ -84,6 +84,8 @@ void loop() {
     
     nextNode = explorerPtr->nextNode();
     nextPos  = nextNode->getCoord();
+    Serial.print("currPos:");
+    Serial.println(int(currPos));
     Serial.print("nextPos:");
     Serial.println(int(nextPos));
 

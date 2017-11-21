@@ -38,11 +38,11 @@ void intersect(){
   lookAround();
   //updateRobotLocation(); 
   bool sendFailed = true;
-  while (sendFailed) {
-    bool s1 = transmitRobot(); // These are set to true IFF send failed
-    bool s2 = transmitMaze();
-    sendFailed = s1 | s2; 
-  }
+//  while (sendFailed) {
+//    bool s1 = transmitRobot(); // These are set to true IFF send failed
+//    bool s2 = transmitMaze();
+//    sendFailed = s1 | s2; 
+//  }
 }
 
 
@@ -50,15 +50,13 @@ void intersect(){
 // Complete 90 degree left turn at intersection
 void leftTurn(){
   bool turnDone = false;
-  if (currDir-1 <0) currDir=currDir -1+4;
-  else currDir = (currDir-1)%4;
   bool flag = false;
   //walkForward();
   //delay(200);
   
   while (! turnDone) {
     // Begin turning left
-    leftTurnSlow(); 
+    leftTurnFast(); 
     delay(100);     
 
     // Update needed sensor values
@@ -83,13 +81,12 @@ void leftTurn(){
 void rightTurn(){
   bool turnDone = false;
   bool flag = false;
-  currDir = (currDir+1)%4;
   walkForward();
   delay(200);
   
   while (! turnDone) {
     // Begin turning right
-    rightTurnSlow(); 
+    rightTurnFast(); 
     delay(100);
 
     // Update needed sensor values
@@ -145,10 +142,10 @@ void UTurn(){
 
 void turn(int dir){
   if (dir == 0) {keepStraight(); Serial.println("straight");}
-  if (dir == 1) {leftTurn(); Serial.println("left");}
-  else if (dir == 3) {rightTurn(); Serial.println("right");}
+  else if (dir == 3) {leftTurn(); Serial.println("left");}
+  else if (dir == 1) {rightTurn(); Serial.println("right");}
   else if (dir == 2) {UTurn(); Serial.println("uturn");}
-  else printf("You can't turn that way!");
+  //else printf("You can't turn that way!");
 }
 
 int getTurn() {
@@ -244,8 +241,8 @@ int isThereAWall (int sensor){
 
 //Moving forward full speed
 void walkForward(){ 
-  leftWheel.write(95);  //137-92 = 45
-  rightWheel.write(87);
+  leftWheel.write(115);  //137-92 = 45
+  rightWheel.write(67);
 }
 
 //Slow turn: turn left with just one wheel
