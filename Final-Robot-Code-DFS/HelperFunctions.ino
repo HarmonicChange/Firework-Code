@@ -55,8 +55,8 @@ void intersect(){
 void leftTurn(){
   bool turnDone = false;
   bool flag = false;
-  //walkForward();
-  //delay(200);
+  walkForward();
+  delay(200);
   
   while (! turnDone) {
     // Begin turning left
@@ -141,7 +141,11 @@ void UTurn(){
     else if (flag3 && flag2 && flag1 && lineMidLeft > blackDetect) turnDone = true;
     
   }
-  
+  // Update Direction it's facing
+  if (currDir == 0) currDir = 2;
+  else if (currDir == 1) currDir = 3;
+  else if (currDir == 2) currDir = 0;
+  else if (currDir == 3) currDir = 1;
 }
 
 void turn(int dir){

@@ -53,7 +53,7 @@ void setup() {
 
 void loop() {
   updateLineSensors(); 
-  //printSensors(); //used for debugging
+  printSensors(); //used for debugging
   
 
   // Line following (not at an intersection)
