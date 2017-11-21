@@ -188,7 +188,7 @@ module DE0_NANO(
                 grid_color[currentLocation][3:0] <= positionData[3:0];  // Wall info
                 grid_color[currentLocation][4]   <= 1'b1;               // Node is visited
                 grid_color[currentLocation][6:5] <= positionData[5:4];  // Treasure info
-                done <= positionData[6];
+                // done <= positionData[6];
             end
 
             // If MSB == 0, then this is robot info
@@ -221,7 +221,7 @@ module DE0_NANO(
             //State machine switching between notes every second
             if (note_length == 0) begin
                 note_length <= ONE_SEC/4;
-                if (song_pos == 7'd87) //song_pos <= 0;
+                if (song_pos == 7'd87) song_pos <= 0;
                 else                   song_pos <= song_pos + 1;
                 //note <= note + 1;
             end

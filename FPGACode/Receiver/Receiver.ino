@@ -106,7 +106,7 @@ void loop(void)
         done = radio.read( &RFdata, sizeof(byte) );
 
         // Spew it
-        printf("Got payload %x...",RFdata);
+        printf("Got payload...  ");
 
         // Delay just a little bit to let the other unit
         // make the transition to receiver
@@ -123,12 +123,12 @@ void loop(void)
 
       // Handle received data
       if (bitRead(RFdata, 7) == 1){
-        printf("Received maze data\n\r");
+        printf("Received maze data %x \n\r", RFdata);
         maze[robotLoc] = RFdata;
         sendSPI(RFdata);
       }
       else {
-        printf("Received robot data\n\r");
+        printf("Received robot data %x \n\r", RFdata);
         robotLoc = RFdata;
         sendSPI(RFdata);
       }

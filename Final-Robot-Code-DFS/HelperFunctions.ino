@@ -13,7 +13,7 @@
 // It sends all data over RF, updates variables, then continues
 // 0 = keep straight, 1 = turn left, 2 = turn right
    // void intersect(); 
-   // void turn(int dir);
+   // void turn(getTurn()l);
 
 // Call as needed
    // void updateLineSensors();      // Updates sensor values (mostly used as helper)
@@ -177,7 +177,9 @@ void lookAround (){
     grid[currPos]->addWall(Direction((currDir+1)%4), true);
     Serial.println("Left wall detected");
     if (currDir == 3) maze[currPos] += 1;
-    else maze[currPos] += pow(2, currDir + 1);
+    else if (currDir == 2) maze[currPos] += 8;
+    else if (currDir == 1) maze[currPos] += 4;
+    else if (currDir == 0) maze[currPos] += 2;
   } 
   else {
     grid[currPos]->addWall(Direction((currDir+1)%4), false);
@@ -189,8 +191,10 @@ void lookAround (){
     if(currDir - 1 < 0) grid[currPos]->addWall(Direction(currDir+3), true);
     else grid[currPos]->addWall(Direction((currDir-1)%4), true);
     Serial.println("Right wall detected");
-    if (currDir == 0) maze[currPos] += 8;
-    else maze[currPos] += pow(2, currDir - 1);
+    if (currDir == 3) maze[currPos] += 4;
+    else if (currDir == 2) maze[currPos] += 2;
+    else if (currDir == 1) maze[currPos] += 1;
+    else if (currDir == 0) maze[currPos] += 8;
   } else{ //No wall
     if(currDir - 1 < 0) grid[currPos]->addWall(Direction(currDir+3), false);
     else grid[currPos]->addWall(Direction((currDir-1)%4), false);
@@ -201,7 +205,10 @@ void lookAround (){
   if (isThereAWall(1)){
     grid[currPos]->addWall(Direction(currDir), true);
     Serial.println("Front wall detected");
-    maze[currPos] += pow(2, currDir);
+    if (currDir == 3) maze[currPos] += 8;
+    else if (currDir == 2) maze[currPos] += 4;
+    else if (currDir == 1) maze[currPos] += 2;
+    else if (currDir == 0) maze[currPos] += 1;
   } else{ //No wall
     grid[currPos]->addWall(Direction(currDir), false);
     grid[currPos]->addNeighbor(grid[grid[currPos]->neighborCoord(currDir, 2, currPos)]);
@@ -340,12 +347,13 @@ void initializeRFStuff(){
 
 //  Helper Function
 bool transmitRobot() {
-  return sendRF(currPos);
+  return sendRF(currPos | (currDir << 5));
 }
 
 // Helper Function
 bool transmitMaze() {
-  return sendRF(0b10000000 | maze[currPos]);
+  if (currPos ==3) return sendRF(0b11000000 | maze[currPos]);
+  else return sendRF(0b10000000 | maze[currPos]);
 }
 
 // Helper Function

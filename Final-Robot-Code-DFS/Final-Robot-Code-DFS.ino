@@ -73,6 +73,7 @@ void loop() {
   //Not at intersection
   if (lineLeft < blackDetect && lineRight < blackDetect) intRdy = 1;
   
+  
   // At an intersection
   if (lineLeft > blackDetect && lineRight > blackDetect && intRdy) {
     intRdy = 0;
@@ -81,7 +82,7 @@ void loop() {
     Serial.print("Direction:  ");
     Serial.println(int(currDir));
     intersect(); //Stops the robot to take wall reading samples
-    
+        
     nextNode = explorerPtr->nextNode();
     nextPos  = nextNode->getCoord();
     Serial.print("currPos:");
@@ -93,11 +94,9 @@ void loop() {
     turn(getTurn());
     
     updateRobotLocation(); 
-    //nextDir = if currDir is north and u turn left then = west, right = east, backward = south
   
     explorerPtr->travelTo(grid[nextPos]);
     currPos = nextPos;
-    //currDir = nextDir;
     //Robot should be following the line toward this next node now
   }    
 
