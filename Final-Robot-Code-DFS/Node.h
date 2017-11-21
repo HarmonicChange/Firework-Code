@@ -14,9 +14,10 @@ class Node {
   Node* neighbors[3]; //pointer to neighboring nodes
   Node* parent; //pointer to parent node
   
-  int nextNeighbor;
+  
 
   public:
+    int nextNeighbor;
     Node(int);
     void addNeighbor(Node*);
     void addWall(Direction, bool);

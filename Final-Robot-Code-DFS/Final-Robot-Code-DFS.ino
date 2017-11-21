@@ -100,6 +100,13 @@ void loop() {
     //currDir = nextDir;
     //Robot should be following the line toward this next node now
   }    
+
+  if(explorerPtr->isDone()) {
+    leftWheel.write(92);
+    rightWheel.write(90);
+    Serial.println("We're done!");
+    while(1);
+  }
   
 }
 

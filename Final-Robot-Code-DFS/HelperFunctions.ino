@@ -39,13 +39,13 @@ void intersect(){
   leftWheel.write(92); 
   rightWheel.write(90); 
   lookAround();
-  //updateRobotLocation(); 
   bool sendFailed = true;
-//  while (sendFailed) {
-//    bool s1 = transmitRobot(); // These are set to true IFF send failed
-//    bool s2 = transmitMaze();
-//    sendFailed = s1 | s2; 
-//  }
+  while (sendFailed) {
+    Serial.println("Sending");
+    bool s1 = transmitRobot(); // These are set to true IFF send failed
+    bool s2 = transmitMaze();
+    sendFailed = s1 | s2; 
+  }
    
 }
 
@@ -234,7 +234,7 @@ int isThereAWall (int sensor){
       }
       temp = temp/5;      
       Serial.println(temp);
-      return (temp > 200); //Dark condition 200, facing the window, sunny day, >130. Recalibrate using wall sensor diagnostic before start
+      return (temp > 130); //Dark condition 200, facing the window, sunny day, >130. Recalibrate using wall sensor diagnostic before start
   }
   else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);

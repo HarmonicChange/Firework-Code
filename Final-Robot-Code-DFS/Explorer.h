@@ -28,15 +28,21 @@ Node* Explorer::nextNode() {
   
   for (int i = 0; i<3; i++){
     if (neighbors[i] != NULL && !((*(neighbors+i))->isExplored())){
-      return *(neighbors+i);
+      Serial.print("nextNeighbor"); 
+      Serial.println(current->nextNeighbor); 
+//      if (i==current->nextNeighbor && current==root){
+//        Serial.println("root update"); 
+//        root = current; 
+//      }
+    return *(neighbors+i);
     }
-   }
-  
+   }  
   return current->getParent(); //Reverse traversal to find unexplored neighbors
 }
 
 Node* Explorer::travelTo(Node* walkingTo) {
   walkingTo->markAsExplored();
+  
   if (walkingTo == current->getParent()){
     current = walkingTo;
   }
