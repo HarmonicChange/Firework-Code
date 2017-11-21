@@ -35,8 +35,8 @@ void updateRobotLocation(){
 // Call when you reach an intersection
 // Sends all data, updates variables, then acts as appropriate
 void intersect(){
-  //updateRobotLocation(); We update it for u in currPos = nextPos already
   lookAround();
+  updateRobotLocation(); 
   bool sendFailed = true;
   while (sendFailed) {
     bool s1 = transmitRobot(); // These are set to true IFF send failed
@@ -63,7 +63,7 @@ void leftTurn(){
 
     // Update needed sensor values
     updateLineSensors();
-    printSensors();
+    //printSensors();
     
     // Test if turn is complete
     if (!flag && lineMidLeft < blackDetect) flag = true;
@@ -94,7 +94,7 @@ void rightTurn(){
 
     // Update needed sensor values
     updateLineSensors();
-    printSensors();
+    //printSensors();
 
     // Test if turn is complete
     if (!flag && lineMidRight < blackDetect) flag = true;
@@ -119,6 +119,9 @@ void keepStraight(){
 
 void UTurn(){
   bool turnDone = false;
+  bool flag1 = false;
+  bool flag2 = false;
+  bool flag3 = false;
   if (currDir-2 <0) currDir=currDir -2+4;
   else currDir = (currDir-2)%4;
   //walkForward();
@@ -126,20 +129,22 @@ void UTurn(){
   bool flag = false;
   while (! turnDone) {
     leftTurnFast(); //Begin turning left
-    delay(400);     
+    delay(100);     
     //Update needed sensor values
     lineMidLeft = analogRead(lineMidLeftPin);
     
     //Test necessary conditions for completion of left turn
-    if (!flag && lineMidLeft < blackDetect) flag = true;
-    if (flag && lineMidLeft  > blackDetect) turnDone = true;
+    if (!flag1 && lineMidLeft < blackDetect) flag1 = true;
+    else if (!flag2 && flag1 && lineMidLeft > blackDetect) flag2 = true;
+    else if (!flag3 && flag2 && flag1 && lineMidLeft < blackDetect) flag3 = true;
+    else if (flag3 && flag2 && flag1 && lineMidLeft > blackDetect) turnDone = true;
     
   }
   
 }
 
 void turn(int dir){
-  //if (dir == 0) keepStraight();
+  if (dir == 0) keepStraight();
   if (dir == 1) leftTurn();
   else if (dir == 3) rightTurn();
    else if (dir == 2) UTurn();
@@ -218,7 +223,7 @@ int isThereAWall (int sensor){
       Serial.print("Front wall avg value:");
       int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
       Serial.println(temp);
-      return (temp > 130);
+      return (temp > 200);
   }
   else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);
@@ -239,8 +244,8 @@ int isThereAWall (int sensor){
 
 //Moving forward full speed
 void walkForward(){ 
-  leftWheel.write(104);  //137-92 = 45
-  rightWheel.write(78);
+  leftWheel.write(95);  //137-92 = 45
+  rightWheel.write(87);
 }
 
 //Slow turn: turn left with just one wheel
@@ -386,6 +391,9 @@ void initializeStuff(){
   // Initialize system variables
   leftWheel.attach(5);
   rightWheel.attach(6);
+  //Stop both wheels at the beginning
+  leftWheel.write(92);  //Stop left wheel moving
+  rightWheel.write(90); //Stop right wheel forward
   lineMidLeftPin = A1;
   lineMidRightPin = A2;
   lineRightPin = A3;

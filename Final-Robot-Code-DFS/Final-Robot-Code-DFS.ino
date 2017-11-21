@@ -53,21 +53,21 @@ void setup() {
 
 void loop() {
   updateLineSensors(); 
-  printSensors(); //used for debugging
+  //printSensors(); //used for debugging
   
 
   // Line following (not at an intersection)
   if ((abs(lineMidLeft - lineMidRight) < toleranceForward)){
-    Serial.println("Walking forward");
+    //Serial.println("Walking forward");
     walkForward();
   }
   // If not on the black line, readjust
   else if (lineMidLeft >= lineMidRight) {
-    Serial.println("Left drifting");
+    //Serial.println("Left drifting");
     leftDrift();      
   }
   else if (lineMidLeft < lineMidRight) { 
-    Serial.println("Right drifting");
+    //Serial.println("Right drifting");
     rightDrift();}
 
   //Not at intersection
