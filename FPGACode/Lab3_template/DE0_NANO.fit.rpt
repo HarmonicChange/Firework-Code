@@ -1,6 +1,6 @@
 Fitter report for DE0_NANO
-Tue Nov 21 17:28:18 2017
-Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 Patches 0.01we SJ Web Edition
+Tue Nov 21 19:11:37 2017
+Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
 ---------------------
@@ -10,20 +10,20 @@ Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 Patches 0.01we SJ Web Edit
   2. Fitter Summary
   3. Fitter Settings
   4. Parallel Compilation
-  5. I/O Assignment Warnings
-  6. Ignored Assignments
-  7. Incremental Compilation Preservation Summary
-  8. Incremental Compilation Partition Settings
-  9. Incremental Compilation Placement Preservation
- 10. Pin-Out File
- 11. Fitter Resource Usage Summary
- 12. Fitter Partition Statistics
- 13. Input Pins
- 14. Output Pins
- 15. Bidir Pins
- 16. Dual Purpose and Dedicated Pins
- 17. I/O Bank Usage
- 18. All Package Pins
+  5. Ignored Assignments
+  6. Incremental Compilation Preservation Summary
+  7. Incremental Compilation Partition Settings
+  8. Incremental Compilation Placement Preservation
+  9. Pin-Out File
+ 10. Fitter Resource Usage Summary
+ 11. Fitter Partition Statistics
+ 12. Input Pins
+ 13. Output Pins
+ 14. Bidir Pins
+ 15. Dual Purpose and Dedicated Pins
+ 16. I/O Bank Usage
+ 17. All Package Pins
+ 18. I/O Assignment Warnings
  19. Fitter Resource Utilization by Entity
  20. Delay Chain Summary
  21. Pad To Core Delay Chain Fanout
@@ -42,53 +42,51 @@ Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 Patches 0.01we SJ Web Edit
  34. I/O Rules Matrix
  35. Fitter Device Options
  36. Operating Settings and Conditions
- 37. Estimated Delay Added for Hold Timing Summary
- 38. Estimated Delay Added for Hold Timing Details
- 39. Fitter Messages
- 40. Fitter Suppressed Messages
+ 37. Fitter Messages
+ 38. Fitter Suppressed Messages
 
 
 
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
-Your use of Altera Corporation's design tools, logic functions 
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Altera Program License 
-Subscription Agreement, the Altera Quartus II License Agreement,
-the Altera MegaCore Function License Agreement, or other 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
 applicable license agreement, including, without limitation, 
 that your use is for the sole purpose of programming logic 
-devices manufactured by Altera and sold by Altera or its 
+devices manufactured by Intel and sold by Intel or its 
 authorized distributors.  Please refer to the applicable 
 agreement for further details.
 
 
 
-+------------------------------------------------------------------------------------------------+
-; Fitter Summary                                                                                 ;
-+------------------------------------+-----------------------------------------------------------+
-; Fitter Status                      ; Successful - Tue Nov 21 17:28:18 2017                     ;
-; Quartus II 64-Bit Version          ; 15.0.0 Build 145 04/22/2015 Patches 0.01we SJ Web Edition ;
-; Revision Name                      ; DE0_NANO                                                  ;
-; Top-level Entity Name              ; DE0_NANO                                                  ;
-; Family                             ; Cyclone IV E                                              ;
-; Device                             ; EP4CE22F17C6                                              ;
-; Timing Models                      ; Final                                                     ;
-; Total logic elements               ; 712 / 22,320 ( 3 % )                                      ;
-;     Total combinational functions  ; 679 / 22,320 ( 3 % )                                      ;
-;     Dedicated logic registers      ; 243 / 22,320 ( 1 % )                                      ;
-; Total registers                    ; 243                                                       ;
-; Total pins                         ; 87 / 154 ( 56 % )                                         ;
-; Total virtual pins                 ; 0                                                         ;
-; Total memory bits                  ; 2,048 / 608,256 ( < 1 % )                                 ;
-; Embedded Multiplier 9-bit elements ; 0 / 132 ( 0 % )                                           ;
-; Total PLLs                         ; 0 / 4 ( 0 % )                                             ;
-+------------------------------------+-----------------------------------------------------------+
++----------------------------------------------------------------------------------+
+; Fitter Summary                                                                   ;
++------------------------------------+---------------------------------------------+
+; Fitter Status                      ; Successful - Tue Nov 21 19:11:37 2017       ;
+; Quartus Prime Version              ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
+; Revision Name                      ; DE0_NANO                                    ;
+; Top-level Entity Name              ; DE0_NANO                                    ;
+; Family                             ; Cyclone IV E                                ;
+; Device                             ; EP4CE22F17C6                                ;
+; Timing Models                      ; Final                                       ;
+; Total logic elements               ; 705 / 22,320 ( 3 % )                        ;
+;     Total combinational functions  ; 677 / 22,320 ( 3 % )                        ;
+;     Dedicated logic registers      ; 243 / 22,320 ( 1 % )                        ;
+; Total registers                    ; 243                                         ;
+; Total pins                         ; 87 / 154 ( 56 % )                           ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 2,048 / 608,256 ( < 1 % )                   ;
+; Embedded Multiplier 9-bit elements ; 0 / 132 ( 0 % )                             ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                               ;
++------------------------------------+---------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -121,6 +119,7 @@ agreement for further details.
 ; Final Placement Optimizations                                              ; Automatically                         ; Automatically                         ;
 ; Fitter Aggressive Routability Optimizations                                ; Automatically                         ; Automatically                         ;
 ; Fitter Initial Placement Seed                                              ; 1                                     ; 1                                     ;
+; Periphery to Core Placement and Routing Optimization                       ; Off                                   ; Off                                   ;
 ; PCI I/O                                                                    ; Off                                   ; Off                                   ;
 ; Weak Pull-Up Resistor                                                      ; Off                                   ; Off                                   ;
 ; Enable Bus-Hold Circuitry                                                  ; Off                                   ; Off                                   ;
@@ -150,99 +149,21 @@ agreement for further details.
 +----------------------------------------------------------------------------+---------------------------------------+---------------------------------------+
 
 
-Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
-+-------------------------------------+
-; Parallel Compilation                ;
-+----------------------------+--------+
-; Processors                 ; Number ;
-+----------------------------+--------+
-; Number detected on machine ; 8      ;
-; Maximum allowed            ; 1      ;
-+----------------------------+--------+
-
-
-+---------------------------------------+
-; I/O Assignment Warnings               ;
-+--------------+------------------------+
-; Pin Name     ; Reason                 ;
-+--------------+------------------------+
-; LED[0]       ; Missing drive strength ;
-; LED[1]       ; Missing drive strength ;
-; LED[2]       ; Missing drive strength ;
-; LED[3]       ; Missing drive strength ;
-; LED[4]       ; Missing drive strength ;
-; LED[5]       ; Missing drive strength ;
-; LED[6]       ; Missing drive strength ;
-; LED[7]       ; Missing drive strength ;
-; GPIO_0_D[0]  ; Missing drive strength ;
-; GPIO_0_D[1]  ; Missing drive strength ;
-; GPIO_0_D[2]  ; Missing drive strength ;
-; GPIO_0_D[3]  ; Missing drive strength ;
-; GPIO_0_D[4]  ; Missing drive strength ;
-; GPIO_0_D[6]  ; Missing drive strength ;
-; GPIO_0_D[8]  ; Missing drive strength ;
-; GPIO_0_D[10] ; Missing drive strength ;
-; GPIO_0_D[12] ; Missing drive strength ;
-; GPIO_0_D[14] ; Missing drive strength ;
-; GPIO_0_D[16] ; Missing drive strength ;
-; GPIO_0_D[18] ; Missing drive strength ;
-; GPIO_0_D[20] ; Missing drive strength ;
-; GPIO_0_D[22] ; Missing drive strength ;
-; GPIO_0_D[24] ; Missing drive strength ;
-; GPIO_0_D[25] ; Missing drive strength ;
-; GPIO_0_D[26] ; Missing drive strength ;
-; GPIO_0_D[27] ; Missing drive strength ;
-; GPIO_0_D[28] ; Missing drive strength ;
-; GPIO_0_D[30] ; Missing drive strength ;
-; GPIO_0_D[32] ; Missing drive strength ;
-; GPIO_1_D[8]  ; Missing drive strength ;
-; GPIO_1_D[9]  ; Missing drive strength ;
-; GPIO_1_D[10] ; Missing drive strength ;
-; GPIO_1_D[11] ; Missing drive strength ;
-; GPIO_1_D[12] ; Missing drive strength ;
-; GPIO_1_D[13] ; Missing drive strength ;
-; GPIO_1_D[14] ; Missing drive strength ;
-; GPIO_1_D[15] ; Missing drive strength ;
-; GPIO_1_D[16] ; Missing drive strength ;
-; GPIO_1_D[17] ; Missing drive strength ;
-; GPIO_1_D[18] ; Missing drive strength ;
-; GPIO_1_D[19] ; Missing drive strength ;
-; GPIO_1_D[20] ; Missing drive strength ;
-; GPIO_1_D[21] ; Missing drive strength ;
-; GPIO_1_D[22] ; Missing drive strength ;
-; GPIO_1_D[23] ; Missing drive strength ;
-; GPIO_1_D[24] ; Missing drive strength ;
-; GPIO_1_D[25] ; Missing drive strength ;
-; GPIO_1_D[26] ; Missing drive strength ;
-; GPIO_1_D[27] ; Missing drive strength ;
-; GPIO_1_D[28] ; Missing drive strength ;
-; GPIO_1_D[29] ; Missing drive strength ;
-; GPIO_1_D[30] ; Missing drive strength ;
-; GPIO_1_D[31] ; Missing drive strength ;
-; GPIO_1_D[32] ; Missing drive strength ;
-; GPIO_1_D[33] ; Missing drive strength ;
-; GPIO_0_D[5]  ; Missing drive strength ;
-; GPIO_0_D[7]  ; Missing drive strength ;
-; GPIO_0_D[9]  ; Missing drive strength ;
-; GPIO_0_D[11] ; Missing drive strength ;
-; GPIO_0_D[13] ; Missing drive strength ;
-; GPIO_0_D[15] ; Missing drive strength ;
-; GPIO_0_D[17] ; Missing drive strength ;
-; GPIO_0_D[19] ; Missing drive strength ;
-; GPIO_0_D[21] ; Missing drive strength ;
-; GPIO_0_D[23] ; Missing drive strength ;
-; GPIO_0_D[29] ; Missing drive strength ;
-; GPIO_0_D[31] ; Missing drive strength ;
-; GPIO_0_D[33] ; Missing drive strength ;
-; GPIO_1_D[0]  ; Missing drive strength ;
-; GPIO_1_D[1]  ; Missing drive strength ;
-; GPIO_1_D[2]  ; Missing drive strength ;
-; GPIO_1_D[3]  ; Missing drive strength ;
-; GPIO_1_D[4]  ; Missing drive strength ;
-; GPIO_1_D[5]  ; Missing drive strength ;
-; GPIO_1_D[6]  ; Missing drive strength ;
-; GPIO_1_D[7]  ; Missing drive strength ;
-+--------------+------------------------+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.02        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   2.2%      ;
++----------------------------+-------------+
 
 
 +-----------------------------------------------------------------------------------------------+
@@ -393,8 +314,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; Type                ; Total [A + B]       ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+---------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                     ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 1154 ) ; 0.00 % ( 0 / 1154 )        ; 0.00 % ( 0 / 1154 )      ;
-;     -- Achieved     ; 0.00 % ( 0 / 1154 ) ; 0.00 % ( 0 / 1154 )        ; 0.00 % ( 0 / 1154 )      ;
+;     -- Requested    ; 0.00 % ( 0 / 1152 ) ; 0.00 % ( 0 / 1152 )        ; 0.00 % ( 0 / 1152 )      ;
+;     -- Achieved     ; 0.00 % ( 0 / 1152 ) ; 0.00 % ( 0 / 1152 )        ; 0.00 % ( 0 / 1152 )      ;
 ;                     ;                     ;                            ;                          ;
 ; Routing (by net)    ;                     ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )    ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -417,7 +338,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 1154 )   ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 1152 )   ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 0 )      ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -425,7 +346,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in D:/Documents/Classes/Semester_5/ECE_3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.pin.
+The pin-out file can be found in C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.pin.
 
 
 +-------------------------------------------------------------------------+
@@ -433,49 +354,49 @@ The pin-out file can be found in D:/Documents/Classes/Semester_5/ECE_3400/Firewo
 +---------------------------------------------+---------------------------+
 ; Resource                                    ; Usage                     ;
 +---------------------------------------------+---------------------------+
-; Total logic elements                        ; 712 / 22,320 ( 3 % )      ;
-;     -- Combinational with no register       ; 469                       ;
-;     -- Register only                        ; 33                        ;
-;     -- Combinational with a register        ; 210                       ;
+; Total logic elements                        ; 705 / 22,320 ( 3 % )      ;
+;     -- Combinational with no register       ; 462                       ;
+;     -- Register only                        ; 28                        ;
+;     -- Combinational with a register        ; 215                       ;
 ;                                             ;                           ;
 ; Logic element usage by number of LUT inputs ;                           ;
-;     -- 4 input functions                    ; 395                       ;
-;     -- 3 input functions                    ; 102                       ;
-;     -- <=2 input functions                  ; 182                       ;
-;     -- Register only                        ; 33                        ;
+;     -- 4 input functions                    ; 397                       ;
+;     -- 3 input functions                    ; 120                       ;
+;     -- <=2 input functions                  ; 160                       ;
+;     -- Register only                        ; 28                        ;
 ;                                             ;                           ;
 ; Logic elements by mode                      ;                           ;
-;     -- normal mode                          ; 609                       ;
+;     -- normal mode                          ; 607                       ;
 ;     -- arithmetic mode                      ; 70                        ;
 ;                                             ;                           ;
 ; Total registers*                            ; 243 / 23,018 ( 1 % )      ;
 ;     -- Dedicated logic registers            ; 243 / 22,320 ( 1 % )      ;
 ;     -- I/O registers                        ; 0 / 698 ( 0 % )           ;
 ;                                             ;                           ;
-; Total LABs:  partially or completely used   ; 51 / 1,395 ( 4 % )        ;
+; Total LABs:  partially or completely used   ; 53 / 1,395 ( 4 % )        ;
 ; Virtual pins                                ; 0                         ;
 ; I/O pins                                    ; 87 / 154 ( 56 % )         ;
 ;     -- Clock pins                           ; 7 / 7 ( 100 % )           ;
 ;     -- Dedicated input pins                 ; 0 / 9 ( 0 % )             ;
 ;                                             ;                           ;
-; Global signals                              ; 2                         ;
 ; M9Ks                                        ; 1 / 66 ( 2 % )            ;
 ; Total block memory bits                     ; 2,048 / 608,256 ( < 1 % ) ;
 ; Total block memory implementation bits      ; 9,216 / 608,256 ( 2 % )   ;
 ; Embedded Multiplier 9-bit elements          ; 0 / 132 ( 0 % )           ;
 ; PLLs                                        ; 0 / 4 ( 0 % )             ;
-; Global clocks                               ; 2 / 20 ( 10 % )           ;
+; Global signals                              ; 2                         ;
+;     -- Global clocks                        ; 2 / 20 ( 10 % )           ;
 ; JTAGs                                       ; 0 / 1 ( 0 % )             ;
 ; CRC blocks                                  ; 0 / 1 ( 0 % )             ;
 ; ASMI blocks                                 ; 0 / 1 ( 0 % )             ;
 ; Oscillator blocks                           ; 0 / 1 ( 0 % )             ;
 ; Impedance control blocks                    ; 0 / 4 ( 0 % )             ;
 ; Average interconnect usage (total/H/V)      ; 0.8% / 0.8% / 0.8%        ;
-; Peak interconnect usage (total/H/V)         ; 8.3% / 8.5% / 8.1%        ;
+; Peak interconnect usage (total/H/V)         ; 6.8% / 6.5% / 7.1%        ;
 ; Maximum fan-out                             ; 223                       ;
 ; Highest non-global fan-out                  ; 48                        ;
-; Total fan-out                               ; 3159                      ;
-; Average fan-out                             ; 2.67                      ;
+; Total fan-out                               ; 3179                      ;
+; Average fan-out                             ; 2.69                      ;
 +---------------------------------------------+---------------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
@@ -488,26 +409,26 @@ The pin-out file can be found in D:/Documents/Classes/Semester_5/ECE_3400/Firewo
 +---------------------------------------------+---------------------+--------------------------------+
 ; Difficulty Clustering Region                ; Low                 ; Low                            ;
 ;                                             ;                     ;                                ;
-; Total logic elements                        ; 712 / 22320 ( 3 % ) ; 0 / 22320 ( 0 % )              ;
-;     -- Combinational with no register       ; 469                 ; 0                              ;
-;     -- Register only                        ; 33                  ; 0                              ;
-;     -- Combinational with a register        ; 210                 ; 0                              ;
+; Total logic elements                        ; 705 / 22320 ( 3 % ) ; 0 / 22320 ( 0 % )              ;
+;     -- Combinational with no register       ; 462                 ; 0                              ;
+;     -- Register only                        ; 28                  ; 0                              ;
+;     -- Combinational with a register        ; 215                 ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Logic element usage by number of LUT inputs ;                     ;                                ;
-;     -- 4 input functions                    ; 395                 ; 0                              ;
-;     -- 3 input functions                    ; 102                 ; 0                              ;
-;     -- <=2 input functions                  ; 182                 ; 0                              ;
-;     -- Register only                        ; 33                  ; 0                              ;
+;     -- 4 input functions                    ; 397                 ; 0                              ;
+;     -- 3 input functions                    ; 120                 ; 0                              ;
+;     -- <=2 input functions                  ; 160                 ; 0                              ;
+;     -- Register only                        ; 28                  ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Logic elements by mode                      ;                     ;                                ;
-;     -- normal mode                          ; 609                 ; 0                              ;
+;     -- normal mode                          ; 607                 ; 0                              ;
 ;     -- arithmetic mode                      ; 70                  ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Total registers                             ; 243                 ; 0                              ;
 ;     -- Dedicated logic registers            ; 243 / 22320 ( 1 % ) ; 0 / 22320 ( 0 % )              ;
 ;     -- I/O registers                        ; 0                   ; 0                              ;
 ;                                             ;                     ;                                ;
-; Total LABs:  partially or completely used   ; 51 / 1395 ( 4 % )   ; 0 / 1395 ( 0 % )               ;
+; Total LABs:  partially or completely used   ; 53 / 1395 ( 4 % )   ; 0 / 1395 ( 0 % )               ;
 ;                                             ;                     ;                                ;
 ; Virtual pins                                ; 0                   ; 0                              ;
 ; I/O pins                                    ; 87                  ; 0                              ;
@@ -524,8 +445,8 @@ The pin-out file can be found in D:/Documents/Classes/Semester_5/ECE_3400/Firewo
 ;     -- Registered Output Connections        ; 0                   ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Internal Connections                        ;                     ;                                ;
-;     -- Total Connections                    ; 3159                ; 0                              ;
-;     -- Registered Connections               ; 1159                ; 0                              ;
+;     -- Total Connections                    ; 3179                ; 0                              ;
+;     -- Registered Connections               ; 1162                ; 0                              ;
 ;                                             ;                     ;                                ;
 ; External Connections                        ;                     ;                                ;
 ;     -- Top                                  ; 136                 ; 0                              ;
@@ -984,18 +905,102 @@ The pin-out file can be found in D:/Documents/Classes/Semester_5/ECE_3400/Firewo
 Note: Pin directions (input, output or bidir) are based on device operating in user mode.
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter Resource Utilization by Entity                                                                                                                                                                                                                                                                                               ;
-+-------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------------------------------------+--------------+
-; Compilation Hierarchy Node                ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name                                                      ; Library Name ;
-+-------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------------------------------------+--------------+
-; |DE0_NANO                                 ; 712 (505)   ; 243 (220)                 ; 0 (0)         ; 2048        ; 1    ; 0            ; 0       ; 0         ; 87   ; 0            ; 469 (285)    ; 33 (33)           ; 210 (158)        ; |DE0_NANO                                                                ; work         ;
-;    |VGA_DRIVER:driver|                    ; 217 (217)   ; 20 (20)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 168 (168)    ; 0 (0)             ; 49 (49)          ; |DE0_NANO|VGA_DRIVER:driver                                              ; work         ;
-;    |rom:Table|                            ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 2048        ; 1    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |DE0_NANO|rom:Table                                                      ; work         ;
-;       |altsyncram:Ram0_rtl_0|             ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 2048        ; 1    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |DE0_NANO|rom:Table|altsyncram:Ram0_rtl_0                                ; work         ;
-;          |altsyncram_qa61:auto_generated| ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 2048        ; 1    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |DE0_NANO|rom:Table|altsyncram:Ram0_rtl_0|altsyncram_qa61:auto_generated ; work         ;
-;    |twinkle:Song|                         ; 19 (19)     ; 3 (3)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 16 (16)      ; 0 (0)             ; 3 (3)            ; |DE0_NANO|twinkle:Song                                                   ; work         ;
-+-------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------------------------------------+--------------+
++---------------------------------------+
+; I/O Assignment Warnings               ;
++--------------+------------------------+
+; Pin Name     ; Reason                 ;
++--------------+------------------------+
+; LED[0]       ; Missing drive strength ;
+; LED[1]       ; Missing drive strength ;
+; LED[2]       ; Missing drive strength ;
+; LED[3]       ; Missing drive strength ;
+; LED[4]       ; Missing drive strength ;
+; LED[5]       ; Missing drive strength ;
+; LED[6]       ; Missing drive strength ;
+; LED[7]       ; Missing drive strength ;
+; GPIO_0_D[0]  ; Missing drive strength ;
+; GPIO_0_D[1]  ; Missing drive strength ;
+; GPIO_0_D[2]  ; Missing drive strength ;
+; GPIO_0_D[3]  ; Missing drive strength ;
+; GPIO_0_D[4]  ; Missing drive strength ;
+; GPIO_0_D[6]  ; Missing drive strength ;
+; GPIO_0_D[8]  ; Missing drive strength ;
+; GPIO_0_D[10] ; Missing drive strength ;
+; GPIO_0_D[12] ; Missing drive strength ;
+; GPIO_0_D[14] ; Missing drive strength ;
+; GPIO_0_D[16] ; Missing drive strength ;
+; GPIO_0_D[18] ; Missing drive strength ;
+; GPIO_0_D[20] ; Missing drive strength ;
+; GPIO_0_D[22] ; Missing drive strength ;
+; GPIO_0_D[24] ; Missing drive strength ;
+; GPIO_0_D[25] ; Missing drive strength ;
+; GPIO_0_D[26] ; Missing drive strength ;
+; GPIO_0_D[27] ; Missing drive strength ;
+; GPIO_0_D[28] ; Missing drive strength ;
+; GPIO_0_D[30] ; Missing drive strength ;
+; GPIO_0_D[32] ; Missing drive strength ;
+; GPIO_1_D[8]  ; Missing drive strength ;
+; GPIO_1_D[9]  ; Missing drive strength ;
+; GPIO_1_D[10] ; Missing drive strength ;
+; GPIO_1_D[11] ; Missing drive strength ;
+; GPIO_1_D[12] ; Missing drive strength ;
+; GPIO_1_D[13] ; Missing drive strength ;
+; GPIO_1_D[14] ; Missing drive strength ;
+; GPIO_1_D[15] ; Missing drive strength ;
+; GPIO_1_D[16] ; Missing drive strength ;
+; GPIO_1_D[17] ; Missing drive strength ;
+; GPIO_1_D[18] ; Missing drive strength ;
+; GPIO_1_D[19] ; Missing drive strength ;
+; GPIO_1_D[20] ; Missing drive strength ;
+; GPIO_1_D[21] ; Missing drive strength ;
+; GPIO_1_D[22] ; Missing drive strength ;
+; GPIO_1_D[23] ; Missing drive strength ;
+; GPIO_1_D[24] ; Missing drive strength ;
+; GPIO_1_D[25] ; Missing drive strength ;
+; GPIO_1_D[26] ; Missing drive strength ;
+; GPIO_1_D[27] ; Missing drive strength ;
+; GPIO_1_D[28] ; Missing drive strength ;
+; GPIO_1_D[29] ; Missing drive strength ;
+; GPIO_1_D[30] ; Missing drive strength ;
+; GPIO_1_D[31] ; Missing drive strength ;
+; GPIO_1_D[32] ; Missing drive strength ;
+; GPIO_1_D[33] ; Missing drive strength ;
+; GPIO_0_D[5]  ; Missing drive strength ;
+; GPIO_0_D[7]  ; Missing drive strength ;
+; GPIO_0_D[9]  ; Missing drive strength ;
+; GPIO_0_D[11] ; Missing drive strength ;
+; GPIO_0_D[13] ; Missing drive strength ;
+; GPIO_0_D[15] ; Missing drive strength ;
+; GPIO_0_D[17] ; Missing drive strength ;
+; GPIO_0_D[19] ; Missing drive strength ;
+; GPIO_0_D[21] ; Missing drive strength ;
+; GPIO_0_D[23] ; Missing drive strength ;
+; GPIO_0_D[29] ; Missing drive strength ;
+; GPIO_0_D[31] ; Missing drive strength ;
+; GPIO_0_D[33] ; Missing drive strength ;
+; GPIO_1_D[0]  ; Missing drive strength ;
+; GPIO_1_D[1]  ; Missing drive strength ;
+; GPIO_1_D[2]  ; Missing drive strength ;
+; GPIO_1_D[3]  ; Missing drive strength ;
+; GPIO_1_D[4]  ; Missing drive strength ;
+; GPIO_1_D[5]  ; Missing drive strength ;
+; GPIO_1_D[6]  ; Missing drive strength ;
+; GPIO_1_D[7]  ; Missing drive strength ;
++--------------+------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                 ;
++-------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name                                                      ; Entity Name     ; Library Name ;
++-------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------------------------------------+-----------------+--------------+
+; |DE0_NANO                                 ; 705 (500)   ; 243 (220)                 ; 0 (0)         ; 2048        ; 1    ; 0            ; 0       ; 0         ; 87   ; 0            ; 462 (280)    ; 28 (28)           ; 215 (159)        ; |DE0_NANO                                                                ; DE0_NANO        ; work         ;
+;    |VGA_DRIVER:driver|                    ; 221 (221)   ; 20 (20)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 168 (168)    ; 0 (0)             ; 53 (53)          ; |DE0_NANO|VGA_DRIVER:driver                                              ; VGA_DRIVER      ; work         ;
+;    |rom:Table|                            ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 2048        ; 1    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |DE0_NANO|rom:Table                                                      ; rom             ; work         ;
+;       |altsyncram:Ram0_rtl_0|             ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 2048        ; 1    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |DE0_NANO|rom:Table|altsyncram:Ram0_rtl_0                                ; altsyncram      ; work         ;
+;          |altsyncram_qa61:auto_generated| ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 2048        ; 1    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |DE0_NANO|rom:Table|altsyncram:Ram0_rtl_0|altsyncram_qa61:auto_generated ; altsyncram_qa61 ; work         ;
+;    |twinkle:Song|                         ; 17 (17)     ; 3 (3)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 14 (14)      ; 0 (0)             ; 3 (3)            ; |DE0_NANO|twinkle:Song                                                   ; twinkle         ; work         ;
++-------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------------------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -1080,7 +1085,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; GPIO_0_D[23] ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
 ; GPIO_0_D[29] ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; GPIO_0_D[31] ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; GPIO_0_D[33] ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
+; GPIO_0_D[33] ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; GPIO_1_D[0]  ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
 ; GPIO_1_D[1]  ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
 ; GPIO_1_D[2]  ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
@@ -1168,9 +1173,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; GPIO_0_D[29]                              ;                   ;         ;
 ;      - SPIData                            ; 1                 ; 6       ;
 ; GPIO_0_D[31]                              ;                   ;         ;
-;      - currSPIClock~feeder                ; 0                 ; 6       ;
+;      - currSPIClock                       ; 0                 ; 6       ;
 ; GPIO_0_D[33]                              ;                   ;         ;
-;      - currentPackage                     ; 1                 ; 6       ;
+;      - currentPackage                     ; 0                 ; 6       ;
 ; GPIO_1_D[0]                               ;                   ;         ;
 ; GPIO_1_D[1]                               ;                   ;         ;
 ; GPIO_1_D[2]                               ;                   ;         ;
@@ -1194,35 +1199,35 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; CLOCK_25                           ; FF_X28_Y1_N29      ; 20      ; Clock                     ; yes    ; Global Clock         ; GCLK15           ; --                        ;
 ; CLOCK_50                           ; PIN_R8             ; 2       ; Clock                     ; no     ; --                   ; --               ; --                        ;
 ; CLOCK_50                           ; PIN_R8             ; 223     ; Clock                     ; yes    ; Global Clock         ; GCLK18           ; --                        ;
-; Decoder0~10                        ; LCCOMB_X25_Y28_N0  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~11                        ; LCCOMB_X25_Y28_N18 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~13                        ; LCCOMB_X29_Y27_N24 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~15                        ; LCCOMB_X29_Y27_N20 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~16                        ; LCCOMB_X29_Y28_N14 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~18                        ; LCCOMB_X29_Y27_N14 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~19                        ; LCCOMB_X29_Y28_N8  ; 6       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~20                        ; LCCOMB_X29_Y27_N0  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~21                        ; LCCOMB_X29_Y28_N28 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~22                        ; LCCOMB_X25_Y28_N4  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~23                        ; LCCOMB_X29_Y27_N26 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~25                        ; LCCOMB_X29_Y27_N12 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~27                        ; LCCOMB_X29_Y27_N6  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~28                        ; LCCOMB_X29_Y28_N24 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~29                        ; LCCOMB_X25_Y28_N14 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~3                         ; LCCOMB_X29_Y27_N8  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~5                         ; LCCOMB_X29_Y27_N10 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~6                         ; LCCOMB_X29_Y27_N28 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~7                         ; LCCOMB_X25_Y28_N10 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Decoder0~8                         ; LCCOMB_X25_Y28_N12 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; Equal2~4                           ; LCCOMB_X21_Y28_N12 ; 17      ; Sync. load                ; no     ; --                   ; --               ; --                        ;
-; VGA_DRIVER:driver|line_count[4]~20 ; LCCOMB_X26_Y25_N4  ; 10      ; Sync. clear               ; no     ; --                   ; --               ; --                        ;
-; VGA_DRIVER:driver|line_count[4]~21 ; LCCOMB_X24_Y24_N30 ; 20      ; Clock enable, Sync. clear ; no     ; --                   ; --               ; --                        ;
-; addr[0]~11                         ; LCCOMB_X21_Y28_N8  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; currDataBits[1]~1                  ; LCCOMB_X29_Y28_N20 ; 3       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; currentLocation[0]~0               ; LCCOMB_X29_Y28_N30 ; 5       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; done                               ; FF_X21_Y28_N17     ; 48      ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; packageSending                     ; FF_X29_Y28_N23     ; 6       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
-; song_pos[0]~2                      ; LCCOMB_X15_Y25_N4  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~18                        ; LCCOMB_X27_Y25_N16 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~19                        ; LCCOMB_X27_Y25_N26 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~21                        ; LCCOMB_X27_Y25_N20 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~22                        ; LCCOMB_X27_Y25_N22 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~23                        ; LCCOMB_X32_Y26_N2  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~24                        ; LCCOMB_X32_Y26_N4  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~25                        ; LCCOMB_X32_Y26_N14 ; 6       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~26                        ; LCCOMB_X32_Y26_N24 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~27                        ; LCCOMB_X27_Y25_N8  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~28                        ; LCCOMB_X27_Y25_N10 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~29                        ; LCCOMB_X27_Y25_N28 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~30                        ; LCCOMB_X27_Y25_N14 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~31                        ; LCCOMB_X27_Y25_N24 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~32                        ; LCCOMB_X27_Y25_N2  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~33                        ; LCCOMB_X27_Y25_N12 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~34                        ; LCCOMB_X27_Y25_N6  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~36                        ; LCCOMB_X30_Y25_N14 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~37                        ; LCCOMB_X30_Y25_N8  ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~38                        ; LCCOMB_X30_Y25_N26 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Decoder0~39                        ; LCCOMB_X30_Y25_N12 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; Equal2~4                           ; LCCOMB_X30_Y21_N18 ; 17      ; Sync. load                ; no     ; --                   ; --               ; --                        ;
+; VGA_DRIVER:driver|line_count[4]~20 ; LCCOMB_X30_Y22_N8  ; 10      ; Sync. clear               ; no     ; --                   ; --               ; --                        ;
+; VGA_DRIVER:driver|line_count[4]~21 ; LCCOMB_X30_Y22_N14 ; 20      ; Clock enable, Sync. clear ; no     ; --                   ; --               ; --                        ;
+; addr[0]~11                         ; LCCOMB_X30_Y21_N30 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; currDataBits[1]~1                  ; LCCOMB_X32_Y26_N16 ; 3       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; currentLocation[0]~0               ; LCCOMB_X32_Y26_N30 ; 5       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; done                               ; FF_X32_Y26_N23     ; 48      ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; packageSending                     ; FF_X32_Y26_N27     ; 6       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
+; song_pos[0]~3                      ; LCCOMB_X29_Y26_N18 ; 7       ; Clock enable              ; no     ; --                   ; --               ; --                        ;
 +------------------------------------+--------------------+---------+---------------------------+--------+----------------------+------------------+---------------------------+
 
 
@@ -1236,13 +1241,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------+---------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter RAM Summary                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ;
-+---------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------------------------------------+----------------+----------------------+------------------------+------------------------+---------------+
-; Name                                                                      ; Type ; Mode ; Clock Mode   ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Port A Input Registers ; Port A Output Registers ; Port B Input Registers ; Port B Output Registers ; Size ; Implementation Port A Depth ; Implementation Port A Width ; Implementation Port B Depth ; Implementation Port B Width ; Implementation Bits ; M9Ks ; MIF                                ; Location       ; Mixed Width RDW Mode ; Port A RDW Mode        ; Port B RDW Mode        ; Fits in MLABs ;
-+---------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------------------------------------+----------------+----------------------+------------------------+------------------------+---------------+
-; rom:Table|altsyncram:Ram0_rtl_0|altsyncram_qa61:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; Single Clock ; 256          ; 8            ; --           ; --           ; yes                    ; no                      ; --                     ; --                      ; 2048 ; 256                         ; 8                           ; --                          ; --                          ; 2048                ; 1    ; db/DE0_NANO.rom0_rom_1d582.hdl.mif ; M9K_X22_Y28_N0 ; Don't care           ; New data with NBE Read ; New data with NBE Read ; No - Unknown  ;
-+---------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------------------------------------+----------------+----------------------+------------------------+------------------------+---------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter RAM Summary                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ;
++---------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------------------------------------+----------------+----------------------+------------------------+------------------------+----------+------------------------+---------------+
+; Name                                                                      ; Type ; Mode ; Clock Mode   ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Port A Input Registers ; Port A Output Registers ; Port B Input Registers ; Port B Output Registers ; Size ; Implementation Port A Depth ; Implementation Port A Width ; Implementation Port B Depth ; Implementation Port B Width ; Implementation Bits ; M9Ks ; MIF                                ; Location       ; Mixed Width RDW Mode ; Port A RDW Mode        ; Port B RDW Mode        ; ECC Mode ; ECC Pipeline Registers ; Fits in MLABs ;
++---------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------------------------------------+----------------+----------------------+------------------------+------------------------+----------+------------------------+---------------+
+; rom:Table|altsyncram:Ram0_rtl_0|altsyncram_qa61:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; Single Clock ; 256          ; 8            ; --           ; --           ; yes                    ; no                      ; --                     ; --                      ; 2048 ; 256                         ; 8                           ; --                          ; --                          ; 2048                ; 1    ; db/DE0_NANO.rom0_rom_1d582.hdl.mif ; M9K_X33_Y21_N0 ; Don't care           ; New data with NBE Read ; New data with NBE Read ; Off      ; No                     ; No - Unknown  ;
++---------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------------------------------------+----------------+----------------------+------------------------+------------------------+----------+------------------------+---------------+
 Note: Fitter may spread logical memories into multiple blocks to improve timing. The actual required RAM blocks can be found in the Fitter Resource Usage section.
 
 
@@ -1291,49 +1296,49 @@ RAM content values are presented in the following format: (Binary) (Octal) (Deci
 +-----------------------+------------------------+
 ; Routing Resource Type ; Usage                  ;
 +-----------------------+------------------------+
-; Block interconnects   ; 872 / 71,559 ( 1 % )   ;
-; C16 interconnects     ; 12 / 2,597 ( < 1 % )   ;
-; C4 interconnects      ; 371 / 46,848 ( < 1 % ) ;
-; Direct links          ; 215 / 71,559 ( < 1 % ) ;
+; Block interconnects   ; 901 / 71,559 ( 1 % )   ;
+; C16 interconnects     ; 15 / 2,597 ( < 1 % )   ;
+; C4 interconnects      ; 386 / 46,848 ( < 1 % ) ;
+; Direct links          ; 177 / 71,559 ( < 1 % ) ;
 ; Global clocks         ; 2 / 20 ( 10 % )        ;
-; Local interconnects   ; 412 / 24,624 ( 2 % )   ;
+; Local interconnects   ; 398 / 24,624 ( 2 % )   ;
 ; R24 interconnects     ; 18 / 2,496 ( < 1 % )   ;
-; R4 interconnects      ; 470 / 62,424 ( < 1 % ) ;
+; R4 interconnects      ; 489 / 62,424 ( < 1 % ) ;
 +-----------------------+------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Logic Elements                                                         ;
 +---------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 13.96) ; Number of LABs  (Total = 51) ;
+; Number of Logic Elements  (Average = 13.30) ; Number of LABs  (Total = 53) ;
 +---------------------------------------------+------------------------------+
-; 1                                           ; 2                            ;
+; 1                                           ; 3                            ;
 ; 2                                           ; 1                            ;
 ; 3                                           ; 1                            ;
-; 4                                           ; 0                            ;
+; 4                                           ; 1                            ;
 ; 5                                           ; 0                            ;
-; 6                                           ; 0                            ;
-; 7                                           ; 0                            ;
-; 8                                           ; 2                            ;
-; 9                                           ; 0                            ;
-; 10                                          ; 1                            ;
-; 11                                          ; 2                            ;
-; 12                                          ; 2                            ;
+; 6                                           ; 1                            ;
+; 7                                           ; 2                            ;
+; 8                                           ; 1                            ;
+; 9                                           ; 1                            ;
+; 10                                          ; 0                            ;
+; 11                                          ; 0                            ;
+; 12                                          ; 0                            ;
 ; 13                                          ; 1                            ;
-; 14                                          ; 0                            ;
-; 15                                          ; 4                            ;
-; 16                                          ; 35                           ;
+; 14                                          ; 1                            ;
+; 15                                          ; 11                           ;
+; 16                                          ; 29                           ;
 +---------------------------------------------+------------------------------+
 
 
 +-------------------------------------------------------------------+
 ; LAB-wide Signals                                                  ;
 +------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 1.55) ; Number of LABs  (Total = 51) ;
+; LAB-wide Signals  (Average = 1.60) ; Number of LABs  (Total = 53) ;
 +------------------------------------+------------------------------+
-; 1 Clock                            ; 41                           ;
-; 1 Clock enable                     ; 20                           ;
-; 1 Sync. clear                      ; 1                            ;
+; 1 Clock                            ; 44                           ;
+; 1 Clock enable                     ; 22                           ;
+; 1 Sync. clear                      ; 2                            ;
 ; 1 Sync. load                       ; 1                            ;
 ; 2 Clock enables                    ; 16                           ;
 +------------------------------------+------------------------------+
@@ -1342,35 +1347,35 @@ RAM content values are presented in the following format: (Binary) (Octal) (Deci
 +-----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 18.37) ; Number of LABs  (Total = 51) ;
+; Number of Signals Sourced  (Average = 17.68) ; Number of LABs  (Total = 53) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
 ; 1                                            ; 1                            ;
-; 2                                            ; 1                            ;
-; 3                                            ; 1                            ;
-; 4                                            ; 0                            ;
-; 5                                            ; 1                            ;
+; 2                                            ; 2                            ;
+; 3                                            ; 2                            ;
+; 4                                            ; 1                            ;
+; 5                                            ; 0                            ;
 ; 6                                            ; 0                            ;
-; 7                                            ; 0                            ;
+; 7                                            ; 1                            ;
 ; 8                                            ; 1                            ;
 ; 9                                            ; 0                            ;
 ; 10                                           ; 1                            ;
-; 11                                           ; 1                            ;
+; 11                                           ; 0                            ;
 ; 12                                           ; 0                            ;
-; 13                                           ; 1                            ;
-; 14                                           ; 0                            ;
-; 15                                           ; 0                            ;
-; 16                                           ; 8                            ;
-; 17                                           ; 6                            ;
-; 18                                           ; 2                            ;
+; 13                                           ; 0                            ;
+; 14                                           ; 2                            ;
+; 15                                           ; 1                            ;
+; 16                                           ; 5                            ;
+; 17                                           ; 3                            ;
+; 18                                           ; 5                            ;
 ; 19                                           ; 3                            ;
-; 20                                           ; 3                            ;
-; 21                                           ; 4                            ;
-; 22                                           ; 1                            ;
-; 23                                           ; 5                            ;
-; 24                                           ; 4                            ;
-; 25                                           ; 4                            ;
-; 26                                           ; 2                            ;
+; 20                                           ; 4                            ;
+; 21                                           ; 3                            ;
+; 22                                           ; 8                            ;
+; 23                                           ; 1                            ;
+; 24                                           ; 2                            ;
+; 25                                           ; 2                            ;
+; 26                                           ; 4                            ;
 ; 27                                           ; 0                            ;
 ; 28                                           ; 0                            ;
 ; 29                                           ; 0                            ;
@@ -1383,63 +1388,72 @@ RAM content values are presented in the following format: (Binary) (Octal) (Deci
 +--------------------------------------------------------------------------------+
 ; LAB Signals Sourced Out                                                        ;
 +-------------------------------------------------+------------------------------+
-; Number of Signals Sourced Out  (Average = 8.43) ; Number of LABs  (Total = 51) ;
+; Number of Signals Sourced Out  (Average = 8.15) ; Number of LABs  (Total = 53) ;
 +-------------------------------------------------+------------------------------+
 ; 0                                               ; 0                            ;
-; 1                                               ; 2                            ;
+; 1                                               ; 4                            ;
 ; 2                                               ; 2                            ;
 ; 3                                               ; 2                            ;
-; 4                                               ; 1                            ;
-; 5                                               ; 3                            ;
-; 6                                               ; 6                            ;
-; 7                                               ; 9                            ;
-; 8                                               ; 3                            ;
-; 9                                               ; 4                            ;
-; 10                                              ; 5                            ;
-; 11                                              ; 3                            ;
+; 4                                               ; 2                            ;
+; 5                                               ; 1                            ;
+; 6                                               ; 4                            ;
+; 7                                               ; 10                           ;
+; 8                                               ; 8                            ;
+; 9                                               ; 3                            ;
+; 10                                              ; 2                            ;
+; 11                                              ; 4                            ;
 ; 12                                              ; 3                            ;
-; 13                                              ; 1                            ;
-; 14                                              ; 1                            ;
-; 15                                              ; 3                            ;
+; 13                                              ; 3                            ;
+; 14                                              ; 0                            ;
+; 15                                              ; 2                            ;
 ; 16                                              ; 2                            ;
-; 17                                              ; 1                            ;
+; 17                                              ; 0                            ;
+; 18                                              ; 0                            ;
+; 19                                              ; 1                            ;
 +-------------------------------------------------+------------------------------+
 
 
 +-----------------------------------------------------------------------------+
 ; LAB Distinct Inputs                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 15.41) ; Number of LABs  (Total = 51) ;
+; Number of Distinct Inputs  (Average = 15.58) ; Number of LABs  (Total = 53) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
 ; 1                                            ; 1                            ;
-; 2                                            ; 1                            ;
-; 3                                            ; 1                            ;
+; 2                                            ; 2                            ;
+; 3                                            ; 3                            ;
 ; 4                                            ; 2                            ;
 ; 5                                            ; 2                            ;
-; 6                                            ; 0                            ;
-; 7                                            ; 1                            ;
-; 8                                            ; 3                            ;
-; 9                                            ; 1                            ;
-; 10                                           ; 0                            ;
-; 11                                           ; 3                            ;
+; 6                                            ; 1                            ;
+; 7                                            ; 0                            ;
+; 8                                            ; 0                            ;
+; 9                                            ; 4                            ;
+; 10                                           ; 2                            ;
+; 11                                           ; 0                            ;
 ; 12                                           ; 0                            ;
-; 13                                           ; 2                            ;
-; 14                                           ; 3                            ;
+; 13                                           ; 4                            ;
+; 14                                           ; 0                            ;
 ; 15                                           ; 2                            ;
-; 16                                           ; 4                            ;
-; 17                                           ; 2                            ;
-; 18                                           ; 6                            ;
-; 19                                           ; 2                            ;
-; 20                                           ; 1                            ;
-; 21                                           ; 4                            ;
-; 22                                           ; 1                            ;
-; 23                                           ; 4                            ;
-; 24                                           ; 2                            ;
-; 25                                           ; 1                            ;
-; 26                                           ; 0                            ;
-; 27                                           ; 0                            ;
-; 28                                           ; 2                            ;
+; 16                                           ; 2                            ;
+; 17                                           ; 3                            ;
+; 18                                           ; 4                            ;
+; 19                                           ; 3                            ;
+; 20                                           ; 3                            ;
+; 21                                           ; 1                            ;
+; 22                                           ; 2                            ;
+; 23                                           ; 1                            ;
+; 24                                           ; 4                            ;
+; 25                                           ; 2                            ;
+; 26                                           ; 1                            ;
+; 27                                           ; 2                            ;
+; 28                                           ; 0                            ;
+; 29                                           ; 1                            ;
+; 30                                           ; 0                            ;
+; 31                                           ; 0                            ;
+; 32                                           ; 0                            ;
+; 33                                           ; 0                            ;
+; 34                                           ; 0                            ;
+; 35                                           ; 1                            ;
 +----------------------------------------------+------------------------------+
 
 
@@ -1629,29 +1643,11 @@ RAM content values are presented in the following format: (Binary) (Octal) (Deci
 +---------------------------+--------+
 
 
-+------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Summary              ;
-+-----------------+----------------------+-------------------+
-; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
-+-----------------+----------------------+-------------------+
-Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
-This will disable optimization of problematic paths and expose them for further analysis using the TimeQuest Timing Analyzer.
-
-
-+--------------------------------------------------------------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Details                                                                                        ;
-+-----------------+------------------------------------------------------------------------------------------------+-------------------+
-; Source Register ; Destination Register                                                                           ; Delay Added in ns ;
-+-----------------+------------------------------------------------------------------------------------------------+-------------------+
-; addr[0]         ; rom:Table|altsyncram:Ram0_rtl_0|altsyncram_qa61:auto_generated|ram_block1a0~porta_address_reg0 ; 0.179             ;
-+-----------------+------------------------------------------------------------------------------------------------+-------------------+
-Note: This table only shows the top 1 path(s) that have the largest delay added for hold.
-
-
 +-----------------+
 ; Fitter Messages ;
 +-----------------+
-Warning (20028): Parallel compilation is not licensed and has been disabled
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (119006): Selected device EP4CE22F17C6 for design "DE0_NANO"
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
@@ -1677,14 +1673,14 @@ Info (332111): Found 1 clocks
     Info (332111):   Period   Clock Name
     Info (332111): ======== ============
     Info (332111):   20.000     CLOCK_50
-Info (176353): Automatically promoted node CLOCK_50~input (placed in PIN R8 (CLK15, DIFFCLK_6p))
+Info (176353): Automatically promoted node CLOCK_50~input (placed in PIN R8 (CLK15, DIFFCLK_6p)) File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 51
     Info (176355): Automatically promoted destinations to use location or clock signal Global Clock CLKCTRL_G18
     Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
-        Info (176357): Destination node CLOCK_25
-Info (176353): Automatically promoted node CLOCK_25 
+        Info (176357): Destination node CLOCK_25 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 63
+Info (176353): Automatically promoted node CLOCK_25  File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 63
     Info (176355): Automatically promoted destinations to use location or clock signal Global Clock
     Info (176356): Following destination nodes may be non-global or may not use global or regional clocks
-        Info (176357): Destination node CLOCK_25~0
+        Info (176357): Destination node CLOCK_25~0 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 63
 Info (176233): Starting register packing
 Info (176235): Finished register packing
     Extra Info (176219): No registers were packed into other blocks
@@ -1756,187 +1752,187 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "G_SENSOR_INT" is assigned to location or region, but does not exist in design
     Warning (15706): Node "I2C_SCLK" is assigned to location or region, but does not exist in design
     Warning (15706): Node "I2C_SDAT" is assigned to location or region, but does not exist in design
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:03
 Info (14896): Fitter has disabled Advanced Physical Optimization because it is not supported for the current family.
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
 Info (170191): Fitter placement operations beginning
 Info (170137): Fitter placement was successful
-Info (170192): Fitter placement operations ending: elapsed time is 00:00:00
+Info (170192): Fitter placement operations ending: elapsed time is 00:00:01
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 7% of the available device resources in the region that extends from location X21_Y23 to location X31_Y34
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:00
+    Info (170196): Router estimated peak interconnect usage is 6% of the available device resources in the region that extends from location X21_Y23 to location X31_Y34
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
-Info (11888): Total time spent on timing analysis during the Fitter is 0.19 seconds.
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
+Info (11888): Total time spent on timing analysis during the Fitter is 0.30 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:03
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
-Warning (169177): 79 pins must meet Altera requirements for 3.3-, 3.0-, and 2.5-V interfaces. For more information, refer to AN 447: Interfacing Cyclone IV E Devices with 3.3/3.0/2.5-V LVTTL/LVCMOS I/O Systems.
-    Info (169178): Pin KEY[1] uses I/O standard 3.3-V LVTTL at E1
-    Info (169178): Pin SW[0] uses I/O standard 3.3-V LVTTL at M1
-    Info (169178): Pin SW[1] uses I/O standard 3.3-V LVTTL at T8
-    Info (169178): Pin SW[2] uses I/O standard 3.3-V LVTTL at B9
-    Info (169178): Pin SW[3] uses I/O standard 3.3-V LVTTL at M15
-    Info (169178): Pin GPIO_0_IN[0] uses I/O standard 3.3-V LVTTL at A8
-    Info (169178): Pin GPIO_0_IN[1] uses I/O standard 3.3-V LVTTL at B8
-    Info (169178): Pin GPIO_1_IN[0] uses I/O standard 3.3-V LVTTL at T9
-    Info (169178): Pin GPIO_1_IN[1] uses I/O standard 3.3-V LVTTL at R9
-    Info (169178): Pin GPIO_0_D[0] uses I/O standard 3.3-V LVTTL at D3
-    Info (169178): Pin GPIO_0_D[1] uses I/O standard 3.3-V LVTTL at C3
-    Info (169178): Pin GPIO_0_D[2] uses I/O standard 3.3-V LVTTL at A2
-    Info (169178): Pin GPIO_0_D[3] uses I/O standard 3.3-V LVTTL at A3
-    Info (169178): Pin GPIO_0_D[4] uses I/O standard 3.3-V LVTTL at B3
-    Info (169178): Pin GPIO_0_D[6] uses I/O standard 3.3-V LVTTL at A4
-    Info (169178): Pin GPIO_0_D[8] uses I/O standard 3.3-V LVTTL at A5
-    Info (169178): Pin GPIO_0_D[10] uses I/O standard 3.3-V LVTTL at B6
-    Info (169178): Pin GPIO_0_D[12] uses I/O standard 3.3-V LVTTL at B7
-    Info (169178): Pin GPIO_0_D[14] uses I/O standard 3.3-V LVTTL at A7
-    Info (169178): Pin GPIO_0_D[16] uses I/O standard 3.3-V LVTTL at C8
-    Info (169178): Pin GPIO_0_D[18] uses I/O standard 3.3-V LVTTL at E7
-    Info (169178): Pin GPIO_0_D[20] uses I/O standard 3.3-V LVTTL at E8
-    Info (169178): Pin GPIO_0_D[22] uses I/O standard 3.3-V LVTTL at F9
-    Info (169178): Pin GPIO_0_D[24] uses I/O standard 3.3-V LVTTL at C9
-    Info (169178): Pin GPIO_0_D[25] uses I/O standard 3.3-V LVTTL at D9
-    Info (169178): Pin GPIO_0_D[26] uses I/O standard 3.3-V LVTTL at E11
-    Info (169178): Pin GPIO_0_D[27] uses I/O standard 3.3-V LVTTL at E10
-    Info (169178): Pin GPIO_0_D[28] uses I/O standard 3.3-V LVTTL at C11
-    Info (169178): Pin GPIO_0_D[30] uses I/O standard 3.3-V LVTTL at A12
-    Info (169178): Pin GPIO_0_D[32] uses I/O standard 3.3-V LVTTL at D12
-    Info (169178): Pin GPIO_1_D[8] uses I/O standard 3.3-V LVTTL at T10
-    Info (169178): Pin GPIO_1_D[9] uses I/O standard 3.3-V LVTTL at R11
-    Info (169178): Pin GPIO_1_D[10] uses I/O standard 3.3-V LVTTL at P11
-    Info (169178): Pin GPIO_1_D[11] uses I/O standard 3.3-V LVTTL at R10
-    Info (169178): Pin GPIO_1_D[12] uses I/O standard 3.3-V LVTTL at N12
-    Info (169178): Pin GPIO_1_D[13] uses I/O standard 3.3-V LVTTL at P9
-    Info (169178): Pin GPIO_1_D[14] uses I/O standard 3.3-V LVTTL at N9
-    Info (169178): Pin GPIO_1_D[15] uses I/O standard 3.3-V LVTTL at N11
-    Info (169178): Pin GPIO_1_D[16] uses I/O standard 3.3-V LVTTL at L16
-    Info (169178): Pin GPIO_1_D[17] uses I/O standard 3.3-V LVTTL at K16
-    Info (169178): Pin GPIO_1_D[18] uses I/O standard 3.3-V LVTTL at R16
-    Info (169178): Pin GPIO_1_D[19] uses I/O standard 3.3-V LVTTL at L15
-    Info (169178): Pin GPIO_1_D[20] uses I/O standard 3.3-V LVTTL at P15
-    Info (169178): Pin GPIO_1_D[21] uses I/O standard 3.3-V LVTTL at P16
-    Info (169178): Pin GPIO_1_D[22] uses I/O standard 3.3-V LVTTL at R14
-    Info (169178): Pin GPIO_1_D[23] uses I/O standard 3.3-V LVTTL at N16
-    Info (169178): Pin GPIO_1_D[24] uses I/O standard 3.3-V LVTTL at N15
-    Info (169178): Pin GPIO_1_D[25] uses I/O standard 3.3-V LVTTL at P14
-    Info (169178): Pin GPIO_1_D[26] uses I/O standard 3.3-V LVTTL at L14
-    Info (169178): Pin GPIO_1_D[27] uses I/O standard 3.3-V LVTTL at N14
-    Info (169178): Pin GPIO_1_D[28] uses I/O standard 3.3-V LVTTL at M10
-    Info (169178): Pin GPIO_1_D[29] uses I/O standard 3.3-V LVTTL at L13
-    Info (169178): Pin GPIO_1_D[30] uses I/O standard 3.3-V LVTTL at J16
-    Info (169178): Pin GPIO_1_D[31] uses I/O standard 3.3-V LVTTL at K15
-    Info (169178): Pin GPIO_1_D[32] uses I/O standard 3.3-V LVTTL at J13
-    Info (169178): Pin GPIO_1_D[33] uses I/O standard 3.3-V LVTTL at J14
-    Info (169178): Pin GPIO_0_D[5] uses I/O standard 3.3-V LVTTL at B4
-    Info (169178): Pin GPIO_0_D[7] uses I/O standard 3.3-V LVTTL at B5
-    Info (169178): Pin GPIO_0_D[9] uses I/O standard 3.3-V LVTTL at D5
-    Info (169178): Pin GPIO_0_D[11] uses I/O standard 3.3-V LVTTL at A6
-    Info (169178): Pin GPIO_0_D[13] uses I/O standard 3.3-V LVTTL at D6
-    Info (169178): Pin GPIO_0_D[15] uses I/O standard 3.3-V LVTTL at C6
-    Info (169178): Pin GPIO_0_D[17] uses I/O standard 3.3-V LVTTL at E6
-    Info (169178): Pin GPIO_0_D[19] uses I/O standard 3.3-V LVTTL at D8
-    Info (169178): Pin GPIO_0_D[21] uses I/O standard 3.3-V LVTTL at F8
-    Info (169178): Pin GPIO_0_D[23] uses I/O standard 3.3-V LVTTL at E9
-    Info (169178): Pin GPIO_0_D[29] uses I/O standard 3.3-V LVTTL at B11
-    Info (169178): Pin GPIO_0_D[31] uses I/O standard 3.3-V LVTTL at D11
-    Info (169178): Pin GPIO_0_D[33] uses I/O standard 3.3-V LVTTL at B12
-    Info (169178): Pin GPIO_1_D[0] uses I/O standard 3.3-V LVTTL at F13
-    Info (169178): Pin GPIO_1_D[1] uses I/O standard 3.3-V LVTTL at T15
-    Info (169178): Pin GPIO_1_D[2] uses I/O standard 3.3-V LVTTL at T14
-    Info (169178): Pin GPIO_1_D[3] uses I/O standard 3.3-V LVTTL at T13
-    Info (169178): Pin GPIO_1_D[4] uses I/O standard 3.3-V LVTTL at R13
-    Info (169178): Pin GPIO_1_D[5] uses I/O standard 3.3-V LVTTL at T12
-    Info (169178): Pin GPIO_1_D[6] uses I/O standard 3.3-V LVTTL at R12
-    Info (169178): Pin GPIO_1_D[7] uses I/O standard 3.3-V LVTTL at T11
-    Info (169178): Pin CLOCK_50 uses I/O standard 3.3-V LVTTL at R8
-    Info (169178): Pin KEY[0] uses I/O standard 3.3-V LVTTL at J15
+Warning (169177): 79 pins must meet Intel FPGA requirements for 3.3-, 3.0-, and 2.5-V interfaces. For more information, refer to AN 447: Interfacing Cyclone IV E Devices with 3.3/3.0/2.5-V LVTTL/LVCMOS I/O Systems.
+    Info (169178): Pin KEY[1] uses I/O standard 3.3-V LVTTL at E1 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 53
+    Info (169178): Pin SW[0] uses I/O standard 3.3-V LVTTL at M1 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 54
+    Info (169178): Pin SW[1] uses I/O standard 3.3-V LVTTL at T8 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 54
+    Info (169178): Pin SW[2] uses I/O standard 3.3-V LVTTL at B9 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 54
+    Info (169178): Pin SW[3] uses I/O standard 3.3-V LVTTL at M15 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 54
+    Info (169178): Pin GPIO_0_IN[0] uses I/O standard 3.3-V LVTTL at A8 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 56
+    Info (169178): Pin GPIO_0_IN[1] uses I/O standard 3.3-V LVTTL at B8 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 56
+    Info (169178): Pin GPIO_1_IN[0] uses I/O standard 3.3-V LVTTL at T9 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 58
+    Info (169178): Pin GPIO_1_IN[1] uses I/O standard 3.3-V LVTTL at R9 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 58
+    Info (169178): Pin GPIO_0_D[0] uses I/O standard 3.3-V LVTTL at D3 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[1] uses I/O standard 3.3-V LVTTL at C3 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[2] uses I/O standard 3.3-V LVTTL at A2 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[3] uses I/O standard 3.3-V LVTTL at A3 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[4] uses I/O standard 3.3-V LVTTL at B3 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[6] uses I/O standard 3.3-V LVTTL at A4 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[8] uses I/O standard 3.3-V LVTTL at A5 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[10] uses I/O standard 3.3-V LVTTL at B6 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[12] uses I/O standard 3.3-V LVTTL at B7 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[14] uses I/O standard 3.3-V LVTTL at A7 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[16] uses I/O standard 3.3-V LVTTL at C8 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[18] uses I/O standard 3.3-V LVTTL at E7 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[20] uses I/O standard 3.3-V LVTTL at E8 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[22] uses I/O standard 3.3-V LVTTL at F9 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[24] uses I/O standard 3.3-V LVTTL at C9 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[25] uses I/O standard 3.3-V LVTTL at D9 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[26] uses I/O standard 3.3-V LVTTL at E11 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[27] uses I/O standard 3.3-V LVTTL at E10 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[28] uses I/O standard 3.3-V LVTTL at C11 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[30] uses I/O standard 3.3-V LVTTL at A12 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[32] uses I/O standard 3.3-V LVTTL at D12 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_1_D[8] uses I/O standard 3.3-V LVTTL at T10 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[9] uses I/O standard 3.3-V LVTTL at R11 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[10] uses I/O standard 3.3-V LVTTL at P11 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[11] uses I/O standard 3.3-V LVTTL at R10 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[12] uses I/O standard 3.3-V LVTTL at N12 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[13] uses I/O standard 3.3-V LVTTL at P9 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[14] uses I/O standard 3.3-V LVTTL at N9 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[15] uses I/O standard 3.3-V LVTTL at N11 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[16] uses I/O standard 3.3-V LVTTL at L16 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[17] uses I/O standard 3.3-V LVTTL at K16 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[18] uses I/O standard 3.3-V LVTTL at R16 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[19] uses I/O standard 3.3-V LVTTL at L15 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[20] uses I/O standard 3.3-V LVTTL at P15 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[21] uses I/O standard 3.3-V LVTTL at P16 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[22] uses I/O standard 3.3-V LVTTL at R14 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[23] uses I/O standard 3.3-V LVTTL at N16 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[24] uses I/O standard 3.3-V LVTTL at N15 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[25] uses I/O standard 3.3-V LVTTL at P14 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[26] uses I/O standard 3.3-V LVTTL at L14 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[27] uses I/O standard 3.3-V LVTTL at N14 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[28] uses I/O standard 3.3-V LVTTL at M10 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[29] uses I/O standard 3.3-V LVTTL at L13 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[30] uses I/O standard 3.3-V LVTTL at J16 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[31] uses I/O standard 3.3-V LVTTL at K15 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[32] uses I/O standard 3.3-V LVTTL at J13 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[33] uses I/O standard 3.3-V LVTTL at J14 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_0_D[5] uses I/O standard 3.3-V LVTTL at B4 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[7] uses I/O standard 3.3-V LVTTL at B5 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[9] uses I/O standard 3.3-V LVTTL at D5 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[11] uses I/O standard 3.3-V LVTTL at A6 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[13] uses I/O standard 3.3-V LVTTL at D6 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[15] uses I/O standard 3.3-V LVTTL at C6 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[17] uses I/O standard 3.3-V LVTTL at E6 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[19] uses I/O standard 3.3-V LVTTL at D8 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[21] uses I/O standard 3.3-V LVTTL at F8 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[23] uses I/O standard 3.3-V LVTTL at E9 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[29] uses I/O standard 3.3-V LVTTL at B11 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[31] uses I/O standard 3.3-V LVTTL at D11 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_0_D[33] uses I/O standard 3.3-V LVTTL at B12 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169178): Pin GPIO_1_D[0] uses I/O standard 3.3-V LVTTL at F13 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[1] uses I/O standard 3.3-V LVTTL at T15 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[2] uses I/O standard 3.3-V LVTTL at T14 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[3] uses I/O standard 3.3-V LVTTL at T13 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[4] uses I/O standard 3.3-V LVTTL at R13 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[5] uses I/O standard 3.3-V LVTTL at T12 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[6] uses I/O standard 3.3-V LVTTL at R12 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin GPIO_1_D[7] uses I/O standard 3.3-V LVTTL at T11 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169178): Pin CLOCK_50 uses I/O standard 3.3-V LVTTL at R8 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 51
+    Info (169178): Pin KEY[0] uses I/O standard 3.3-V LVTTL at J15 File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 53
 Warning (169064): Following 68 pins have no output enable or a GND or VCC output enable - later changes to this connectivity may change fitting results
-    Info (169065): Pin GPIO_0_D[0] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[1] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[2] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[3] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[4] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[6] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[8] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[10] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[12] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[14] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[16] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[18] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[20] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[22] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[24] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[25] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[26] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[27] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[28] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[30] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[32] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[8] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[9] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[10] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[11] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[12] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[13] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[14] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[15] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[16] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[17] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[18] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[19] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[20] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[21] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[22] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[23] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[24] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[25] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[26] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[27] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[28] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[29] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[30] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[31] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[32] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[33] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[5] has a permanently enabled output enable
-    Info (169065): Pin GPIO_0_D[7] has a permanently enabled output enable
-    Info (169065): Pin GPIO_0_D[9] has a permanently enabled output enable
-    Info (169065): Pin GPIO_0_D[11] has a permanently enabled output enable
-    Info (169065): Pin GPIO_0_D[13] has a permanently enabled output enable
-    Info (169065): Pin GPIO_0_D[15] has a permanently enabled output enable
-    Info (169065): Pin GPIO_0_D[17] has a permanently enabled output enable
-    Info (169065): Pin GPIO_0_D[19] has a permanently enabled output enable
-    Info (169065): Pin GPIO_0_D[21] has a permanently enabled output enable
-    Info (169065): Pin GPIO_0_D[23] has a permanently enabled output enable
-    Info (169065): Pin GPIO_0_D[29] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[31] has a permanently disabled output enable
-    Info (169065): Pin GPIO_0_D[33] has a permanently disabled output enable
-    Info (169065): Pin GPIO_1_D[0] has a permanently enabled output enable
-    Info (169065): Pin GPIO_1_D[1] has a permanently enabled output enable
-    Info (169065): Pin GPIO_1_D[2] has a permanently enabled output enable
-    Info (169065): Pin GPIO_1_D[3] has a permanently enabled output enable
-    Info (169065): Pin GPIO_1_D[4] has a permanently enabled output enable
-    Info (169065): Pin GPIO_1_D[5] has a permanently enabled output enable
-    Info (169065): Pin GPIO_1_D[6] has a permanently enabled output enable
-    Info (169065): Pin GPIO_1_D[7] has a permanently enabled output enable
-Info (144001): Generated suppressed messages file D:/Documents/Classes/Semester_5/ECE_3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.fit.smsg
-Info: Quartus II 64-Bit Fitter was successful. 0 errors, 76 warnings
-    Info: Peak virtual memory: 1044 megabytes
-    Info: Processing ended: Tue Nov 21 17:28:19 2017
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:08
+    Info (169065): Pin GPIO_0_D[0] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[1] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[2] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[3] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[4] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[6] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[8] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[10] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[12] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[14] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[16] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[18] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[20] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[22] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[24] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[25] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[26] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[27] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[28] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[30] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[32] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_1_D[8] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[9] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[10] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[11] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[12] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[13] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[14] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[15] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[16] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[17] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[18] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[19] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[20] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[21] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[22] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[23] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[24] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[25] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[26] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[27] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[28] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[29] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[30] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[31] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[32] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[33] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_0_D[5] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[7] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[9] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[11] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[13] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[15] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[17] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[19] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[21] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[23] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[29] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[31] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_0_D[33] has a permanently disabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 55
+    Info (169065): Pin GPIO_1_D[0] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[1] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[2] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[3] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[4] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[5] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[6] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+    Info (169065): Pin GPIO_1_D[7] has a permanently enabled output enable File: C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.v Line: 57
+Info (144001): Generated suppressed messages file C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.fit.smsg
+Info: Quartus Prime Fitter was successful. 0 errors, 76 warnings
+    Info: Peak virtual memory: 1137 megabytes
+    Info: Processing ended: Tue Nov 21 19:11:38 2017
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:19
 
 
 +----------------------------+
 ; Fitter Suppressed Messages ;
 +----------------------------+
-The suppressed messages can be found in D:/Documents/Classes/Semester_5/ECE_3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.fit.smsg.
+The suppressed messages can be found in C:/Users/Ian/Documents/ECE3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.fit.smsg.
 
 

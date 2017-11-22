@@ -21,23 +21,21 @@ void treasure_ISR() {
 void loop() {
   //Serial.println(period);
   if(period > 130 && period < 150) {
-    digitalWrite(LED_7, HIGH);
+    
     Serial.println("7kHz");  
     period = 0;
   }
   else if(period > 75 && period < 85) {
-    digitalWrite(LED_12, HIGH);  
+     
     Serial.println("12kHz");  
     period = 0;
   }
   else if(period > 50 && period < 60) {
-    digitalWrite(LED_17, HIGH); 
+    
     Serial.println("17kHz");   
     period = 0;
   }
   else {
-    digitalWrite(LED_7, LOW);
-    digitalWrite(LED_12, LOW);
-    digitalWrite(LED_17, LOW);   
+     
   }
 }

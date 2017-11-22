@@ -353,7 +353,7 @@ bool transmitRobot() {
 
 // Helper Function
 bool transmitMaze() {
-  if (currPos == 10) return sendRF(0b11000000 | maze[currPos]);
+  if (currPos == endOn) return sendRF(0b11000000 | maze[currPos]);
   else return sendRF(0b10000000 | maze[currPos]);
 }
 

@@ -19,6 +19,11 @@ int IRInput; //treasure detector input pin, controlled by mux
 int mux_S0 = 7, mux_S1 = 8; //00 = left, 10 = front, 01 = right
 int intRdy = 1;
 
+unsigned long lasttime = 0;
+unsigned long period = 0;
+
+int endOn = 10;
+
 // RF Transmitter variables
 RF24 radio(9,10);  // Set up nRF24L01 radio on SPI bus plus pins 9 & 10
 const uint64_t pipes[2] = { 0x000000002ALL, 0x000000002BLL };  // Radio pipe addresses for the 2 nodes to communicate.
@@ -48,13 +53,35 @@ void setup() {
   currPos = 19;
   currDir = north;
 
+  attachInterrupt(digitalPinToInterrupt(2), treasure_ISR, FALLING);
+  attachInterrupt(digitalPinToInterrupt(1), treasure_ISR, FALLING);
+
   waitForStart();
+}
+
+void treasure_ISR() {
+  period = micros() - lasttime  ;
+  lasttime = micros();
+  if(period > 130 && period < 150) {
+    Serial.println("Treasure");
+    maze[currPos] |= (1<<4); 
+    period = 0;
+  }
+  else if(period > 75 && period < 85) {
+     //Serial.println("12");
+    //maze[currPos] += 32;  
+    period = 0;
+  }
+  else if(period > 50 && period < 60) {
+     //Serial.println("17");
+    //maze[currPos] += 48;   
+    period = 0;
+  }
 }
 
 void loop() {
   updateLineSensors(); 
   printSensors(); //used for debugging
-  
 
   // Line following (not at an intersection)
   if ((abs(lineMidLeft - lineMidRight) < toleranceForward)){
@@ -83,7 +110,7 @@ void loop() {
     Serial.println(int(currDir));
     intersect(); //Stops the robot to take wall reading samples
 
-    if (currPos == 10) while(1);
+    if (currPos == endOn) while(1);
     
     nextNode = explorerPtr->nextNode();
     nextPos  = nextNode->getCoord();
