@@ -221,7 +221,7 @@ module DE0_NANO(
             //State machine switching between notes every second
             if (note_length == 0) begin
                 note_length <= ONE_SEC/4;
-                if (song_pos == 7'd87) //song_pos <= 0;
+                if (song_pos == 7'd87) song_pos <= 0;
                 else                   song_pos <= song_pos + 1;
                 //note <= note + 1;
             end
@@ -541,7 +541,7 @@ module DE0_NANO(
             if (grid_color[19][4] == 1'b0) PX_color = red;
             else if ((currentLocation == 5'd19) && (PX_X > 3*block_width + 35) && (PX_X < 4*block_width - 35) && (PX_Y > 4*block_width + 35) && (PX_Y < 5*block_width - 35)) PX_color = green;
             else if ((grid_color[19][0] == 1'b1) && (PX_Y < (4*block_width + 10))) PX_color = wall;
-            else if ((grid_color[19][2] == 1'b1) && (PX_Y > (5*block_width - 10))) PX_color = wall;
+            else if ((PX_Y > (5*block_width - 10))) PX_color = wall;
             else if ((grid_color[19][1] == 1'b1) && (PX_X < (3*block_width + 10))) PX_color = wall;
             else if ((grid_color[19][3] == 1'b1) && (PX_X > (4*block_width - 10))) PX_color = wall;
             else if (grid_color[19][6:5] == 2'b01) PX_color = Tr07;
@@ -550,9 +550,13 @@ module DE0_NANO(
             else PX_color = white;
         end
         
-        else begin  
+        else if (done == 1'b0) begin  
             PX_color = black;
         end
+        else begin
+            PX_color = blue;
+        end
+
     end 
 
 endmodule

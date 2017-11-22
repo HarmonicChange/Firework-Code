@@ -38,6 +38,7 @@ void updateRobotLocation(){
 void intersect(){
   leftWheel.write(92); 
   rightWheel.write(90); 
+  maze[currPos] = 0;
   lookAround();
   bool sendFailed = true;
   while (sendFailed) {
@@ -56,7 +57,7 @@ void leftTurn(){
   bool turnDone = false;
   bool flag = false;
   walkForward();
-  delay(200);
+  delay(150);
   
   while (! turnDone) {
     // Begin turning left
@@ -86,7 +87,7 @@ void rightTurn(){
   bool turnDone = false;
   bool flag = false;
   walkForward();
-  delay(200);
+  delay(150);
   
   while (! turnDone) {
     // Begin turning right
@@ -123,8 +124,8 @@ void UTurn(){
   bool flag1 = false;
   bool flag2 = false;
   bool flag3 = false;
-  //walkForward();
-  //delay(200);
+  walkForward();
+  delay(150);
   bool flag = false;
   while (! turnDone) {
     leftTurnFast(); //Begin turning left
@@ -222,7 +223,7 @@ int isThereAWall (int sensor){
   if (sensor == 0){  //Y0 - left wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, LOW);
-      Serial.print("Left wall avg value:");
+      //Serial.print("Left wall avg value:");
       int temp = 0;
       for (int i=0; i<5; i++) {
         temp = temp+analogRead(distanceInput);
@@ -235,7 +236,7 @@ int isThereAWall (int sensor){
   else if (sensor == 1){ //Y1 - front wall
       digitalWrite(mux_S0, HIGH);
       digitalWrite(mux_S1, LOW);
-      Serial.print("Front wall avg value:");
+      //Serial.print("Front wall avg value:");
       int temp = 0;
       for (int i=0; i<5; i++) {
         temp = temp+analogRead(distanceInput);
@@ -248,7 +249,7 @@ int isThereAWall (int sensor){
   else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, HIGH);
-      Serial.print("Right wall avg value:");
+      //Serial.print("Right wall avg value:");
       int temp = 0;
       for (int i=0; i<5; i++) {
         temp = temp+analogRead(distanceInput);
@@ -352,7 +353,7 @@ bool transmitRobot() {
 
 // Helper Function
 bool transmitMaze() {
-  if (currPos ==3) return sendRF(0b11000000 | maze[currPos]);
+  if (currPos == 10) return sendRF(0b11000000 | maze[currPos]);
   else return sendRF(0b10000000 | maze[currPos]);
 }
 
@@ -383,6 +384,7 @@ bool sendRF(byte sendData){
         timeout = true;
 
     // Describe the results
+    byte got_resp;
     if ( timeout )
     {
       printf("Failed, response timed out.\n\r");
@@ -390,14 +392,14 @@ bool sendRF(byte sendData){
     else
     {
       // Grab the response, compare, and send to debugging spew
-      byte got_resp;
+      
       radio.read( &got_resp, sizeof(byte) );
       printf("Got response %x\n\r",got_resp);
     }
 
     // Try again 1s later
     delay(1000);
-    return timeout;
+    return (timeout | (got_resp != sendData));
 }
 
 //------------------------------------------------------------------------------

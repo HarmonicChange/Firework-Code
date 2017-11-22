@@ -82,7 +82,9 @@ void loop() {
     Serial.print("Direction:  ");
     Serial.println(int(currDir));
     intersect(); //Stops the robot to take wall reading samples
-        
+
+    if (currPos == 10) while(1);
+    
     nextNode = explorerPtr->nextNode();
     nextPos  = nextNode->getCoord();
     Serial.print("currPos:");

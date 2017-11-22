@@ -188,7 +188,7 @@ module DE0_NANO(
                 grid_color[currentLocation][3:0] <= positionData[3:0];  // Wall info
                 grid_color[currentLocation][4]   <= 1'b1;               // Node is visited
                 grid_color[currentLocation][6:5] <= positionData[5:4];  // Treasure info
-                // done <= positionData[6];
+                done <= positionData[6];
             end
 
             // If MSB == 0, then this is robot info
@@ -550,9 +550,13 @@ module DE0_NANO(
             else PX_color = white;
         end
         
-        else begin  
+        else if (done == 1'b0) begin  
             PX_color = black;
         end
+        else begin
+            PX_color = blue;
+        end
+
     end 
 
 endmodule
