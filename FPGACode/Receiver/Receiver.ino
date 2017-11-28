@@ -1,21 +1,3 @@
-/*
- Copyright (C) 2011 J. Coliz <maniacbug@ymail.com>
-
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- version 2 as published by the Free Software Foundation.
- */
-
-/**
- * Example for Getting Started with nRF24L01+ radios.
- *
- * This is an example of how to use the RF24 class.  Write this sketch to two
- * different nodes.  Put one of the nodes into 'transmit' mode by connecting
- * with the serial monitor and sending a 'T'.  The ping node sends the current
- * time to the pong node, which responds by sending the value back.  The ping
- * node can then see how long the whole cycle took.
- */
-
 #include <SPI.h>
 #include "nRF24L01.h"
 #include "RF24.h"
@@ -98,12 +80,12 @@ void loop(void)
     if ( radio.available() )
     {
       // Dump the payloads until we've gotten everything
-      byte RFdata;
+      int RFdata;
       bool done = false;
       while (!done)
       {
-        // Fetch the payload, and see if this was the last one.
-        done = radio.read( &RFdata, sizeof(byte) );
+        // Fetch the payload
+        done = radio.read( &RFdata, sizeof(int) );
 
         // Spew it
         printf("Got payload...  ");
@@ -114,24 +96,19 @@ void loop(void)
 
       }
 
-      // First, stop listening so we can talk
+      // Stop listening so we can talk
       radio.stopListening();
 
       // Send the final one back.
-      radio.write( &RFdata, sizeof(byte) );
+      radio.write( &RFdata, sizeof(int) );
       printf("Sent response.\n\r");
 
-      // Handle received data
-      if (bitRead(RFdata, 7) == 1){
-        printf("Received maze data %x \n\r", RFdata);
-        maze[robotLoc] = RFdata;
-        sendSPI(RFdata);
-      }
-      else {
-        printf("Received robot data %x \n\r", RFdata);
-        robotLoc = RFdata;
-        sendSPI(RFdata);
-      }
+      printf("Received robot data %x \n\r", lowByte(RFdata));
+      printf("Received maze data %x \n\r", highByte(RFdata));
+      robotLoc = lowByte(RFdata);
+      maze[robotLoc] = highByte(RFdata);
+      sendSPI(robotLoc);
+      sendSPI(maze[robotLoc])
 
       // Now, resume listening so we catch the next packets.
       radio.startListening();

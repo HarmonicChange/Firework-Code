@@ -43,9 +43,7 @@ void intersect(){
   bool sendFailed = true;
   while (sendFailed) {
     Serial.println("Sending");
-    bool s1 = transmitRobot(); // These are set to true IFF send failed
-    bool s2 = transmitMaze();
-    sendFailed = s1 | s2; 
+    sendFailed = transmitData(); // These are set to true IFF send failed
   }
    
 }
@@ -347,24 +345,22 @@ void initializeRFStuff(){
 }
 
 //  Helper Function
-bool transmitRobot() {
-  return sendRF(currPos | (currDir << 5));
+bool transmitData() {
+  byte robot = currPos | (currDir << 5);
+  byte maze
+  if (currPos = endOn) maze = (0b11000000 | maze[currPos]);
+  else maze = (0b10000000 | maze[currPos]);
+  return sendRF(robot | (maze << 8));
 }
 
 // Helper Function
-bool transmitMaze() {
-  if (currPos == endOn) return sendRF(0b11000000 | maze[currPos]);
-  else return sendRF(0b10000000 | maze[currPos]);
-}
-
-// Helper Function
-bool sendRF(byte sendData){
+bool sendRF(int sendData){
     // First, stop listening so we can talk.
     radio.stopListening();
 
     // Send data over RF
     printf("Now sending %x... ",sendData);
-    bool ok = radio.write( &sendData, sizeof(byte) );
+    bool ok = radio.write( &sendData, sizeof(int) );
     
     
 
@@ -384,7 +380,7 @@ bool sendRF(byte sendData){
         timeout = true;
 
     // Describe the results
-    byte got_resp;
+    int got_resp;
     if ( timeout )
     {
       printf("Failed, response timed out.\n\r");
@@ -393,7 +389,7 @@ bool sendRF(byte sendData){
     {
       // Grab the response, compare, and send to debugging spew
       
-      radio.read( &got_resp, sizeof(byte) );
+      radio.read( &got_resp, sizeof(int) );
       printf("Got response %x\n\r",got_resp);
     }
 
