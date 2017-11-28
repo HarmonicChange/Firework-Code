@@ -108,7 +108,7 @@ void loop() {
     Serial.println(int(currPos));
     Serial.print("Direction:  ");
     Serial.println(int(currDir));
-    intersect(); //Stops the robot to take wall reading samples
+    if(!grid[currPos]->isExplored()) intersect(); //Stops the robot to take wall reading samples if node unexplored
 
     if (currPos == endOn) while(1);
     

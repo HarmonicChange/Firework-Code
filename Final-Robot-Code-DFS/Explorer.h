@@ -30,10 +30,10 @@ Node* Explorer::nextNode() {
     if (neighbors[i] != NULL && !((*(neighbors+i))->isExplored())){
       Serial.print("nextNeighbor"); 
       Serial.println(current->nextNeighbor); 
-//      if (i==current->nextNeighbor && current==root){
-//        Serial.println("root update"); 
-//        root = current; 
-//      }
+      if (i==current->nextNeighbor && current==root){
+        Serial.println("root update"); 
+        root = current; 
+      }
     return *(neighbors+i);
     }
    }  
