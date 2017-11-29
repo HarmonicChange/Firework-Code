@@ -1,13 +1,13 @@
 |DE0_NANO
 CLOCK_50 => CLOCK_50.IN2
-LED[0] <= currentLocation[0].DB_MAX_OUTPUT_PORT_TYPE
-LED[1] <= currentLocation[1].DB_MAX_OUTPUT_PORT_TYPE
-LED[2] <= currentLocation[2].DB_MAX_OUTPUT_PORT_TYPE
-LED[3] <= currentLocation[3].DB_MAX_OUTPUT_PORT_TYPE
-LED[4] <= currentLocation[4].DB_MAX_OUTPUT_PORT_TYPE
-LED[5] <= currentLocation[5].DB_MAX_OUTPUT_PORT_TYPE
-LED[6] <= <GND>
-LED[7] <= <GND>
+LED[0] << currentLocation[0].DB_MAX_OUTPUT_PORT_TYPE
+LED[1] << currentLocation[1].DB_MAX_OUTPUT_PORT_TYPE
+LED[2] << currentLocation[2].DB_MAX_OUTPUT_PORT_TYPE
+LED[3] << currentLocation[3].DB_MAX_OUTPUT_PORT_TYPE
+LED[4] << currentLocation[4].DB_MAX_OUTPUT_PORT_TYPE
+LED[5] << currentLocation[5].DB_MAX_OUTPUT_PORT_TYPE
+LED[6] << <GND>
+LED[7] << <GND>
 KEY[0] => reset.IN1
 KEY[1] => ~NO_FANOUT~
 SW[0] => ~NO_FANOUT~

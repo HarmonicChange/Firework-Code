@@ -39,7 +39,7 @@ void setup(void)
 
   Serial.begin(57600);
   printf_begin();
-  printf("ROLE: Receiver");
+  printf("ROLE: Receiver \n\r");
 
   //
   // Setup and configure rf radio
@@ -70,6 +70,7 @@ void setup(void)
   pinMode(SPI_clock_pin, OUTPUT);
   digitalWrite(SPI_cs_pin, LOW);      //Initialize cs to be LOW
   digitalWrite(SPI_clock_pin, LOW);   //Initialize clock to be LOW
+  printf("Ready to Receive! \n\r");
 }
 
 void loop(void)
@@ -108,7 +109,7 @@ void loop(void)
       robotLoc = lowByte(RFdata);
       maze[robotLoc] = highByte(RFdata);
       sendSPI(robotLoc);
-      sendSPI(maze[robotLoc])
+      sendSPI(maze[robotLoc]);
 
       // Now, resume listening so we catch the next packets.
       radio.startListening();
