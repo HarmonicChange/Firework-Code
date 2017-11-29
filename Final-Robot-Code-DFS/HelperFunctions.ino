@@ -35,16 +35,27 @@ void updateRobotLocation(){
 // Call when you reach an intersection
 // Sends all data, updates variables, then acts as appropriate
 // Make sure to uncomment the while loop once radio is implemented
-void intersect(){
-  leftWheel.write(92); 
-  rightWheel.write(90); 
-  maze[currPos] = 0;
-  lookAround();
-  bool sendFailed = true;
-  while (sendFailed) {
-    Serial.println("Sending");
-    sendFailed = transmitData(); // These are set to true IFF send failed
-  }
+bool intersect(){
+  leftWheel.write(91); 
+  rightWheel.write(90);
+  delay(50);
+  updateLineSensors();
+  //if (lineLeft > blackDetect && lineRight > blackDetect) {
+    maze[currPos] = 0;
+    lookAround();
+    bool sendFailed = true;
+    while (sendFailed) {
+      Serial.println("Sending");
+      sendFailed = transmitData(); // These are set to true IFF send failed
+      sendFailed = false;
+    }
+    return true;
+  //}
+  //else {
+  //  walkBackward();
+  //  delay(100);
+  //  return false;
+  //}
    
 }
 
@@ -218,23 +229,33 @@ void lookAround (){
 
 // Return if there is a wall 
 int isThereAWall (int sensor){
-  if (sensor == 0){  //Y0 - left wall
-      digitalWrite(mux_S0, LOW);
-      digitalWrite(mux_S1, LOW);
-      //Serial.print("Left wall avg value:");
+  if (sensor == 0){  //Y0 - left walle;
+      bool normal = false;
       int temp = 0;
-      for (int i=0; i<5; i++) {
-        temp = temp+analogRead(distanceInput);
-        delay(25);
+      while (!normal){
+        digitalWrite(mux_S0, LOW);
+        digitalWrite(mux_S1, LOW);
+        Serial.print("Left wall avg value:");
+        for (int i=0; i<5; i++) {
+          temp = temp+analogRead(distanceInput);
+          delay(25);
+        }
+        temp = temp/5;
+        Serial.println(temp);
+        if (temp > 500) {
+          Serial.println("... Value too big!");
+        }
+        else {
+          normal = true;
+        }
       }
-      temp = temp/5;
-      Serial.println(temp);
-      return (temp > 150);
+      
+      return (temp > 250);
   }
   else if (sensor == 1){ //Y1 - front wall
       digitalWrite(mux_S0, HIGH);
       digitalWrite(mux_S1, LOW);
-      //Serial.print("Front wall avg value:");
+      Serial.print("Front wall avg value:");
       int temp = 0;
       for (int i=0; i<5; i++) {
         temp = temp+analogRead(distanceInput);
@@ -242,12 +263,12 @@ int isThereAWall (int sensor){
       }
       temp = temp/5;      
       Serial.println(temp);
-      return (temp > 130); //Dark condition 200, facing the window, sunny day, >130. Recalibrate using wall sensor diagnostic before start
+      return (temp > 120); //Dark condition 200, facing the window, sunny day, >130. Recalibrate using wall sensor diagnostic before start
   }
   else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, HIGH);
-      //Serial.print("Right wall avg value:");
+      Serial.print("Right wall avg value:");
       int temp = 0;
       for (int i=0; i<5; i++) {
         temp = temp+analogRead(distanceInput);
@@ -255,7 +276,7 @@ int isThereAWall (int sensor){
       }
       temp = temp/5;      
       Serial.println(temp);
-      return (temp > 100);
+      return (temp > 250);
   }
   
   return 0;
@@ -266,15 +287,29 @@ int isThereAWall (int sensor){
 //------------------------------------------------------------------------------
 // All Basic Movements are Helper Functions, except I guess walkForward()
 
+
+//Moving forward full speed
+void stopMoving(){ 
+  leftWheel.write(91); //137-92 = 45
+  rightWheel.write(90);
+}
+
 //Moving forward full speed
 void walkForward(){ 
   leftWheel.write(115);  //137-92 = 45
   rightWheel.write(67);
 }
 
+
+//Moving backward full speed
+void walkBackward(){ 
+  leftWheel.write(67);  //137-92 = 45
+  rightWheel.write(115);
+}
+
 //Slow turn: turn left with just one wheel
 void leftTurnSlow(){ 
-  leftWheel.write(92); 
+  leftWheel.write(91); 
   rightWheel.write(0); 
 }
 
@@ -347,9 +382,7 @@ void initializeRFStuff(){
 //  Helper Function
 bool transmitData() {
   byte robotData = currPos | (currDir << 5);
-  byte mazeData;
-  if (currPos = endOn) mazeData = (0b11000000 | maze[currPos]);
-  else mazeData = (0b10000000 | maze[currPos]);
+  byte mazeData = (0b10000000 | maze[currPos]);
   return sendRF(robotData | (mazeData << 8));
 }
 
@@ -416,7 +449,7 @@ void initializeStuff(){
   leftWheel.attach(5);
   rightWheel.attach(6);
   //Stop both wheels at the beginning
-  leftWheel.write(92);  //Stop left wheel moving
+  leftWheel.write(91);  //Stop left wheel moving
   rightWheel.write(90); //Stop right wheel forward
   lineMidLeftPin = A1;
   lineMidRightPin = A2;
@@ -424,7 +457,7 @@ void initializeStuff(){
   lineLeftPin = A0;
 
   distanceInput = A4;
-  // IRInput = A5?
+  IRInput = A5;
 
   //Initialize all nodes
   for(int i = 0; i < 20; i++) {
@@ -443,7 +476,7 @@ void waitForStart(){
   Serial.println("Waiting for button press");
   while (!startFlag){
     if (digitalRead(startPin) == HIGH) startFlag = true; 
-    leftWheel.write(92);  //Stop left wheel moving
+    leftWheel.write(91);  //Stop left wheel moving
     rightWheel.write(90); //Stop right wheel forward
   }
   Serial.println("Starting...");

@@ -63,7 +63,7 @@ void treasure_ISR() {
   period = micros() - lasttime  ;
   lasttime = micros();
   if(period > 130 && period < 150) {
-    Serial.println("Treasure");
+   // Serial.println("Treasure");
     maze[currPos] |= (1<<4); 
     period = 0;
   }
@@ -81,7 +81,7 @@ void treasure_ISR() {
 
 void loop() {
   updateLineSensors(); 
-  printSensors(); //used for debugging
+  //printSensors();
 
   // Line following (not at an intersection)
   if ((abs(lineMidLeft - lineMidRight) < toleranceForward)){
@@ -102,35 +102,40 @@ void loop() {
   
   
   // At an intersection
-  if (lineLeft > blackDetect && lineRight > blackDetect && intRdy) {
+  if (lineLeft > blackDetect && lineMidLeft > blackDetect && lineMidRight > blackDetect && lineRight > blackDetect && intRdy) {
+    leftWheel.write(91); 
+    
+    rightWheel.write(90);
     intRdy = 0;
+    Serial.println("------------------");
     Serial.print("Intersection detected:  ");
     Serial.println(int(currPos));
     Serial.print("Direction:  ");
     Serial.println(int(currDir));
-    if(!grid[currPos]->isExplored()) intersect(); //Stops the robot to take wall reading samples if node unexplored
-
-    if (currPos == endOn) while(1);
-    
-    nextNode = explorerPtr->nextNode();
-    nextPos  = nextNode->getCoord();
-    Serial.print("currPos:");
-    Serial.println(int(currPos));
-    Serial.print("nextPos:");
-    Serial.println(int(nextPos));
-
-    keepStraight(); //Restart the walking forward, since intersect disabled it
-    turn(getTurn());
-    
-    updateRobotLocation(); 
+    //if (not (grid[nextPos]->isExplored()))
+    if (intersect()){ //Stops the robot to take wall samples   
+      nextNode = explorerPtr->nextNode();
+      nextPos  = nextNode->getCoord();
+      Serial.print("currPos:");
+      Serial.println(int(currPos));
+      Serial.print("nextPos:");
+      Serial.println(int(nextPos));
   
-    explorerPtr->travelTo(grid[nextPos]);
-    currPos = nextPos;
-    //Robot should be following the line toward this next node now
+      keepStraight(); //Restart the walking forward, since intersect disabled it
+      turn(getTurn());
+      
+      updateRobotLocation(); 
+    
+      explorerPtr->travelTo(grid[nextPos]);
+      currPos = nextPos;
+      //Robot should be following the line toward this next node now
+    }
+    else keepStraight();
+    
   }    
 
   if(explorerPtr->isDone()) {
-    leftWheel.write(92);
+    leftWheel.write(91);
     rightWheel.write(90);
     Serial.println("We're done!");
     while(1);

@@ -28,8 +28,8 @@ Node* Explorer::nextNode() {
   
   for (int i = 0; i<3; i++){
     if (neighbors[i] != NULL && !((*(neighbors+i))->isExplored())){
-      Serial.print("nextNeighbor"); 
-      Serial.println(current->nextNeighbor); 
+      //Serial.print("nextNeighbor"); 
+      //Serial.println(current->nextNeighbor); 
       if (i==current->nextNeighbor-1 && current==root){
         Serial.println("root update"); 
         root = current; 

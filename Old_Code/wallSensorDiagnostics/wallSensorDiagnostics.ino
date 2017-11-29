@@ -25,7 +25,7 @@ int isThereAWall (int sensor){
       Serial.print("Left wall avg value:");
       int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
       Serial.println(temp);
-      return (temp > 200);
+      return (temp > 250);
   }
   else if (sensor == 1){ //Y1 - front wall
       digitalWrite(mux_S0, HIGH);
@@ -33,7 +33,7 @@ int isThereAWall (int sensor){
       Serial.print("Front wall avg value:");
       int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
       Serial.println(temp);
-      return (temp > 130);
+      return (temp > 250);
   }
   else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);
@@ -41,7 +41,7 @@ int isThereAWall (int sensor){
       Serial.print("Right wall avg value:");
       int temp = (analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput)+analogRead(distanceInput))/5;
       Serial.println(temp);
-      return (temp > 100);
+      return (temp > 250);
   }
   
   return 0;
