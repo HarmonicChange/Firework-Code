@@ -53,8 +53,9 @@ void setup() {
   currPos = 19;
   currDir = north;
 
+  //TODO Check interrupt pins
   attachInterrupt(digitalPinToInterrupt(2), treasure_ISR, FALLING);
-  attachInterrupt(digitalPinToInterrupt(1), treasure_ISR, FALLING);
+  attachInterrupt(digitalPinToInterrupt(3), treasure_ISR, FALLING);
 
   waitForStart();
 }
@@ -104,10 +105,10 @@ void loop() {
   // At an intersection
   if (lineLeft > blackDetect && lineMidLeft > blackDetect && lineMidRight > blackDetect && lineRight > blackDetect && intRdy) {
     leftWheel.write(91); 
-    
     rightWheel.write(90);
     intRdy = 0;
     Serial.println("------------------");
+    printSensors();
     Serial.print("Intersection detected:  ");
     Serial.println(int(currPos));
     Serial.print("Direction:  ");

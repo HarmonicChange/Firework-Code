@@ -39,7 +39,7 @@ bool intersect(){
   leftWheel.write(91); 
   rightWheel.write(90);
   delay(50);
-  updateLineSensors();
+  //updateLineSensors();
   //if (lineLeft > blackDetect && lineRight > blackDetect) {
     maze[currPos] = 0;
     lookAround();
@@ -181,7 +181,7 @@ int getTurn() {
 //------------------------------------------------------------------------------
 
 // Look around for walls, update maze
-void lookAround (){
+void lookAround(){
   // Check wall to the left
   if (isThereAWall(0)) { 
     grid[currPos]->addWall(Direction((currDir+1)%4), true);
@@ -478,7 +478,7 @@ void waitForStart(){
     if (digitalRead(startPin) == HIGH) startFlag = true; 
     leftWheel.write(91);  //Stop left wheel moving
     rightWheel.write(90); //Stop right wheel forward
-  }
+  }in
   Serial.println("Starting...");
 }
 
