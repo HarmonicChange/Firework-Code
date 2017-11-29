@@ -346,11 +346,11 @@ void initializeRFStuff(){
 
 //  Helper Function
 bool transmitData() {
-  byte robot = currPos | (currDir << 5);
-  byte maze
-  if (currPos = endOn) maze = (0b11000000 | maze[currPos]);
-  else maze = (0b10000000 | maze[currPos]);
-  return sendRF(robot | (maze << 8));
+  byte robotData = currPos | (currDir << 5);
+  byte mazeData;
+  if (currPos = endOn) mazeData = (0b11000000 | maze[currPos]);
+  else mazeData = (0b10000000 | maze[currPos]);
+  return sendRF(robotData | (mazeData << 8));
 }
 
 // Helper Function
