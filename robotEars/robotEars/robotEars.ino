@@ -4,6 +4,8 @@
 #define FFT_N 256 // set to 256 point fft
 
 #include <FFT.h> // include the library
+int start_time;
+int end_time;
 
 void setup() {
   Serial.begin(115200); // use the serial port
@@ -11,7 +13,13 @@ void setup() {
 
 void loop() {
   while (1) { // reduces jitter
+    //start_time = millis();
+    //Serial.println(millis());
     return_freq();
+    //Serial.println(millis() - start_time);
+    //Serial.println(millis());
+    //delay(1000);
+    //Serial.println();
   }
 }
 
@@ -28,9 +36,12 @@ byte return_freq() {
   sei();
 
   //Serial.println("start");
-  for (byte i = 0 ; i < FFT_N / 2 ; i++) {
-    Serial.println(fft_log_out[i]); // send out the data
-  }
-  while (1); //run once, press reset to run again
+  //for (byte i = 0 ; i < FFT_N / 2 ; i++) {
+    //Serial.println(fft_log_out[18]); // send out the data
+    if(fft_log_out[19] > 68){
+      Serial.print("GO!");
+    };
+  //}
+  //while (1); //run once, press reset to run again
 }
 
