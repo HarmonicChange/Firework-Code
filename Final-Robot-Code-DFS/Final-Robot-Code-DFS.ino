@@ -2,18 +2,19 @@
 #include <RF24.h>
 //#include <RF24_config.h>
 
-#define LOG_OUT 1 // use the log output function
-#define FFT_N 256 // set to 256 point fft
+//#define LOG_OUT 1 // use the log output function
+//#define FFT_N 256 // set to 256 point fft
 
 #include <Servo.h>
 #include "Node.h"
 #include "Explorer.h"
 #include <SPI.h>
 #include "printf.h"
-#include <FFT.h>
+//#include <FFT.h>
 
 Servo leftWheel, rightWheel;
 int startPin = 4;
+int mic;
 int lineMidLeft, lineMidRight, lineRight, lineLeft;             //Line Sensor Values Variables
 int lineMidLeftPin, lineMidRightPin, lineRightPin, lineLeftPin; // Analog pins with line sensors
 int toleranceForward = 200; //
@@ -26,6 +27,7 @@ bool backTrack = false;
 
 unsigned long lasttime = 0;
 unsigned long period = 0;
+uint8_t heard = 0;
 
 int endOn = 10;
 

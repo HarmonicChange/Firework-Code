@@ -232,7 +232,7 @@ int isThereAWall (int sensor){
   if (sensor == 0){  //Y0 - left walle;
       bool normal = false;
       int temp = 0;
-      while (!normal){
+      //while (!normal){
         digitalWrite(mux_S0, LOW);
         digitalWrite(mux_S1, LOW);
         Serial.print("Left wall avg value:");
@@ -242,13 +242,13 @@ int isThereAWall (int sensor){
         }
         temp = temp/5;
         Serial.println(temp);
-        if (temp > 500) {
+        /*if (temp > 500) {
           Serial.println("... Value too big!");
         }
         else {
           normal = true;
-        }
-      }
+        }*/
+      //}
       
       return (temp > 250);
   }
@@ -457,7 +457,7 @@ void initializeStuff(){
   lineLeftPin = A0;
 
   distanceInput = A4;
-  IRInput = A5;
+  mic = A5;
 
   //Initialize all nodes
   for(int i = 0; i < 20; i++) {
@@ -473,27 +473,30 @@ void initializeStuff(){
 //TODO should implement tone start here
 void waitForStart(){
   bool startFlag = false;
-  Serial.println("Waiting for button press");
-  uint8_t heard = 0;
+  Serial.println("Waiting for start flag");
   while (!startFlag){
-    return_freq(heard);
+    leftWheel.write(91);  //Stop left wheel moving
+    rightWheel.write(90); //Stop right wheel forward
+    //return_freq();
     if(heard == 1) {
-      delay(7500);
+      delay(750);
     }
     else if (heard == 2){
       startFlag = true;
+      Serial.println("Tone Detected");
     }
-    if (digitalRead(startPin) == HIGH) startFlag = true; 
-    leftWheel.write(91);  //Stop left wheel moving
-    rightWheel.write(90); //Stop right wheel forward
+    if (digitalRead(startPin) == HIGH) {
+      startFlag = true; 
+      Serial.println("Button Detected");
+    }
   }
   Serial.println("Starting...");
 }
 
-byte return_freq(uint8_t heard) {
+/*byte return_freq() {
   cli();  // UDRE interrupt slows this way down on arduino1.0
   for (int i = 0 ; i < 512 ; i += 2) { // save 256 samples
-    fft_input[i] = analogRead(A0); // put analog input (pin A0) into even bins
+    fft_input[i] = analogRead(mic); // put analog input (pin A0) into even bins
     fft_input[i + 1] = 0; // set odd bins to 0
   }
   fft_window(); // window the data for better frequency response
@@ -504,7 +507,7 @@ byte return_freq(uint8_t heard) {
   if(fft_log_out[19] > 68){
     heard++;
   };
-}
+}*/
 
 // Call as needed
 void updateLineSensors(){

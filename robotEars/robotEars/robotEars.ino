@@ -14,7 +14,7 @@ void loop() {
   while (1) { // reduces jitter
     return_freq();
     if(heard == 1) {
-      delay(7500);
+      delay(700);
     }
     else if (heard == 2){
       Serial.println("GO!");
@@ -26,7 +26,7 @@ void loop() {
 byte return_freq() {
   cli();  // UDRE interrupt slows this way down on arduino1.0
   for (int i = 0 ; i < 512 ; i += 2) { // save 256 samples
-    fft_input[i] = analogRead(A0); // put analog input (pin A0) into even bins
+    fft_input[i] = analogRead(A5); // put analog input (pin A0) into even bins
     fft_input[i + 1] = 0; // set odd bins to 0
   }
   fft_window(); // window the data for better frequency response
@@ -37,8 +37,10 @@ byte return_freq() {
 
   //for (byte i = 0 ; i < FFT_N / 2 ; i++) {
     //Serial.println(fft_log_out[18]); // send out the data
+    
     if(fft_log_out[19] > 68){
       heard++;
+      Serial.println("GO!");
     };
   //}
 }
