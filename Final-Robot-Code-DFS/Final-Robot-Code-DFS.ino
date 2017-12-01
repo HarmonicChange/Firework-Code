@@ -2,11 +2,15 @@
 #include <RF24.h>
 //#include <RF24_config.h>
 
+#define LOG_OUT 1 // use the log output function
+#define FFT_N 256 // set to 256 point fft
+
 #include <Servo.h>
 #include "Node.h"
 #include "Explorer.h"
 #include <SPI.h>
 #include "printf.h"
+#include <FFT.h>
 
 Servo leftWheel, rightWheel;
 int startPin = 4;

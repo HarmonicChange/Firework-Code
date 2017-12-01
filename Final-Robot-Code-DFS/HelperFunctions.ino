@@ -474,12 +474,36 @@ void initializeStuff(){
 void waitForStart(){
   bool startFlag = false;
   Serial.println("Waiting for button press");
+  uint8_t heard = 0;
   while (!startFlag){
+    return_freq(heard);
+    if(heard == 1) {
+      delay(7500);
+    }
+    else if (heard == 2){
+      startFlag = true;
+    }
     if (digitalRead(startPin) == HIGH) startFlag = true; 
     leftWheel.write(91);  //Stop left wheel moving
     rightWheel.write(90); //Stop right wheel forward
   }
   Serial.println("Starting...");
+}
+
+byte return_freq(uint8_t heard) {
+  cli();  // UDRE interrupt slows this way down on arduino1.0
+  for (int i = 0 ; i < 512 ; i += 2) { // save 256 samples
+    fft_input[i] = analogRead(A0); // put analog input (pin A0) into even bins
+    fft_input[i + 1] = 0; // set odd bins to 0
+  }
+  fft_window(); // window the data for better frequency response
+  fft_reorder(); // reorder the data before doing the fft
+  fft_run(); // process the data in the fft
+  fft_mag_log(); // take the output of the fft
+  sei();
+  if(fft_log_out[19] > 68){
+    heard++;
+  };
 }
 
 // Call as needed
