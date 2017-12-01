@@ -11,7 +11,7 @@
 
 // Call when you reach an intersection
 // It sends all data over RF, updates variables, then continues
-// 0 = keep straight, 1 = turn left, 2 = turn right
+// 0 = keep straight, 1 = turn leftin, 2 = turn right
    // void intersect(); 
    // void turn(getTurn()l);
 
@@ -35,21 +35,21 @@ void updateRobotLocation(){
 // Call when you reach an intersection
 // Sends all data, updates variables, then acts as appropriate
 // Make sure to uncomment the while loop once radio is implemented
-bool intersect(){
+void intersect(){
   leftWheel.write(91); 
   rightWheel.write(90);
   delay(50);
   //updateLineSensors();
   //if (lineLeft > blackDetect && lineRight > blackDetect) {
-    maze[currPos] = 0;
-    lookAround();
+    //maze[currPos] = 0;
+    if(backTrack == false) lookAround();
     bool sendFailed = true;
     while (sendFailed) {
       Serial.println("Sending");
       sendFailed = transmitData(); // These are set to true IFF send failed
       sendFailed = false;
     }
-    return true;
+    //return true;
   //}
   //else {
   //  walkBackward();
@@ -478,7 +478,7 @@ void waitForStart(){
     if (digitalRead(startPin) == HIGH) startFlag = true; 
     leftWheel.write(91);  //Stop left wheel moving
     rightWheel.write(90); //Stop right wheel forward
-  }in
+  }
   Serial.println("Starting...");
 }
 
