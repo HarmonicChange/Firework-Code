@@ -1,6 +1,6 @@
 #include <nRF24L01.h>
 #include <RF24.h>
-#include <RF24_config.h>
+//#include <RF24_config.h>
 
 #include <Servo.h>
 #include "Node.h"
@@ -13,11 +13,12 @@ int startPin = 4;
 int lineMidLeft, lineMidRight, lineRight, lineLeft;             //Line Sensor Values Variables
 int lineMidLeftPin, lineMidRightPin, lineRightPin, lineLeftPin; // Analog pins with line sensors
 int toleranceForward = 200; //
-int blackDetect = 600;      // Threshold above which sensors are reading a black line
+int blackDetect = 700;      // Threshold above which sensors are reading a black line
 int distanceInput; //wall sensor input pin, controlled by mux
 int IRInput; //treasure detector input pin, controlled by mux 
 int mux_S0 = 7, mux_S1 = 8; //00 = left, 10 = front, 01 = right
 int intRdy = 1;
+bool backTrack = false;
 
 unsigned long lasttime = 0;
 unsigned long period = 0;
@@ -96,11 +97,11 @@ void loop() {
   }
   else if (lineMidLeft < lineMidRight) { 
     //Serial.println("Right drifting");
-    rightDrift();}
+    rightDrift();
+  }
 
   //Not at intersection
-  if (lineLeft < blackDetect && lineRight < blackDetect) intRdy = 1;
-  
+  if (lineLeft < blackDetect && lineRight < blackDetect) intRdy = 1;  
   
   // At an intersection
   if (lineLeft > blackDetect && lineMidLeft > blackDetect && lineMidRight > blackDetect && lineRight > blackDetect && intRdy) {
@@ -114,32 +115,35 @@ void loop() {
     Serial.print("Direction:  ");
     Serial.println(int(currDir));
     //if (not (grid[nextPos]->isExplored()))
-    if (intersect()){ //Stops the robot to take wall samples   
-      nextNode = explorerPtr->nextNode();
-      nextPos  = nextNode->getCoord();
-      Serial.print("currPos:");
-      Serial.println(int(currPos));
-      Serial.print("nextPos:");
-      Serial.println(int(nextPos));
-  
-      keepStraight(); //Restart the walking forward, since intersect disabled it
-      turn(getTurn());
-      
-      updateRobotLocation(); 
+    //if (intersect()){ //Stops the robot to take wall samples   
+    intersect();
+    nextNode = explorerPtr->nextNode();
+    if (nextNode == grid[currPos]->getParent()) backTrack = true;
+    else backTrack = false;
+    nextPos  = nextNode->getCoord();
+    Serial.print("currPos:");
+    Serial.println(int(currPos));
+    Serial.print("nextPos:");
+    Serial.println(int(nextPos));
+
+    keepStraight(); //Restart the walking forward, since intersect disabled it
+    turn(getTurn());
     
-      explorerPtr->travelTo(grid[nextPos]);
-      currPos = nextPos;
+    updateRobotLocation(); 
+  
+    explorerPtr->travelTo(grid[nextPos]);
+    currPos = nextPos;
       //Robot should be following the line toward this next node now
-    }
-    else keepStraight();
+    //}
+    //else {keepStraight();}
     
   }    
 
-  if(explorerPtr->isDone()) {
+  if (explorerPtr->isDone()) {
     leftWheel.write(91);
     rightWheel.write(90);
     Serial.println("We're done!");
-    while(1);
+    while(1){}
   }
   
 }
