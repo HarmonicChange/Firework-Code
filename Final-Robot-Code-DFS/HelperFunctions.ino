@@ -477,7 +477,7 @@ void waitForStart(){
   while (!startFlag){
     leftWheel.write(91);  //Stop left wheel moving
     rightWheel.write(90); //Stop right wheel forward
-    //return_freq();
+    return_freq();
     if(heard == 1) {
       delay(750);
     }
@@ -493,9 +493,9 @@ void waitForStart(){
   Serial.println("Starting...");
 }
 
-/*byte return_freq() {
+byte return_freq() {
   cli();  // UDRE interrupt slows this way down on arduino1.0
-  for (int i = 0 ; i < 512 ; i += 2) { // save 256 samples
+  for (int i = 0 ; i < 128; i += 2) { // save 256 samples
     fft_input[i] = analogRead(mic); // put analog input (pin A0) into even bins
     fft_input[i + 1] = 0; // set odd bins to 0
   }
@@ -503,11 +503,12 @@ void waitForStart(){
   fft_reorder(); // reorder the data before doing the fft
   fft_run(); // process the data in the fft
   fft_mag_log(); // take the output of the fft
-  sei();
-  if(fft_log_out[19] > 68){
+  //sei();
+  //Serial.println(fft_log_out[9]);
+  if(fft_log_out[9] > 70){
     heard++;
   };
-}*/
+}
 
 // Call as needed
 void updateLineSensors(){

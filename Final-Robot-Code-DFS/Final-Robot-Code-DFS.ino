@@ -2,15 +2,15 @@
 #include <RF24.h>
 //#include <RF24_config.h>
 
-//#define LOG_OUT 1 // use the log output function
-//#define FFT_N 256 // set to 256 point fft
+#define LOG_OUT 1 // use the log output function
+#define FFT_N 128 // set to 256 point fft
 
 #include <Servo.h>
 #include "Node.h"
 #include "Explorer.h"
 #include <SPI.h>
 #include "printf.h"
-//#include <FFT.h>
+#include <FFT.h>
 
 Servo leftWheel, rightWheel;
 int startPin = 4;
@@ -71,18 +71,19 @@ void treasure_ISR() {
   period = micros() - lasttime  ;
   lasttime = micros();
   if(period > 130 && period < 150) {
-   // Serial.println("Treasure");
+    Serial.println("7kHz Treasure");
     maze[currPos] |= (1<<4); 
     period = 0;
   }
   else if(period > 75 && period < 85) {
-     //Serial.println("12");
-    //maze[currPos] += 32;  
+    Serial.println("12kHz Treasure");
+    maze[currPos] |= (1<<5);
     period = 0;
   }
   else if(period > 50 && period < 60) {
-     //Serial.println("17");
-    //maze[currPos] += 48;   
+    Serial.println("17kHz Treasure");
+    maze[currPos] |= (1<<4); 
+    maze[currPos] |= (1<<5);
     period = 0;
   }
 }
