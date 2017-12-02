@@ -67,11 +67,12 @@ void leftTurn(){
   bool flag = false;
   walkForward();
   delay(150);
+
+  // Begin turning leftret 
+  leftTurnFast(); 
+  delay(250);  
   
-  while (! turnDone) {
-    // Begin turning leftret
-    leftTurnFast(); 
-    delay(100);     
+  while (! turnDone) {  
 
     // Update needed sensor values
     updateLineSensors();
@@ -97,11 +98,12 @@ void rightTurn(){
   bool flag = false;
   walkForward();
   delay(150);
+
+  // Begin turning right
+  rightTurnFast(); 
+  delay(250);
   
   while (! turnDone) {
-    // Begin turning right
-    rightTurnFast(); 
-    delay(100);
 
     // Update needed sensor values
     updateLineSensors();
@@ -129,7 +131,7 @@ void keepStraight(){
 }
 
 void UTurn(){
-  bool turnDone = false;
+  /*bool turnDone = false;
   bool flag1 = false;
   bool flag2 = false;
   bool flag3 = false;
@@ -153,7 +155,31 @@ void UTurn(){
   if (currDir == 0) currDir = 2;
   else if (currDir == 1) currDir = 3;
   else if (currDir == 2) currDir = 0;
-  else if (currDir == 3) currDir = 1;
+  else if (currDir == 3) currDir = 1;*/
+  leftTurn();
+  bool turnDone = false;
+  bool flag = false;
+
+  // Begin turning leftret 
+  leftTurnFast(); 
+  delay(250);  
+  
+  while (! turnDone) {  
+
+    // Update needed sensor values
+    updateLineSensors();
+    //printSensors();
+    
+    // Test if turn is complete
+    if (!flag && lineMidLeft < blackDetect) flag = true;
+    if (flag && lineMidLeft  > blackDetect) turnDone = true;
+  }
+
+  // Update Direction it's facing
+  if (currDir == 0) currDir = 1;
+  else if (currDir == 1) currDir = 2;
+  else if (currDir == 2) currDir = 3;
+  else if (currDir == 3) currDir = 0;
 }
 
 void turn(int dir){
@@ -229,19 +255,23 @@ void lookAround(){
 
 // Return if there is a wall 
 int isThereAWall (int sensor){
+  int wallCounter = 0;
+  int temp = 0;
   if (sensor == 0){  //Y0 - left walle;
       bool normal = false;
-      int temp = 0;
+      //int temp = 0;
       //while (!normal){
         digitalWrite(mux_S0, LOW);
         digitalWrite(mux_S1, LOW);
         Serial.print("Left wall avg value:");
-        for (int i=0; i<5; i++) {
+        for (int i=0; i<6; i++) {
           temp = temp+analogRead(distanceInput);
+          if (analogRead(distanceInput) > 250) wallCounter++;
           delay(25);
         }
-        temp = temp/5;
-        Serial.println(temp);
+        //temp = temp/5;
+        //Serial.println(temp);
+        //Serial.println(wallCounter); //How many times we dectect wall out of 
         /*if (temp > 500) {
           Serial.println("... Value too big!");
         }
@@ -249,37 +279,40 @@ int isThereAWall (int sensor){
           normal = true;
         }*/
       //}
-      
-      return (temp > 250);
   }
   else if (sensor == 1){ //Y1 - front wall
       digitalWrite(mux_S0, HIGH);
       digitalWrite(mux_S1, LOW);
       Serial.print("Front wall avg value:");
-      int temp = 0;
-      for (int i=0; i<5; i++) {
+      for (int i=0; i<6; i++) {
         temp = temp+analogRead(distanceInput);
+        if (analogRead(distanceInput) > 100) wallCounter++;
         delay(25);
       }
-      temp = temp/5;      
-      Serial.println(temp);
-      return (temp > 120); //Dark condition 200, facing the window, sunny day, >130. Recalibrate using wall sensor diagnostic before start
+      //How many times we dectect wall out of 
+      //temp = temp/5;      
+      //Serial.println(temp);
+      //return (temp > 120); //Dark condition 200, facing the window, sunny day, >130. Recalibrate using wall sensor diagnostic before start
   }
   else if (sensor == 2){ //Y2 - right wall
       digitalWrite(mux_S0, LOW);
       digitalWrite(mux_S1, HIGH);
       Serial.print("Right wall avg value:");
-      int temp = 0;
-      for (int i=0; i<5; i++) {
+      for (int i=0; i<6; i++) {
         temp = temp+analogRead(distanceInput);
+        if (analogRead(distanceInput) > 250) wallCounter++;
         delay(25);
       }
-      temp = temp/5;      
-      Serial.println(temp);
-      return (temp > 250);
+      //temp = temp/5;      
+      //Serial.println(temp);
+      //return (temp > 250);
   }
-  
-  return 0;
+  temp = temp/5;
+  Serial.println(temp);
+  Serial.print("Number of Wall Count:");
+  Serial.println(wallCounter); 
+  if (wallCounter >= 4) return 1;
+  else return 0;
 }
 
 //------------------------------------------------------------------------------
@@ -383,6 +416,7 @@ void initializeRFStuff(){
 bool transmitData() {
   byte robotData = currPos | (currDir << 5);
   byte mazeData = (0b10000000 | maze[currPos]);
+  if (explorerPtr->isDone()) mazeData = (0b11000000 | maze[currPos]);
   return sendRF(robotData | (mazeData << 8));
 }
 
@@ -494,7 +528,7 @@ void waitForStart(){
 }
 
 void return_freq() {
-  cli();  // UDRE interrupt slows this way down on arduino1.0
+  //cli();  // UDRE interrupt slows this way down on arduino1.0
   for (int i = 0 ; i < 256; i += 2) { // save 128 samples
     fft_input[i] = analogRead(mic); // put analog input (pin A0) into even bins
     fft_input[i + 1] = 0; // set odd bins to 0
@@ -503,7 +537,7 @@ void return_freq() {
   fft_reorder(); // reorder the data before doing the fft
   fft_run(); // process the data in the fft
   fft_mag_log(); // take the output of the fft
-  sei();
+  //sei();
   //Serial.println(fft_log_out[9]);
   if(fft_log_out[9] > 70){
     heard++;

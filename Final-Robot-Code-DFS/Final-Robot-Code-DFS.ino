@@ -18,7 +18,7 @@ int mic;
 int lineMidLeft, lineMidRight, lineRight, lineLeft;             //Line Sensor Values Variables
 int lineMidLeftPin, lineMidRightPin, lineRightPin, lineLeftPin; // Analog pins with line sensors
 int toleranceForward = 200; //
-int blackDetect = 700;      // Threshold above which sensors are reading a black line
+int blackDetect = 850;      // Threshold above which sensors are reading a black line
 int distanceInput; //wall sensor input pin, controlled by mux
 int IRInput; //treasure detector input pin, controlled by mux 
 int mux_S0 = 7, mux_S1 = 8; //00 = left, 10 = front, 01 = right
@@ -139,7 +139,7 @@ void loop() {
     updateRobotLocation(); 
   
     explorerPtr->travelTo(grid[nextPos]);
-    currPos = nextPos;
+    //currPos = nextPos;
       //Robot should be following the line toward this next node now
     //}
     //else {keepStraight();}
@@ -149,6 +149,7 @@ void loop() {
   if (explorerPtr->isDone()) {
     leftWheel.write(91);
     rightWheel.write(90);
+    transmitData();
     Serial.println("We're done!");
     while(1){}
   }

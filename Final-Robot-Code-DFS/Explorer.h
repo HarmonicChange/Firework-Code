@@ -24,20 +24,24 @@ Explorer::Explorer(Node* startNode) {
 }
 
 Node* Explorer::nextNode() {
-  Node** neighbors = current->getNeighbors();
+  Node** neighbors = current->getNeighbors(); //list of current neighbors
+  Node* toReturn = NULL; //return the next node to go to
   
   for (int i = 0; i<3; i++){
-    if (neighbors[i] != NULL && !((*(neighbors+i))->isExplored())){
-      //Serial.print("nextNeighbor"); 
-      //Serial.println(current->nextNeighbor); 
-      if (i==current->nextNeighbor-1 && current==root){
-        Serial.println("root update"); 
-        root = current; 
-      }
-    return *(neighbors+i);
+    if (neighbors[i] != NULL && !(neighbors[i]->isExplored())){
+      toReturn = *(neighbors+i);
+//      if(*(neighbors+i+1) == NULL && current == root) {
+//        root = current;
+//        Serial.println("root update");
+//      }
     }
-   }  
-  return current->getParent(); //Reverse traversal to find unexplored neighbors
+  }
+
+  if(toReturn != NULL) {
+    return toReturn;
+  } else {
+    return current->getParent(); //Reverse traversal to find unexplored neighbors
+  }
 }
 
 Node* Explorer::travelTo(Node* walkingTo) {
