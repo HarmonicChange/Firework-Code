@@ -19,6 +19,7 @@ int lineMidLeft, lineMidRight, lineRight, lineLeft;             //Line Sensor Va
 int lineMidLeftPin, lineMidRightPin, lineRightPin, lineLeftPin; // Analog pins with line sensors
 int toleranceForward = 200; //
 int blackDetect = 850;      // Threshold above which sensors are reading a black line
+int blackDetectOuter = 750;      
 int distanceInput; //wall sensor input pin, controlled by mux
 int IRInput; //treasure detector input pin, controlled by mux 
 int mux_S0 = 7, mux_S1 = 8; //00 = left, 10 = front, 01 = right
@@ -108,10 +109,10 @@ void loop() {
   }
 
   //Not at intersection
-  if (lineLeft < blackDetect && lineRight < blackDetect) intRdy = 1;  
+  if (lineLeft < blackDetectOuter && lineRight < blackDetectOuter) intRdy = 1;  
   
   // At an intersection
-  if (lineLeft > blackDetect && lineMidLeft > blackDetect && lineMidRight > blackDetect && lineRight > blackDetect && intRdy) {
+  if (lineLeft > blackDetectOuter && lineMidLeft > blackDetect && lineMidRight > blackDetect && lineRight > blackDetectOuter && intRdy) {
     leftWheel.write(91); 
     rightWheel.write(90);
     intRdy = 0;
@@ -135,6 +136,14 @@ void loop() {
 
     keepStraight(); //Restart the walking forward, since intersect disabled it
     turn(getTurn());
+
+    if (explorerPtr->isDone()) {
+      leftWheel.write(91);
+      rightWheel.write(90);
+      transmitData();
+      Serial.println("We're done!");
+      while(1){}
+    }
     
     updateRobotLocation(); 
   
@@ -146,13 +155,7 @@ void loop() {
     
   }    
 
-  if (explorerPtr->isDone()) {
-    leftWheel.write(91);
-    rightWheel.write(90);
-    transmitData();
-    Serial.println("We're done!");
-    while(1){}
-  }
+
   
 }
 

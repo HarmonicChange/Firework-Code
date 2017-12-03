@@ -29,6 +29,7 @@ Node* Explorer::nextNode() {
   
   for (int i = 0; i<3; i++){
     if (neighbors[i] != NULL && !(neighbors[i]->isExplored())){
+      Serial.println(current->getParent()->getCoord());
       toReturn = *(neighbors+i);
       if(i==(current->nextNeighbor)-1 && current == root) {
         root = toReturn;
