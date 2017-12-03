@@ -5,7 +5,7 @@ enum Direction {north=0, west, south, east};
 
 class Node {
 
-  int dir; 
+  //int dir; 
   char coord; //0-19
 
   //NSEWTTTF: NSEW = walls, TT = treasure, F = flag for done exploring
