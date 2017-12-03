@@ -18,8 +18,8 @@ int mic;
 int lineMidLeft, lineMidRight, lineRight, lineLeft;             //Line Sensor Values Variables
 int lineMidLeftPin, lineMidRightPin, lineRightPin, lineLeftPin; // Analog pins with line sensors
 int toleranceForward = 200; //
-int blackDetect = 850;      // Threshold above which sensors are reading a black line
-int blackDetectOuter = 750;      
+int blackDetect = 700;      // Threshold above which sensors are reading a black line
+int blackDetectOuter = 700;      
 int distanceInput; //wall sensor input pin, controlled by mux
 int IRInput; //treasure detector input pin, controlled by mux 
 int mux_S0 = 7, mux_S1 = 8; //00 = left, 10 = front, 01 = right
