@@ -25,7 +25,7 @@ Explorer::Explorer(Node* startNode) {
 
 Node* Explorer::nextNode() {
   Node** neighbors = current->getNeighbors(); //list of current neighbors
-//  current->printNeighbors();
+  current->printNeighbors();
   //Node* toReturn = NULL; //return the next node to go to
   
   for (int i = 0; i<3; i++){
@@ -51,21 +51,24 @@ Node* Explorer::nextNode() {
 }
 
 void Explorer::travelTo(Node* walkingTo) {
+  current->markAsExplored();
   walkingTo->markAsExplored();
-  //Serial.println("walkingto is markasexplored");
-  /*if (walkingTo == current->getParent()){
-    current = walkingTo;
-  }
-  else if (walkingTo != root){
-    walkingTo->addParent(current);
-    current = walkingTo;
-  }*/
+  Serial.print((int)walkingTo->getCoord());
+  Serial.println("is markasexplored");
+//  if (walkingTo == current->getParent()){
+//    current = walkingTo;
+//  }
+//  else if (walkingTo != root){
+//    walkingTo->addParent(current);
+//    current = walkingTo;
+//  }
 
-  if(walkingTo != root) {
+  if(walkingTo != root && !(walkingTo == current->getParent())) {
     walkingTo->addParent(current);
   }
 
   current=walkingTo;
+
 }
 
 Node* Explorer::getCurrNode(){
