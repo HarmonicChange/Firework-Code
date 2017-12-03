@@ -70,7 +70,7 @@ void leftTurn(){
 
   // Begin turning leftret 
   leftTurnFast(); 
-  delay(250);  
+  delay(150);  
   
   while (! turnDone) {  
 
@@ -101,7 +101,7 @@ void rightTurn(){
 
   // Begin turning right
   rightTurnFast(); 
-  delay(250);
+  delay(150);
   
   while (! turnDone) {
 
