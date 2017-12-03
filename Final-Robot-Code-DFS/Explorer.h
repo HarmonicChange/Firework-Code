@@ -30,10 +30,10 @@ Node* Explorer::nextNode() {
   for (int i = 0; i<3; i++){
     if (neighbors[i] != NULL && !(neighbors[i]->isExplored())){
       toReturn = *(neighbors+i);
-//      if(*(neighbors+i+1) == NULL && current == root) {
-//        root = current;
-//        Serial.println("root update");
-//      }
+      if(i==(current->nextNeighbor)-1 && current == root) {
+        root = toReturn;
+        Serial.println("root update");
+      }
     }
   }
 
@@ -45,15 +45,17 @@ Node* Explorer::nextNode() {
 }
 
 Node* Explorer::travelTo(Node* walkingTo) {
-  walkingTo->markAsExplored();
-  
-  if (walkingTo == current->getParent()){
-    current = walkingTo;
-  }
-  else{
-    walkingTo->addParent(current);
-    current = walkingTo;
-  }
+  current = walkingTo;
+  current->markAsExplored();
+//  walkingTo->markAsExplored();
+//  
+//  if (walkingTo == current->getParent()){
+//    current = walkingTo;
+//  }
+//  else{
+//    walkingTo->addParent(current);
+//    current = walkingTo;
+//  }
 }
 
 Node* Explorer::getCurrNode(){
