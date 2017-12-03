@@ -512,7 +512,7 @@ void waitForStart(){
   while (!startFlag){
     leftWheel.write(91);  //Stop left wheel moving
     rightWheel.write(90); //Stop right wheel forward
-    return_freq();
+    //return_freq();
     if(heard == 1) {
       delay(750);
     }

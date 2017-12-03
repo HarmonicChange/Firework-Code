@@ -11,7 +11,7 @@ class Explorer {
   public:
     Explorer(Node* startNode);    
     Node* nextNode(); //essentially does the DFS
-    Node* travelTo(Node*); //call this when robot has moved
+    void travelTo(Node*); //call this when robot has moved
     Node* getCurrNode(); //returns current node
     bool isDone();
   
@@ -25,13 +25,10 @@ Explorer::Explorer(Node* startNode) {
 
 Node* Explorer::nextNode() {
   Node** neighbors = current->getNeighbors(); //list of current neighbors
- // current->printNeighbors();
+//  current->printNeighbors();
   //Node* toReturn = NULL; //return the next node to go to
   
   for (int i = 0; i<3; i++){
-//    if(current == root && neighbors[i] != NULL && neighbors[i]->isExplored()){
-//      
-//    }
     
     if (neighbors[i] != NULL && !(neighbors[i]->isExplored())){
 //      Serial.print("parent's ");
@@ -42,26 +39,33 @@ Node* Explorer::nextNode() {
         root->addParent(root);
         Serial.print("root update ");
         Serial.println(int(root->getCoord()));
-        return root;
+        //return root;
       }
-      Serial.println("neighbor+i");
+      //Serial.println("neighbor+i");
       return *(neighbors+i);
     }
   }
-    Serial.println("Parent");
-    return current->getParent(); //Reverse traversal to find unexplored neighbors
+  
+  //Serial.println("Parent");
+  return current->getParent(); //Reverse traversal to find unexplored neighbors
 }
 
-Node* Explorer::travelTo(Node* walkingTo) {
+void Explorer::travelTo(Node* walkingTo) {
   walkingTo->markAsExplored();
   //Serial.println("walkingto is markasexplored");
-  if (walkingTo == current->getParent()){
+  /*if (walkingTo == current->getParent()){
     current = walkingTo;
   }
   else if (walkingTo != root){
     walkingTo->addParent(current);
     current = walkingTo;
+  }*/
+
+  if(walkingTo != root) {
+    walkingTo->addParent(current);
   }
+
+  current=walkingTo;
 }
 
 Node* Explorer::getCurrNode(){
@@ -69,7 +73,7 @@ Node* Explorer::getCurrNode(){
 }
 
 bool Explorer::isDone(){
-  if (this->nextNode()==current ){
+  if (this->nextNode()==current){
     Serial.println("In isDone");
     return true;
   }
