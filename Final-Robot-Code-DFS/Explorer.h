@@ -26,16 +26,16 @@ Explorer::Explorer(Node* startNode) {
 Node* Explorer::nextNode() {
   Node** neighbors = current->getNeighbors(); //list of current neighbors
  // current->printNeighbors();
-  Node* toReturn = NULL; //return the next node to go to
+  //Node* toReturn = NULL; //return the next node to go to
   
   for (int i = 0; i<3; i++){
-    if(current == root && neighbors[i] != NULL && neighbors[i]->isExplored()){
-      
-    }
+//    if(current == root && neighbors[i] != NULL && neighbors[i]->isExplored()){
+//      
+//    }
     
     if (neighbors[i] != NULL && !(neighbors[i]->isExplored())){
-      Serial.print("parent's ");
-      Serial.println(int(current->getParent()->getCoord()));
+//      Serial.print("parent's ");
+//      Serial.println(int(current->getParent()->getCoord()));
       
       if(i==(current->nextNeighbor)-1 && current == root) {
         root = neighbors[i];
@@ -54,7 +54,7 @@ Node* Explorer::nextNode() {
 
 Node* Explorer::travelTo(Node* walkingTo) {
   walkingTo->markAsExplored();
-  Serial.println("walkingto is markasexplored");
+  //Serial.println("walkingto is markasexplored");
   if (walkingTo == current->getParent()){
     current = walkingTo;
   }

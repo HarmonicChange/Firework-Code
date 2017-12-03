@@ -41,7 +41,7 @@ Node::Node (int pos) {
 }
 
 void Node::addNeighbor(Node* n) {
-  Serial.print("Neighbor:");
+  Serial.print("Neighbor added:");
   if(n->isExplored()==0) {
     neighbors[nextNeighbor] = n;
    
@@ -122,11 +122,11 @@ void Node::addTreasure (int freq) {
 }
 
 void Node::addParent(Node* par) {
-  Serial.print("Node:");
-  Serial.println(int(coord));
-  Serial.print("Parent coord:");
+//  Serial.print("Node:");
+//  Serial.println(int(coord));
+//  Serial.print("Parent coord:");
   parent = par;
-  Serial.println(int(parent->getCoord()));
+//  Serial.println(int(parent->getCoord()));
   
 }
 
