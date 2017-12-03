@@ -134,10 +134,7 @@ void loop() {
     Serial.print("nextPos:");
     Serial.println(int(nextPos));
 
-    keepStraight(); //Restart the walking forward, since intersect disabled it
-    turn(getTurn());
-
-    if (explorerPtr->isDone()) {
+    if (nextPos==currPos) { //isDone
       leftWheel.write(91);
       rightWheel.write(90);
       transmitData();
@@ -145,10 +142,15 @@ void loop() {
       while(1){}
     }
     
-    updateRobotLocation(); 
+    keepStraight(); //Restart the walking forward, since intersect disabled it
+    turn(getTurn());
+
+    
+    
+    //updateRobotLocation(); 
   
     explorerPtr->travelTo(grid[nextPos]);
-    //currPos = nextPos;
+    currPos = nextPos;
       //Robot should be following the line toward this next node now
     //}
     //else {keepStraight();}

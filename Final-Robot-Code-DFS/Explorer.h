@@ -25,34 +25,40 @@ Explorer::Explorer(Node* startNode) {
 
 Node* Explorer::nextNode() {
   Node** neighbors = current->getNeighbors(); //list of current neighbors
+ // current->printNeighbors();
   Node* toReturn = NULL; //return the next node to go to
   
   for (int i = 0; i<3; i++){
+    if(current == root && neighbors[i] != NULL && neighbors[i]->isExplored()){
+      
+    }
+    
     if (neighbors[i] != NULL && !(neighbors[i]->isExplored())){
-      Serial.println(current->getParent()->getCoord());
-      toReturn = *(neighbors+i);
+      Serial.print("parent's ");
+      Serial.println(int(current->getParent()->getCoord()));
+      
       if(i==(current->nextNeighbor)-1 && current == root) {
-        root = toReturn;
+        root = neighbors[i];
         root->addParent(root);
-        Serial.println("root update");
+        Serial.print("root update ");
+        Serial.println(int(root->getCoord()));
+        return root;
       }
+      Serial.println("neighbor+i");
+      return *(neighbors+i);
     }
   }
-
-  if(toReturn != NULL) {
-    return toReturn;
-  } else {
+    Serial.println("Parent");
     return current->getParent(); //Reverse traversal to find unexplored neighbors
-  }
 }
 
 Node* Explorer::travelTo(Node* walkingTo) {
   walkingTo->markAsExplored();
-  
+  Serial.println("walkingto is markasexplored");
   if (walkingTo == current->getParent()){
     current = walkingTo;
   }
-  else{
+  else if (walkingTo != root){
     walkingTo->addParent(current);
     current = walkingTo;
   }
@@ -63,7 +69,8 @@ Node* Explorer::getCurrNode(){
 }
 
 bool Explorer::isDone(){
-  if (current==root && (this->nextNode())==current){
+  if (this->nextNode()==current ){
+    Serial.println("In isDone");
     return true;
   }
   else{

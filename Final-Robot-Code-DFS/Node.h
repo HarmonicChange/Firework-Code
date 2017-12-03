@@ -28,6 +28,7 @@ class Node {
     char getCoord();
     char getWallTreasures();
     int neighborCoord(Direction facing, int sensor, int currPos);
+    void printNeighbors();
 };
 
 Node::Node (int pos) {
@@ -46,6 +47,18 @@ void Node::addNeighbor(Node* n) {
    
     Serial.println(int(n->getCoord()));
     nextNeighbor++;
+  }
+}
+
+void Node::printNeighbors() {
+  for(int i = 0; i<3; i++) {
+    if(neighbors[i]==NULL) {
+      Serial.print("NULL,");
+    }
+    else { 
+      Serial.print(int(neighbors[i]->getCoord()));
+      Serial.print(",");
+    }
   }
 }
 
@@ -109,7 +122,12 @@ void Node::addTreasure (int freq) {
 }
 
 void Node::addParent(Node* par) {
+  Serial.print("Node:");
+  Serial.println(int(coord));
+  Serial.print("Parent coord:");
   parent = par;
+  Serial.println(int(parent->getCoord()));
+  
 }
 
 char Node::getWallTreasures() {

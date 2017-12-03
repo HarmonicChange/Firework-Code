@@ -196,7 +196,8 @@ int getTurn() {
   if (diff == -4) nextDir = south;        // Want to south
   else if (diff == 4) nextDir = north;
   else if (diff == 1) nextDir = west;
-  else nextDir = east;
+  else if (diff == -1) nextDir = east;
+  
   if(currDir - nextDir < 0) return currDir - nextDir + 4;
   return (currDir - nextDir)%4;
 }
@@ -416,7 +417,7 @@ void initializeRFStuff(){
 bool transmitData() {
   byte robotData = currPos | (currDir << 5);
   byte mazeData = (0b10000000 | maze[currPos]);
-  if (explorerPtr->isDone()) mazeData = (0b11000000 | maze[currPos]);
+  if (currPos==nextPos) mazeData = (0b11000000 | maze[currPos]);
   return sendRF(robotData | (mazeData << 8));
 }
 
