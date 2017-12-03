@@ -32,6 +32,7 @@ Node* Explorer::nextNode() {
       toReturn = *(neighbors+i);
       if(i==(current->nextNeighbor)-1 && current == root) {
         root = toReturn;
+        root->addParent(root);
         Serial.println("root update");
       }
     }
@@ -45,17 +46,15 @@ Node* Explorer::nextNode() {
 }
 
 Node* Explorer::travelTo(Node* walkingTo) {
-  current = walkingTo;
-  current->markAsExplored();
-//  walkingTo->markAsExplored();
-//  
-//  if (walkingTo == current->getParent()){
-//    current = walkingTo;
-//  }
-//  else{
-//    walkingTo->addParent(current);
-//    current = walkingTo;
-//  }
+  walkingTo->markAsExplored();
+  
+  if (walkingTo == current->getParent()){
+    current = walkingTo;
+  }
+  else{
+    walkingTo->addParent(current);
+    current = walkingTo;
+  }
 }
 
 Node* Explorer::getCurrNode(){

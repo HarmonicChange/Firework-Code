@@ -14,8 +14,6 @@ class Node {
   Node* neighbors[3]; //pointer to neighboring nodes
   Node* parent; //pointer to parent node
   
-  
-
   public:
     int nextNeighbor;
     Node(int);
