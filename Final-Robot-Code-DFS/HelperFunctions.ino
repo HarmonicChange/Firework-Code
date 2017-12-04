@@ -36,26 +36,27 @@ void updateRobotLocation(){
 // Sends all data, updates variables, then acts as appropriate
 // Make sure to uncomment the while loop once radio is implemented
 void intersect(){
-  leftWheel.write(91); 
-  rightWheel.write(90);
-  delay(50);
-  //updateLineSensors();
-  //if (lineLeft > blackDetect && lineRight > blackDetect) {
-    //maze[currPos] = 0;
-    if(backTrack == false) lookAround();
-    bool sendFailed = true;
-    while (sendFailed) {
-      Serial.println("Sending");
-      sendFailed = transmitData(); // These are set to true IFF send failed
-      sendFailed = false;
-    }
-    //return true;
-  //}
-  //else {
-  //  walkBackward();
-  //  delay(100);
-  //  return false;
-  //}
+  
+  //maze[currPos] = 0;
+  if(backTrack == false) {
+    leftWheel.write(91); 
+    rightWheel.write(90);
+    delay(50);
+    lookAround();
+  }
+
+  nextNode = explorerPtr->nextNode();
+  if (nextNode == grid[currPos]->getParent()) backTrack = true;
+  else backTrack = false;
+  nextPos  = nextNode->getCoord();
+  
+  bool sendFailed = true;
+  while (sendFailed) {
+    Serial.println("Sending");
+    sendFailed = transmitData(); // These are set to true IFF send failed
+    sendFailed = false;
+  }
+ 
    
 }
 

@@ -125,10 +125,7 @@ void loop() {
     //if (not (grid[nextPos]->isExplored()))
     //if (intersect()){ //Stops the robot to take wall samples   
     intersect();
-    nextNode = explorerPtr->nextNode();
-    if (nextNode == grid[currPos]->getParent()) backTrack = true;
-    else backTrack = false;
-    nextPos  = nextNode->getCoord();
+    
     Serial.print("currPos:");
     Serial.println(int(currPos));
     Serial.print("nextPos:");
@@ -137,7 +134,7 @@ void loop() {
     if (nextPos==currPos) { //isDone
       leftWheel.write(91);
       rightWheel.write(90);
-      transmitData();
+      
       Serial.println("We're done!");
       while(1){}
     }
