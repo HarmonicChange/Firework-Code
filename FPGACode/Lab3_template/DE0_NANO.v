@@ -24,15 +24,15 @@ module DE0_NANO(
      localparam block_width = 10'd80;
      
      localparam black = 8'b000_000_00;
-     localparam red   = 8'b111_000_00;
+     localparam red   = 8'b001_000_01;
      localparam green = 8'b000_111_00;
      localparam blue  = 8'b000_000_11;
      localparam white = 8'b111_111_11;
 
      localparam wall  = 8'b111_010_00;
-     localparam Tr07  = 8'b000_000_01; // Dark blue
-     localparam Tr12  = 8'b000_111_11; // light blue
-     localparam Tr17  = 8'b111_111_00; // Yellow
+     localparam Tr07  = 8'b100_000_00;
+     localparam Tr12  = 8'b000_111_00;
+     localparam Tr17  = 8'b000_000_11;
 
      // Local parameters for notes
     localparam CLKDIVIDERC = ONE_SEC/(256*261);
@@ -128,44 +128,40 @@ module DE0_NANO(
     reg currentPackage;
     reg previousPackage;
      
-    //SPI Data
+    //SPI Data and clock
     reg SPIData;
-     
-    //SPI Clock
     reg currSPIClock;
     reg prevSPIClock;
-        
     reg packageSending;
+    reg [2:0] currDataBits;
      
     // Store SPI Data
     reg [7:0] positionData;
     reg [5:0] currentLocation;
-    reg [1:0] currentOrientation;
-     
-    //Number of bits yet to be received
-    reg [2:0] currDataBits;
+    reg [1:0] currentOrientation;  
       
     initial begin
-        grid_color[0] = 8'b000_0_0000;
-        grid_color[1] = 8'b000_0_0000;
-        grid_color[2] = 8'b000_0_0000;
-        grid_color[3] = 8'b000_0_0000;
-        grid_color[4] = 8'b000_0_0000;
-        grid_color[5] = 8'b000_0_0000;
-        grid_color[6] = 8'b000_0_0000;
-        grid_color[7] = 8'b000_0_0000;
-        grid_color[8] = 8'b000_0_0000;
-        grid_color[9] = 8'b000_0_0000;
-        grid_color[10] = 8'b000_0_0000;
-        grid_color[11] = 8'b000_0_0000;
-        grid_color[12] = 8'b000_0_0000;
-        grid_color[13] = 8'b000_0_0000;
-        grid_color[14] = 8'b000_0_0000;
-        grid_color[15] = 8'b000_0_0000;
-        grid_color[16] = 8'b000_0_0000;
-        grid_color[17] = 8'b000_0_0000;
-        grid_color[18] = 8'b000_0_0000;
-        grid_color[19] = 8'b000_0_0000;
+		currentLocation <= 6'b011111;
+		grid_color[0] <= 8'b000_0_0000;
+		grid_color[1] <= 8'b000_0_0000;
+		grid_color[2] <= 8'b000_0_0000;
+		grid_color[3] <= 8'b000_0_0000;
+		grid_color[4] <= 8'b000_0_0000;
+		grid_color[5] <= 8'b000_0_0000;
+		grid_color[6] <= 8'b000_0_0000;
+		grid_color[7] <= 8'b000_0_0000;
+		grid_color[8] <= 8'b000_0_0000;
+		grid_color[9] <= 8'b000_0_0000;
+		grid_color[10] <= 8'b000_0_0000;
+		grid_color[11] <= 8'b000_0_0000;
+		grid_color[12] <= 8'b000_0_0000;
+		grid_color[13] <= 8'b000_0_0000;
+		grid_color[14] <= 8'b000_0_0000;
+		grid_color[15] <= 8'b000_0_0000;
+		grid_color[16] <= 8'b000_0_0000;
+		grid_color[17] <= 8'b000_0_0000;
+		grid_color[18] <= 8'b000_0_0000;
+		grid_color[19] <= 8'b000_0_0000;
     end
      
     //SPI receiving
