@@ -28,6 +28,10 @@ bool backTrack = false;
 
 unsigned long lasttime = 0;
 unsigned long period = 0;
+bool treasureFound = false;
+uint8_t treasure7 = 0;
+uint8_t treasure12 = 0;
+uint8_t treasure17 = 0;
 uint8_t heard = 0;
 
 int endOn = 10;
@@ -71,20 +75,35 @@ void setup() {
 void treasure_ISR() {
   period = micros() - lasttime  ;
   lasttime = micros();
-  if(period > 130 && period < 150) {
-    Serial.println("7kHz Treasure");
-    maze[currPos] |= (1<<4); 
+  if(period > 130 && period < 150 && !treasureFound) {
+    if(treasure7==255){
+       Serial.println("7kHz Treasure");
+        maze[currPos] |= (1<<4);
+        treasureFound = true;
+        treasure7 = 0;
+      } 
+    treasure7++;
     period = 0;
   }
-  else if(period > 75 && period < 85) {
-    Serial.println("12kHz Treasure");
-    maze[currPos] |= (1<<5);
+  else if(period > 75 && period < 85 && !treasureFound) {
+    if(treasure12==255){
+      Serial.println("12kHz Treasure");
+      maze[currPos] |= (1<<5);
+      treasureFound = true;
+      treasure12 = 0;
+    }
+    treasure12++;
     period = 0;
   }
-  else if(period > 50 && period < 60) {
-    Serial.println("17kHz Treasure");
-    maze[currPos] |= (1<<4); 
-    maze[currPos] |= (1<<5);
+  else if(period > 50 && period < 60 && !treasureFound) {
+    if(treasure17 == 255){
+      Serial.println("17kHz Treasure");
+      maze[currPos] |= (1<<4); 
+      maze[currPos] |= (1<<5);
+      treasureFound = true;
+      treasure17 = 0;
+    }
+    treasure17++;
     period = 0;
   }
 }
@@ -115,6 +134,7 @@ void loop() {
   if (lineLeft > blackDetectOuter && lineMidLeft > blackDetect && lineMidRight > blackDetect && lineRight > blackDetectOuter && intRdy) {
     leftWheel.write(91); 
     rightWheel.write(90);
+    treasureFound = false;
     intRdy = 0;
     Serial.println("------------------");
     printSensors();
