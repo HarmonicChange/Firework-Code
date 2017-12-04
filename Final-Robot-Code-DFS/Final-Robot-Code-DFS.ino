@@ -136,8 +136,6 @@ void loop() {
   
   // At an intersection
   if (lineLeft > blackDetectOuter && lineMidLeft > blackDetect && lineMidRight > blackDetect && lineRight > blackDetectOuter && intRdy) {
-    leftWheel.write(91); 
-    rightWheel.write(90);
     treasureFound = false;
     intRdy = 0;
     Serial.println("------------------");
@@ -156,9 +154,7 @@ void loop() {
     Serial.println(int(nextPos));
 
     if (nextPos==currPos) { //isDone
-      leftWheel.write(91);
-      rightWheel.write(90);
-      
+      stopMoving();
       Serial.println("We're done!");
       while(1){}
     }

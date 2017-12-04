@@ -39,8 +39,7 @@ void intersect(){
   
   //maze[currPos] = 0;
   if(backTrack == false) {
-    leftWheel.write(91); 
-    rightWheel.write(90);
+    stopMoving();
     delay(50);
     lookAround();
   }
@@ -485,8 +484,7 @@ void initializeStuff(){
   leftWheel.attach(5);
   rightWheel.attach(6);
   //Stop both wheels at the beginning
-  leftWheel.write(91);  //Stop left wheel moving
-  rightWheel.write(90); //Stop right wheel forward
+  stopMoving();
   lineMidLeftPin = A1;
   lineMidRightPin = A2;
   lineRightPin = A3;
@@ -511,8 +509,7 @@ void waitForStart(){
   bool startFlag = false;
   Serial.println("Waiting for start flag");
   while (!startFlag){
-    leftWheel.write(91);  //Stop left wheel moving
-    rightWheel.write(90); //Stop right wheel forward
+    stopMoving();
     //return_freq();
     if(heard == 1) {
       delay(750);
