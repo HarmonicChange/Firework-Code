@@ -208,6 +208,19 @@ int getTurn() {
 
 // Look around for walls, update maze
 void lookAround(){
+    // Check wall in front
+    int temp;
+  if (isThereAWall(1)){
+    grid[currPos]->addWall(Direction(currDir), true);
+    Serial.println("Front wall detected");
+    if (currDir == 3) maze[currPos] += 8;
+    else if (currDir == 2) maze[currPos] += 4;
+    else if (currDir == 1) maze[currPos] += 2;
+    else if (currDir == 0) maze[currPos] += 1;
+  } else{ //No wall in theory. Checks neighbor coordinate for sure it is not an outer wall
+    grid[currPos]->addWall(Direction(currDir), false);
+    grid[currPos]->addNeighbor(grid[grid[currPos]->neighborCoord(currDir, 2, currPos)]);
+  }
   // Check wall to the left
   if (isThereAWall(0)) { 
     grid[currPos]->addWall(Direction((currDir+1)%4), true);
@@ -237,18 +250,7 @@ void lookAround(){
     grid[currPos]->addNeighbor(grid[grid[currPos]->neighborCoord(currDir, 1, currPos)]);
   }
     
-  // Check wall in front
-  if (isThereAWall(1)){
-    grid[currPos]->addWall(Direction(currDir), true);
-    Serial.println("Front wall detected");
-    if (currDir == 3) maze[currPos] += 8;
-    else if (currDir == 2) maze[currPos] += 4;
-    else if (currDir == 1) maze[currPos] += 2;
-    else if (currDir == 0) maze[currPos] += 1;
-  } else{ //No wall
-    grid[currPos]->addWall(Direction(currDir), false);
-    grid[currPos]->addNeighbor(grid[grid[currPos]->neighborCoord(currDir, 2, currPos)]);
-  }
+
 }
 
 
@@ -266,7 +268,7 @@ int isThereAWall (int sensor){
         Serial.print("Left wall avg value:");
         for (int i=0; i<6; i++) {
           temp = temp+analogRead(distanceInput);
-          if (analogRead(distanceInput) > 230) wallCounter++;
+          if (analogRead(distanceInput) > 270) wallCounter++;
           delay(25);
         }
         //temp = temp/5;
@@ -300,7 +302,7 @@ int isThereAWall (int sensor){
       Serial.print("Right wall avg value:");
       for (int i=0; i<6; i++) {
         temp = temp+analogRead(distanceInput);
-        if (analogRead(distanceInput) > 250) wallCounter++;
+        if (analogRead(distanceInput) > 270) wallCounter++;
         delay(25);
       }
       //temp = temp/5;      
