@@ -3,10 +3,8 @@ JedecChain;
 	FileRevision(JESD32A);
 	DefaultMfr(6E);
 
-	P ActionCode(Ign)
-		Device PartName(EP4CE22F17) MfrSpec(OpMask(0) FullPath("D:/Documents/Classes/Semester_5/ECE_3400/Firework-Code/FPGACode/Lab3_template/DE0_NANO.sof"));
 	P ActionCode(Cfg)
-		Device PartName(EP4CE22) Path("D:/Documents/Classes/Semester_5/ECE_3400/Firework-Code/FPGACode/Lab3_template/") File("my_generated_jic.jic") MfrSpec(OpMask(1) SEC_Device(EPCS64) Child_OpMask(1 128));
+		Device PartName(EP4CE22) Path("D:/Documents/Classes/Semester_5/ECE_3400/Firework-Code/FPGACode/Lab3_template/") File("myfile.jic") MfrSpec(OpMask(1) SEC_Device(EPCS64) Child_OpMask(1 7));
 
 ChainEnd;
 

@@ -141,27 +141,27 @@ module DE0_NANO(
     reg [1:0] currentOrientation;  
       
     initial begin
-		currentLocation <= 6'b011111;
-		grid_color[0] <= 8'b000_0_0000;
-		grid_color[1] <= 8'b000_0_0000;
-		grid_color[2] <= 8'b000_0_0000;
-		grid_color[3] <= 8'b000_0_0000;
-		grid_color[4] <= 8'b000_0_0000;
-		grid_color[5] <= 8'b000_0_0000;
-		grid_color[6] <= 8'b000_0_0000;
-		grid_color[7] <= 8'b000_0_0000;
-		grid_color[8] <= 8'b000_0_0000;
-		grid_color[9] <= 8'b000_0_0000;
-		grid_color[10] <= 8'b000_0_0000;
-		grid_color[11] <= 8'b000_0_0000;
-		grid_color[12] <= 8'b000_0_0000;
-		grid_color[13] <= 8'b000_0_0000;
-		grid_color[14] <= 8'b000_0_0000;
-		grid_color[15] <= 8'b000_0_0000;
-		grid_color[16] <= 8'b000_0_0000;
-		grid_color[17] <= 8'b000_0_0000;
-		grid_color[18] <= 8'b000_0_0000;
-		grid_color[19] <= 8'b000_0_0000;
+        currentLocation <= 6'b011111;
+        grid_color[0] <= 8'b000_0_0000;
+        grid_color[1] <= 8'b000_0_0000;
+        grid_color[2] <= 8'b000_0_0000;
+        grid_color[3] <= 8'b000_0_0000;
+        grid_color[4] <= 8'b000_0_0000;
+        grid_color[5] <= 8'b000_0_0000;
+        grid_color[6] <= 8'b000_0_0000;
+        grid_color[7] <= 8'b000_0_0000;
+        grid_color[8] <= 8'b000_0_0000;
+        grid_color[9] <= 8'b000_0_0000;
+        grid_color[10] <= 8'b000_0_0000;
+        grid_color[11] <= 8'b000_0_0000;
+        grid_color[12] <= 8'b000_0_0000;
+        grid_color[13] <= 8'b000_0_0000;
+        grid_color[14] <= 8'b000_0_0000;
+        grid_color[15] <= 8'b000_0_0000;
+        grid_color[16] <= 8'b000_0_0000;
+        grid_color[17] <= 8'b000_0_0000;
+        grid_color[18] <= 8'b000_0_0000;
+        grid_color[19] <= 8'b000_0_0000;
     end
      
     //SPI receiving
@@ -268,14 +268,14 @@ module DE0_NANO(
             // Is the robot currently there?
             else if ((currentLocation == 5'd0) && (PX_X > 0*block_width + 35) && (PX_X < 1*block_width - 35) && (PX_Y > 0*block_width + 35) && (PX_Y < 1*block_width - 35)) PX_color = green;
             // What are the walls around this node?
-            else if ((grid_color[0][0] == 1'b1) && (PX_Y < (0*block_width + 10))) PX_color = wall; // Top
+            else if ((PX_Y < (0*block_width + 10))) PX_color = wall; // Top
             else if ((grid_color[0][2] == 1'b1) && (PX_Y > (1*block_width - 10))) PX_color = wall; // Bottom
-            else if ((grid_color[0][1] == 1'b1) && (PX_X < (0*block_width + 10))) PX_color = wall; // Left
+            else if ((PX_X < (0*block_width + 10))) PX_color = wall; // Left
             else if ((grid_color[0][3] == 1'b1) && (PX_X > (1*block_width - 10))) PX_color = wall; // Right
             // What treasure is at this node?
-            else if (grid_color[0][6:5] == 2'b01) PX_color = Tr07;    //  7kHz treasure turns screen blue  
-            else if (grid_color[0][6:5] == 2'b10) PX_color = Tr12;    // 12kHz treasure turns screen orange
-            else if (grid_color[0][6:5] == 2'b11) PX_color = Tr17;    // 17kHz treasure turns screen purple
+            else if (grid_color[0][6:5] == 2'b01) PX_color = Tr07;    //  7kHz treasure turns screen red  
+            else if (grid_color[0][6:5] == 2'b10) PX_color = Tr12;    // 12kHz treasure turns screen green
+            else if (grid_color[0][6:5] == 2'b11) PX_color = Tr17;    // 17kHz treasure turns screen blue
             // Otherwise leave it white!
             else PX_color = white;
         end
@@ -284,7 +284,7 @@ module DE0_NANO(
         begin
             if (grid_color[1][4] == 1'b0) PX_color = red;
             else if ((currentLocation == 5'd1) && (PX_X > 1*block_width + 35) && (PX_X < 2*block_width - 35) && (PX_Y > 0*block_width + 35) && (PX_Y < 1*block_width - 35)) PX_color = green;
-            else if ((grid_color[1][0] == 1'b1) && (PX_Y < (0*block_width + 10))) PX_color = wall;
+            else if ((PX_Y < (0*block_width + 10))) PX_color = wall;
             else if ((grid_color[1][2] == 1'b1) && (PX_Y > (1*block_width - 10))) PX_color = wall;
             else if ((grid_color[1][1] == 1'b1) && (PX_X < (1*block_width + 10))) PX_color = wall;
             else if ((grid_color[1][3] == 1'b1) && (PX_X > (2*block_width - 10))) PX_color = wall;
@@ -298,7 +298,7 @@ module DE0_NANO(
         begin
             if (grid_color[2][4] == 1'b0) PX_color = red;
             else if ((currentLocation == 5'd2) && (PX_X > 2*block_width + 35) && (PX_X < 3*block_width - 35) && (PX_Y > 0*block_width + 35) && (PX_Y < 1*block_width - 35)) PX_color = green;
-            else if ((grid_color[2][0] == 1'b1) && (PX_Y < (0*block_width + 10))) PX_color = wall;
+            else if ((PX_Y < (0*block_width + 10))) PX_color = wall;
             else if ((grid_color[2][2] == 1'b1) && (PX_Y > (1*block_width - 10))) PX_color = wall;
             else if ((grid_color[2][1] == 1'b1) && (PX_X < (2*block_width + 10))) PX_color = wall;
             else if ((grid_color[2][3] == 1'b1) && (PX_X > (3*block_width - 10))) PX_color = wall;
@@ -312,10 +312,10 @@ module DE0_NANO(
         begin
             if (grid_color[3][4] == 1'b0) PX_color = red;
             else if ((currentLocation == 5'd3) && (PX_X > 3*block_width + 35) && (PX_X < 4*block_width - 35) && (PX_Y > 0*block_width + 35) && (PX_Y < 1*block_width - 35)) PX_color = green;
-            else if ((grid_color[3][0] == 1'b1) && (PX_Y < (0*block_width + 10))) PX_color = wall;
+            else if ((PX_Y < (0*block_width + 10))) PX_color = wall;
             else if ((grid_color[3][2] == 1'b1) && (PX_Y > (1*block_width - 10))) PX_color = wall;
             else if ((grid_color[3][1] == 1'b1) && (PX_X < (3*block_width + 10))) PX_color = wall;
-            else if ((grid_color[3][3] == 1'b1) && (PX_X > (4*block_width - 10))) PX_color = wall;
+            else if ((PX_X > (4*block_width - 10))) PX_color = wall;
             else if (grid_color[3][6:5] == 2'b01) PX_color = Tr07;
             else if (grid_color[3][6:5] == 2'b10) PX_color = Tr12;
             else if (grid_color[3][6:5] == 2'b11) PX_color = Tr17;
@@ -328,7 +328,7 @@ module DE0_NANO(
             else if ((currentLocation == 5'd4) && (PX_X > 0*block_width + 35) && (PX_X < 1*block_width - 35) && (PX_Y > 1*block_width + 35) && (PX_Y < 2*block_width - 35)) PX_color = green;
             else if ((grid_color[4][0] == 1'b1) && (PX_Y < (1*block_width + 10))) PX_color = wall;
             else if ((grid_color[4][2] == 1'b1) && (PX_Y > (2*block_width - 10))) PX_color = wall;
-            else if ((grid_color[4][1] == 1'b1) && (PX_X < (0*block_width + 10))) PX_color = wall;
+            else if ((PX_X < (0*block_width + 10))) PX_color = wall;
             else if ((grid_color[4][3] == 1'b1) && (PX_X > (1*block_width - 10))) PX_color = wall;
             else if (grid_color[4][6:5] == 2'b01) PX_color = Tr07;
             else if (grid_color[4][6:5] == 2'b10) PX_color = Tr12;
@@ -371,7 +371,7 @@ module DE0_NANO(
             else if ((grid_color[7][0] == 1'b1) && (PX_Y < (1*block_width + 10))) PX_color = wall;
             else if ((grid_color[7][2] == 1'b1) && (PX_Y > (2*block_width - 10))) PX_color = wall;
             else if ((grid_color[7][1] == 1'b1) && (PX_X < (3*block_width + 10))) PX_color = wall;
-            else if ((grid_color[7][3] == 1'b1) && (PX_X > (4*block_width - 10))) PX_color = wall;
+            else if ((PX_X > (4*block_width - 10))) PX_color = wall;
             else if (grid_color[7][6:5] == 2'b01) PX_color = Tr07;
             else if (grid_color[7][6:5] == 2'b10) PX_color = Tr12;
             else if (grid_color[7][6:5] == 2'b11) PX_color = Tr17;
@@ -384,7 +384,7 @@ module DE0_NANO(
             else if ((currentLocation == 5'd8) && (PX_X > 0*block_width + 35) && (PX_X < 1*block_width - 35) && (PX_Y > 2*block_width + 35) && (PX_Y < 3*block_width - 35)) PX_color = green;
             else if ((grid_color[8][0] == 1'b1) && (PX_Y < (2*block_width + 10))) PX_color = wall;
             else if ((grid_color[8][2] == 1'b1) && (PX_Y > (3*block_width - 10))) PX_color = wall;
-            else if ((grid_color[8][1] == 1'b1) && (PX_X < (0*block_width + 10))) PX_color = wall;
+            else if ((PX_X < (0*block_width + 10))) PX_color = wall;
             else if ((grid_color[8][3] == 1'b1) && (PX_X > (1*block_width - 10))) PX_color = wall;
             else if (grid_color[8][6:5] == 2'b01) PX_color = Tr07;
             else if (grid_color[8][6:5] == 2'b10) PX_color = Tr12;
@@ -427,7 +427,7 @@ module DE0_NANO(
             else if ((grid_color[11][0] == 1'b1) && (PX_Y < (2*block_width + 10))) PX_color = wall;
             else if ((grid_color[11][2] == 1'b1) && (PX_Y > (3*block_width - 10))) PX_color = wall;
             else if ((grid_color[11][1] == 1'b1) && (PX_X < (3*block_width + 10))) PX_color = wall;
-            else if ((grid_color[11][3] == 1'b1) && (PX_X > (4*block_width - 10))) PX_color = wall;
+            else if ((PX_X > (4*block_width - 10))) PX_color = wall;
             else if (grid_color[11][6:5] == 2'b01) PX_color = Tr07;
             else if (grid_color[11][6:5] == 2'b10) PX_color = Tr12;
             else if (grid_color[11][6:5] == 2'b11) PX_color = Tr17;
@@ -440,7 +440,7 @@ module DE0_NANO(
             else if ((currentLocation == 5'd12) && (PX_X > 0*block_width + 35) && (PX_X < 1*block_width - 35) && (PX_Y > 3*block_width + 35) && (PX_Y < 4*block_width - 35)) PX_color = green;
             else if ((grid_color[12][0] == 1'b1) && (PX_Y < (3*block_width + 10))) PX_color = wall;
             else if ((grid_color[12][2] == 1'b1) && (PX_Y > (4*block_width - 10))) PX_color = wall;
-            else if ((grid_color[12][1] == 1'b1) && (PX_X < (0*block_width + 10))) PX_color = wall;
+            else if ((PX_X < (0*block_width + 10))) PX_color = wall;
             else if ((grid_color[12][3] == 1'b1) && (PX_X > (1*block_width - 10))) PX_color = wall;
             else if (grid_color[12][6:5] == 2'b01) PX_color = Tr07;
             else if (grid_color[12][6:5] == 2'b10) PX_color = Tr12;
@@ -483,7 +483,7 @@ module DE0_NANO(
             else if ((grid_color[15][0] == 1'b1) && (PX_Y < (3*block_width + 10))) PX_color = wall;
             else if ((grid_color[15][2] == 1'b1) && (PX_Y > (4*block_width - 10))) PX_color = wall;
             else if ((grid_color[15][1] == 1'b1) && (PX_X < (3*block_width + 10))) PX_color = wall;
-            else if ((grid_color[15][3] == 1'b1) && (PX_X > (4*block_width - 10))) PX_color = wall;
+            else if ((PX_X > (4*block_width - 10))) PX_color = wall;
             else if (grid_color[15][6:5] == 2'b01) PX_color = Tr07;
             else if (grid_color[15][6:5] == 2'b10) PX_color = Tr12;
             else if (grid_color[15][6:5] == 2'b11) PX_color = Tr17;
@@ -495,8 +495,8 @@ module DE0_NANO(
             if (grid_color[16][4] == 1'b0) PX_color = red;
             else if ((currentLocation == 5'd16) && (PX_X > 0*block_width + 35) && (PX_X < 1*block_width - 35) && (PX_Y > 4*block_width + 35) && (PX_Y < 5*block_width - 35)) PX_color = green;
             else if ((grid_color[16][0] == 1'b1) && (PX_Y < (4*block_width + 10))) PX_color = wall;
-            else if ((grid_color[16][2] == 1'b1) && (PX_Y > (5*block_width - 10))) PX_color = wall;
-            else if ((grid_color[16][1] == 1'b1) && (PX_X < (0*block_width + 10))) PX_color = wall;
+            else if ((PX_Y > (5*block_width - 10))) PX_color = wall;
+            else if ((PX_X < (0*block_width + 10))) PX_color = wall;
             else if ((grid_color[16][3] == 1'b1) && (PX_X > (1*block_width - 10))) PX_color = wall;
             else if (grid_color[16][6:5] == 2'b01) PX_color = Tr07;
             else if (grid_color[16][6:5] == 2'b10) PX_color = Tr12;
@@ -509,7 +509,7 @@ module DE0_NANO(
             if (grid_color[17][4] == 1'b0) PX_color = red;
             else if ((currentLocation == 5'd17) && (PX_X > 1*block_width + 35) && (PX_X < 2*block_width - 35) && (PX_Y > 4*block_width + 35) && (PX_Y < 5*block_width - 35)) PX_color = green;
             else if ((grid_color[17][0] == 1'b1) && (PX_Y < (4*block_width + 10))) PX_color = wall;
-            else if ((grid_color[17][2] == 1'b1) && (PX_Y > (5*block_width - 10))) PX_color = wall;
+            else if ((PX_Y > (5*block_width - 10))) PX_color = wall;
             else if ((grid_color[17][1] == 1'b1) && (PX_X < (1*block_width + 10))) PX_color = wall;
             else if ((grid_color[17][3] == 1'b1) && (PX_X > (2*block_width - 10))) PX_color = wall;
             else if (grid_color[17][6:5] == 2'b01) PX_color = Tr07;
@@ -523,7 +523,7 @@ module DE0_NANO(
             if (grid_color[18][4] == 1'b0) PX_color = red;
             else if ((currentLocation == 5'd18) && (PX_X > 2*block_width + 35) && (PX_X < 3*block_width - 35) && (PX_Y > 4*block_width + 35) && (PX_Y < 5*block_width - 35)) PX_color = green;
             else if ((grid_color[18][0] == 1'b1) && (PX_Y < (4*block_width + 10))) PX_color = wall;
-            else if ((grid_color[18][2] == 1'b1) && (PX_Y > (5*block_width - 10))) PX_color = wall;
+            else if ((PX_Y > (5*block_width - 10))) PX_color = wall;
             else if ((grid_color[18][1] == 1'b1) && (PX_X < (2*block_width + 10))) PX_color = wall;
             else if ((grid_color[18][3] == 1'b1) && (PX_X > (3*block_width - 10))) PX_color = wall;
             else if (grid_color[18][6:5] == 2'b01) PX_color = Tr07;
@@ -539,7 +539,7 @@ module DE0_NANO(
             else if ((grid_color[19][0] == 1'b1) && (PX_Y < (4*block_width + 10))) PX_color = wall;
             else if ((PX_Y > (5*block_width - 10))) PX_color = wall;
             else if ((grid_color[19][1] == 1'b1) && (PX_X < (3*block_width + 10))) PX_color = wall;
-            else if ((grid_color[19][3] == 1'b1) && (PX_X > (4*block_width - 10))) PX_color = wall;
+            else if ((PX_X > (4*block_width - 10))) PX_color = wall;
             else if (grid_color[19][6:5] == 2'b01) PX_color = Tr07;
             else if (grid_color[19][6:5] == 2'b10) PX_color = Tr12;
             else if (grid_color[19][6:5] == 2'b11) PX_color = Tr17;

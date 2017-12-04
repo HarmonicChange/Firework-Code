@@ -48,7 +48,7 @@ void intersect(){
   if (nextNode == grid[currPos]->getParent()) backTrack = true;
   else backTrack = false;
   nextPos  = nextNode->getCoord();
-  
+
   bool sendFailed = true;
   while (sendFailed) {
     Serial.println("Sending");

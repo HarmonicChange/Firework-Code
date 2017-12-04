@@ -132,6 +132,7 @@ void loop() {
   
   // At an intersection
   if (lineLeft > blackDetectOuter && lineMidLeft > blackDetect && lineMidRight > blackDetect && lineRight > blackDetectOuter && intRdy) {
+    stopMoving();
     treasureFound = false;
     intRdy = 0;
     Serial.println("------------------");
