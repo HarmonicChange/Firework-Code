@@ -169,6 +169,7 @@ void loop() {
   
     explorerPtr->travelTo(grid[nextPos]);
     currPos = nextPos;
+    //delay(50);
       //Robot should be following the line toward this next node now
     //}
     //else {keepStraight();}

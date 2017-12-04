@@ -36,10 +36,10 @@ void updateRobotLocation(){
 // Sends all data, updates variables, then acts as appropriate
 // Make sure to uncomment the while loop once radio is implemented
 void intersect(){
-  stopMoving();
+  //stopMoving();
   //maze[currPos] = 0;
   if(backTrack == false) {   
-    //delay(50);
+    delay(50);
     lookAround();
   }
 
@@ -69,7 +69,7 @@ void leftTurn(){
 
   // Begin turning leftret 
   leftTurnFast(); 
-  delay(150);  
+  delay(100);  
   
   while (! turnDone) {  
 
@@ -100,7 +100,7 @@ void rightTurn(){
 
   // Begin turning right
   rightTurnFast(); 
-  delay(150);
+  delay(100);
   
   while (! turnDone) {
 
@@ -161,7 +161,7 @@ void UTurn(){
 
   // Begin turning leftret 
   leftTurnFast(); 
-  delay(250);  
+  delay(100);  
   
   while (! turnDone) {  
 
@@ -266,7 +266,7 @@ int isThereAWall (int sensor){
         Serial.print("Left wall avg value:");
         for (int i=0; i<6; i++) {
           temp = temp+analogRead(distanceInput);
-          if (analogRead(distanceInput) > 250) wallCounter++;
+          if (analogRead(distanceInput) > 230) wallCounter++;
           delay(25);
         }
         //temp = temp/5;
@@ -509,7 +509,7 @@ void waitForStart(){
   Serial.println("Waiting for start flag");
   while (!startFlag){
     stopMoving();
-    //return_freq();
+    return_freq();
     if(heard == 1) {
       delay(750);
     }
