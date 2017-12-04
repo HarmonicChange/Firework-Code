@@ -36,11 +36,10 @@ void updateRobotLocation(){
 // Sends all data, updates variables, then acts as appropriate
 // Make sure to uncomment the while loop once radio is implemented
 void intersect(){
-  
+  stopMoving();
   //maze[currPos] = 0;
-  if(backTrack == false) {
-    stopMoving();
-    delay(50);
+  if(backTrack == false) {   
+    //delay(50);
     lookAround();
   }
 
