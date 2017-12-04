@@ -32,6 +32,7 @@ bool treasureFound = false;
 uint8_t treasure7 = 0;
 uint8_t treasure12 = 0;
 uint8_t treasure17 = 0;
+uint8_t numTreasures = 0;
 uint8_t heard = 0;
 
 int endOn = 10;
@@ -65,43 +66,46 @@ void setup() {
   currPos = 19;
   currDir = north;
 
+  waitForStart();
+
   //TODO Check interrupt pins
   attachInterrupt(digitalPinToInterrupt(2), treasure_ISR, FALLING);
   attachInterrupt(digitalPinToInterrupt(3), treasure_ISR, FALLING);
-
-  waitForStart();
 }
 
 void treasure_ISR() {
   period = micros() - lasttime  ;
   lasttime = micros();
-  if(period > 130 && period < 150 && !treasureFound) {
+  if(period > 130 && period < 150 && !treasureFound && numTreasures<3) {
     if(treasure7==255){
        Serial.println("7kHz Treasure");
         maze[currPos] |= (1<<4);
         treasureFound = true;
         treasure7 = 0;
+        numTreasures++;
       } 
     treasure7++;
     period = 0;
   }
-  else if(period > 75 && period < 85 && !treasureFound) {
+  else if(period > 75 && period < 85 && !treasureFound && numTreasures<3) {
     if(treasure12==255){
       Serial.println("12kHz Treasure");
       maze[currPos] |= (1<<5);
       treasureFound = true;
       treasure12 = 0;
+      numTreasures++;
     }
     treasure12++;
     period = 0;
   }
-  else if(period > 50 && period < 60 && !treasureFound) {
+  else if(period > 50 && period < 60 && !treasureFound && numTreasures<3) {
     if(treasure17 == 255){
       Serial.println("17kHz Treasure");
       maze[currPos] |= (1<<4); 
       maze[currPos] |= (1<<5);
       treasureFound = true;
       treasure17 = 0;
+      numTreasures++;
     }
     treasure17++;
     period = 0;
