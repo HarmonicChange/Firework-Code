@@ -1,1 +1,1 @@
-"# Firework-Code" 
+This is the collection of code used in ECE 3400, Fall 2017 by Team Firework (Team 12)! The accompanying website that details how this code was used can be found at https://carolinechuu.github.io/ECE-3400-Team-12/.
